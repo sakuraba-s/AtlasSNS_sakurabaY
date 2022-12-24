@@ -1,0 +1,193 @@
+@charset "utf-8";
+html{
+    font-size: 12px; /*ページ全体にテキストの大きさの基準を指定する*/
+}
+body{
+    color: #624649; /*文字色　赤茶色*/
+    font-size: 1rem;  /*1rem＝htmlで指定された文字サイズを基準とする(4よりここでは16px)*/
+    font-family:'メイリオ', 'Meiryo', sans-serif;/*OSによって認識される描き方が異なるため複数の描き方をする*/
+    /*※サンセリフ＝文字の端に線のない書体*/
+}
+/* header */
+header{
+    background:#186AC9;
+    height: 100%;
+}
+
+#head{
+    display: flex;
+}
+#login_user_area{
+    display: flex;
+    margin: 0 0 0 auto;
+    /* 右寄せ 上右下左 */
+}
+
+/* main content */
+#row{
+    display: flex;
+    /*side-barと合わせてid名rowに入っている。それを横並びにしている */
+    flex-flow: row wrap;
+    /* 折り返さない */
+    padding: 0px 0px 0px 40px;
+    /* 左側に余白 */
+    height: 80vh;
+    /* 高さの指定 */
+}
+#container{
+    /* flex: 0 0 80%; */
+    flex-grow: 1;
+    /*containerとside-barが横いっぱいに広がるようにする
+    side-barのほうに幅を指定する*/
+    background-color:orange;
+    /* 仮の色付け */
+}
+
+#side-bar{
+    flex: 0 0 22%;
+    /* flex-grow  フレックスコンテナ内のアイテムの伸び方の比率を指定
+    flex-shrink フレックスコンテナ内のアイテムの縮み方の比率
+    flex-basis フレックスアイテムの幅
+    この方法で描くと右側に絶妙な隙間ができる*/
+    border-left: 1px solid #727272;
+    /* 縦線 */
+
+    background-color:rgb(255, 241, 254);
+    /* 仮の色付け */
+
+}
+
+/* ヘッダー部分の設定 */
+header{
+    padding: 15px 20px;
+}
+#login_user_area p{
+    color: #ffffff;
+}
+
+
+/* 共通部分の設定(;'∀') */
+
+/* 共通上半分 */
+.top{
+    background-color:rgb(252, 231, 117);
+    border-bottom: 5px solid #dadada;
+    /* 下にグレーの線を引く */
+    min-height: 100px;
+    /* 高さに最低ラインを設ける */
+}
+
+/* 共通下半分 */
+.bottom{
+    background-color:rgb(116, 186, 255);
+    padding: 0px 0px 0px 40px;
+    /* 左側に余白 */
+    min-height: 100px;
+    /* 高さに最低ラインを設ける */
+}
+
+/* 共通 画像の大きさ */
+img{
+    width: 40px;
+    /* 高さはデフォルトで自動的に比率を合わせてくれ表示される */
+}
+
+
+/* ここから個別ページの設定 */
+/* TOPページ右側 */
+#side-bar #confirm{
+    padding: 20px 20px;
+    /* 上下の余白 左右の余白 */
+}
+
+#side-bar #confirm .confirm_follow{
+    margin-top: 15px;
+    /* 〇〇さんの、との間に距離を開ける */
+    position: relative;
+    background-color: rgb(253, 222, 144);
+    /* 仮の色 */
+    min-height: 60px;
+    /* 高さを指定 */
+}
+
+#side-bar #confirm .confirm_follow .btn{
+    /* btnのあるpタグはブロック要素である */
+    background-color: #186AC9;
+    width: 8rem;
+    text-align: center;
+    padding: 10px 10px;
+    /* 上下の余白 左右の余白 */
+    border-radius: 5px;
+    /* 角を丸くする */
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    /* デフォルトはposition:static 位置が変えられないため**位置を変えたいときはrelativeやabsoluteにする */
+}
+.confirm_follow--num{
+    display: flex;
+    /* フォロー数・フォロワー数と〇〇名とを横並びにする */
+}
+.confirm_follow--num p:nth-child( 2 ) {
+    margin-left: 30px;
+    /* フォロー数・フォロワー数と〇〇名との間を開ける */
+}
+
+
+#side-bar #confirm .confirm_follow .btn a{
+    color: #ffffff; /*文字色*/
+}
+
+/* ユーザ検索ボタン */
+
+#side-bar .btn{
+    background-color: #186AC9;
+    width: 10rem;
+    text-align: center;
+    padding: 10px 10px;
+    /* 上下の余白 左右の余白 */
+    border-radius: 5px;
+    /* 角を丸くする */
+    margin: 0 auto;
+    /* 中央寄せにする */
+}
+#side-bar .btn a{
+    color: #ffffff; /*文字色*/
+}
+
+
+/* TOPページ上半分 */
+.posted_area{
+    display: flex;
+    /* 横並びにする */
+    position: relative;
+    /* これを基準に、子(time,btnの位置を決める) */
+}
+
+.posted_area--time{
+    position: absolute;
+    /* デフォルトはposition:static 位置が変えられないため**位置を変えたいときはrelativeやabsoluteにする */
+    right: 0;
+    top: 0;
+}
+
+.posted_area--btn{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+}
+
+
+/* TOPページ上半分 */
+
+
+
+
+.post_btn{
+    background-image: url(image/post.png);
+
+}
+
+
+/* ログアウト中のページのCSS */
