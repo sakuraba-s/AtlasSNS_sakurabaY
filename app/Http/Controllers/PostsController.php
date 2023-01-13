@@ -19,7 +19,7 @@ class PostsController extends Controller
         $list=\DB::table('posts')->get();
         // postsテーブルからすべてのレコード情報を取得する
         return view('posts.index');
-                /* viewヘルパー:指定したphpファイルを画面に表示する
+        /* viewヘルパー:指定したphpファイルを画面に表示する
         【】内は受け渡したいデータ*/
     }
 

@@ -51,4 +51,13 @@ class LoginController extends Controller
         }
         return view("auth.login");
     }
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
+        }
+        // ログアウトする。その後はログイン画面にリダイレクトする
+
 }
+
+/*protectedはアクセス修飾子
+そのクラス自身と継承クラスからアクセス可能です。つまり非公開ですが、継承は可能*/

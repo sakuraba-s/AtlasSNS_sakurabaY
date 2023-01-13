@@ -10,4 +10,5 @@ class LoginController extends Controller
     public function login(){
         return view('posts.index');
     }
+    // トップページを表示する(トップページの前にはログインするようルーティングでミドルウェアしている)
 }

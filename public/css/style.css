@@ -8,20 +8,162 @@ body{
     font-family:'メイリオ', 'Meiryo', sans-serif;/*OSによって認識される描き方が異なるため複数の描き方をする*/
     /*※サンセリフ＝文字の端に線のない書体*/
 }
+
+/* ヘッダー部分の設定 */
 /* header */
 header{
     background:#186AC9;
+    padding: 10px 15px;
+    /* 内側余白 */
     height: 100%;
+    position: relative;
 }
 
 #head{
     display: flex;
+    position: relative;
+    /* ヘッダーの中身を横並びにする */
 }
+
+#head h1{
+    position: absolute;
+    width: 70%;
+    height: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+    /* 右寄せ 上右下左 */
+}
+#head h1 a{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    /* リンク範囲を親要素に合わせる */
+    display: flex;
+    /* flexとは何なのか。。。(;'∀') */
+}
+#head h1 a img{
+    margin-top: auto;
+    margin-bottom: auto;
+    /* 上下中央寄せ */
+}
+
+
+/* ヘッダーの右側（名前、ハンバーガー、アイコン） */
 #login_user_area{
     display: flex;
+    /* 横並びにする */
     margin: 0 0 0 auto;
     /* 右寄せ 上右下左 */
 }
+
+#login_user_area p{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* グローバルナビゲーション(ハンバーガー) */
+.g-navi{
+    text-align: center;
+    /* background-color: #dadada; */
+    margin-right: 20px;
+    margin-left: 30px;
+    /* 左右に余白 */
+    margin-bottom: auto;
+    margin-top: auto;
+    /* 上下中央にそろえる */
+}
+
+.menu{
+    display: none;
+/* メニューは非表示にしておく */
+}
+/* メニューはactiveの時だけ表示にしておく */
+.menu.active{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    /* 親要素、confirmに大きさを合わせる 要素の上に重ねる */
+    display: flex;
+    /* display noneを解除する */
+    background: #fff0af;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.menu.active li{
+    /* liはブロック要素である */
+    /* height: 33%; */
+    /* １００は３で割れないので微妙に隙間ができる (;'∀')*/
+    height: calc(100% / 3);
+    /* きれいに三分割！
+    カルク：計算*/
+    position: relative;
+}
+
+.menu.active li a{
+    display: block;
+    /* ブロック要素にすることでリンク範囲が横幅いっぱいになる */
+    /* line-height: 4; */
+    /* ★★★ここがはみ出している(;'∀') */
+    /* 行ボックスの高さ */
+    /* 縦にもいっぱいにしたい */
+    height: calc(100% / 3);
+    
+
+
+    /* position: absolute;
+    margin-top: auto;
+    margin-bottom: auto; */
+
+}
+.menu.active li a:hover{
+    /*マウスオンしたときのスタイルを設定*/
+    background-color:#186AC9;
+    color: #ffffff;
+}
+
+
+/* ハンバーガーメニューのスタイル 　ボツ*/
+/* .menu-trigger{
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border: 1px solid;
+    border-color: #fff;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    transform: rotate(45deg);
+    margin-right: 10px;
+    margin-left: 40px;
+} */
+
+/* ハンバーガーメニューボタンを＞記号の回転によって書く */
+.menu-trigger{
+    transform: rotate(-90deg);
+    color: #ffffff;
+    font-weight: bolder;
+    /* フォントを少しだけ太くする */
+    background: transparent;
+    border: none;
+    margin-right: 10px;
+    margin-left: 20px;
+    /* ボタンに謎の枠線と背景色がついたので消す */
+}
+/* ハンバーガーメニューを押下すると上向きになる */
+.menu-trigger.active{
+    transform: rotate(90deg);
+    color: #ffffff;
+    font-weight: bolder;
+    background: transparent;
+    border: none;
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
 
 /* main content */
 #row{
@@ -57,13 +199,11 @@ header{
 
 }
 
-/* ヘッダー部分の設定 */
-header{
-    padding: 15px 20px;
-}
 #login_user_area p{
     color: #ffffff;
 }
+
+
 
 
 /* 共通部分の設定(;'∀') */
@@ -95,7 +235,9 @@ img{
 
 /* ここから個別ページの設定 */
 /* TOPページ右側 */
-#side-bar #confirm{
+#confirm{
+    position: relative;
+    /* 親要素にrelativeを設定 */
     padding: 20px 20px;
     /* 上下の余白 左右の余白 */
 }

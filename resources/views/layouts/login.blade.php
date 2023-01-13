@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head prefix="og: https://ogp.me/ns#">
-<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <!--IEブラウザ対策-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- Internet Explorerでどのバージョンのモードでレンダリングを行うか(ドキュメントモード)を指定することができるプラグマ -->
@@ -24,6 +24,12 @@
     typeリンクする外部リソースのMIMEタイプ※マイムタイプとは:ファイルの種類を表す情報
     size:アイコンのサイズ-->
 
+    <!-- JQueryを読み込む(この記述が無いと使えないよ) -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/script.js"></script>
+    <!-- scriptタグ　javaScriptやVBscriptなどのスクリプトをHTMLファイル内に埋め込んだり外部のスクリプトを読み込んだりするためにために使用する -->
+    <!-- src=source attribute 外部から読み込む資源の所在の記述 -->
+
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード
@@ -40,18 +46,12 @@
 <body>
     <header>
         <div id = "head">
-            <h1><a><img src="images/atlas.png"></a></h1>
+            <h1><a href="/top"><img src="images/atlas.png"></a></h1>
+            <!-- ロゴを押下するとトップページに遷移する -->
             <div id="login_user_area">
                 <p>adminさん</p>
-                <ul>
-                    <!-- ハンバーガメニューを作る -->
-                    <span></span>
-                    <span></span>
-
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
-                </ul>
+                <!-- ハンバーガメニュー -->
+                <input type="button" class="menu-trigger" value="<" >
                 <img src="images/icon1.png">
             <div>
         </div>
@@ -64,6 +64,16 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
+                <!-- ハンバーガー押下で出現する部分(デフォルトでは非表示にする) -->
+                    <div class="menu">
+                        <ul>
+                            <li><a href="/top">HOME</a></li>
+                            <li><a href="/profile">プロフィール編集</a></li>
+                            <li><a href="/logout">ログアウト</a></li>
+                        </ul>
+                    </div>
+
+            <!-- 上記メニューが表示されている時は非表示にする -->
                 <p>〇〇さんの</p>
 
                 <div class="confirm_follow">

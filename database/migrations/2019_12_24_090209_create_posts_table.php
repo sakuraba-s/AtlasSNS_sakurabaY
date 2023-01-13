@@ -15,13 +15,14 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->Integer('id')->autoIncrement();
-            $table->unsignedInteger('user_id')->unsigned();
+            // $table->unsignedInteger('user_id')->unsigned();
+            $table->Integer('user_id');
             /* 外部キー(foreign key)
             関係データベースにおいてデータの整合性を保つための制約（参照整合性制約）*/
             $table->string('post',400);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('current_timestamp on update current_timestamp'));
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('user_id')->references('id')->on('users');
 
         });
     }
