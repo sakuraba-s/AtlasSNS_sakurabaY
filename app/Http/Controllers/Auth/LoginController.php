@@ -54,7 +54,7 @@ class LoginController extends Controller
     public function logout(){
         Auth::logout();
         return redirect()->route('login');
-        }
+    }
         // ログアウトする。その後はログイン画面にリダイレクトする
 
 }
