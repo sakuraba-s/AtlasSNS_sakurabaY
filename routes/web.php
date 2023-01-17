@@ -16,14 +16,14 @@ Route::get('/', function () {
 });
 // Route::get('/home', 'HomeController@index')->name('home');
 
-// Auth::routes();
+Auth::routes();
 
 
 //ログアウト中のページ
-Route::get('/login', 'Auth\LoginController@login');
-/*URL、
-つなげる先(コントローラーのクラス名PostsController@メソッド名*/
+Route::get('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
+
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/register', 'Auth\RegisterController@register');
 Route::post('/register', 'Auth\RegisterController@register');
@@ -31,8 +31,16 @@ Route::post('/register', 'Auth\RegisterController@register');
 Route::get('/added', 'Auth\RegisterController@added');
 Route::post('/added', 'Auth\RegisterController@added');
 
+
 //ログイン中のページ
-Route::get('/top','PostsController@index');
+// ミドルウェアのグループ ログイン中のページ
+Route::group(['middleware'=>'auth'],function(){
+/*認証のルーティング
+グループの中に書いたルーティングは、ログイン認証した人だけが使える*/
+
+Route::get('/top','PostsController@index')->name('top');
+Route::post('/top','PostsController@index');
+
 
 Route::get('/profile','UsersController@profile');
 
@@ -40,4 +48,6 @@ Route::get('/search','UsersController@index');
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
+
+});
 
