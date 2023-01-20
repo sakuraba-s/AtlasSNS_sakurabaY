@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -48,10 +49,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // バリテーションの設定
         return Validator::make($data, [
-            'username' => 'required|string|max:255',
-            'mail' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:4|confirmed',
+            'username' => 'required|string|min:2|max:12',
+            'mail' => 'required|string|email:filter,dns|min:5|max:40|unique:users',
+            'password' => 'required|string|min:8|max:20|confirmed',
         ]);
     }
 
@@ -75,13 +77,20 @@ class RegisterController extends Controller
     //     return view("auth.register");
     // }
 
+
+
+
     public function register(Request $request){
         if($request->isMethod('post')){
             $data = $request->input();
 
             $this->create($data);
-            return redirect('added');
+
+            $users = $request->input('username');
+
+            return redirect('added',['users'=>$users]);
         }
+            //usernameを反映させる
         return view('auth.register');
     }
 

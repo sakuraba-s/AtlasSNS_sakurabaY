@@ -2,23 +2,25 @@
 
 @section('content')
 
-{!! Form::open() !!}
+{!! Form::open(['url' => '/register','method'=>'POST']) !!}
 
-<h2>新規ユーザー登録</h2>
+<p>新規ユーザー登録</p>
 
-{{ Form::label('ユーザー名') }}
+{{ Form::label('user name') }}
 {{ Form::text('username',null,['class' => 'input']) }}
 
-{{ Form::label('メールアドレス') }}
+{{ Form::label('mail address') }}
 {{ Form::text('mail',null,['class' => 'input']) }}
 
-{{ Form::label('パスワード') }}
+{{ Form::label('password') }}
 {{ Form::text('password',null,['class' => 'input']) }}
 
-{{ Form::label('パスワード確認') }}
+{{ Form::label('password comfirm') }}
 {{ Form::text('password-confirm',null,['class' => 'input']) }}
 
-{{ Form::submit('登録') }}
+{{ Form::submit('REGISTER' ,['class' => 'button'] )}}
+
+
 
 <p><a href="/login">ログイン画面へ戻る</a></p>
 
