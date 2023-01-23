@@ -86,9 +86,8 @@ class RegisterController extends Controller
 
             $this->create($data);
 
-            $users = $request->input('username');
-
-            return redirect('added',['users'=>$users]);
+            $username = $request->input('username');
+            return redirect()->route('added')->with('username',$username);
         }
             //usernameを反映させる
         return view('auth.register');

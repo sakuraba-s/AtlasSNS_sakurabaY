@@ -15,7 +15,7 @@
 {{ Form::label('password') }}
 {{ Form::text('password',null,['class' => 'input']) }}
 
-{{ Form::label('password comfirm') }}
+{{ Form::label('password-confirm') }}
 {{ Form::text('password-confirm',null,['class' => 'input']) }}
 
 {{ Form::submit('REGISTER' ,['class' => 'button'] )}}
