@@ -2,9 +2,21 @@
 
 @section('content')
 
+<p>新規ユーザー登録</p>
+
+<!-- バリデーションのエラーを表示 -->
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $errors)
+            <li>{{$errors}}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 {!! Form::open(['url' => '/register','method'=>'POST']) !!}
 
-<p>新規ユーザー登録</p>
 
 {{ Form::label('user name') }}
 {{ Form::text('username',null,['class' => 'input']) }}

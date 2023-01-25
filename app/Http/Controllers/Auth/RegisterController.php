@@ -47,15 +47,33 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        // バリテーションの設定
-        return Validator::make($data, [
+    // バリデーション記述原本
+    // protected function validator(array $data)
+    // {
+    //     return Validator::make($data, [
+    //         'username' => 'required|string|min:2|max:12',
+    //         'mail' => 'required|string|email:filter,dns|min:5|max:40|unique:users',
+    //         'password' => 'required|string|min:8|max:20|confirmed',
+    //     ]);
+    //     if ($validate->fails()) {
+    //         return redirect()->route("register")->withErrors($validate->messages());
+    //     }
+    // }
+    // validatorファザードを使用
+    // バリデーションに失敗すると自動的にユーザーを以前のページヘリダイレクトする仕様である
+    // バリデーションエラーは全部自動的にフラッシュデータとしてセッションへ保存される
+        public function validator(array $data){
+            $validator=Validator::make($data,[
             'username' => 'required|string|min:2|max:12',
             'mail' => 'required|string|email:filter,dns|min:5|max:40|unique:users',
             'password' => 'required|string|min:8|max:20|confirmed',
-        ]);
-    }
+            ]);
+            return $validator;
+        }
+            // POSTされてきたデータは、$requestという変数にすべて格納される
+            // makeメソッド
+            // 第１引数:バリデーションを行うデータ
+            // 第２引数:そのデータに適用するバリデーションルール
 
     /**
      * Create a new user instance after a valid registration.
@@ -72,28 +90,37 @@ class RegisterController extends Controller
         ]);
     }
 
-
     // public function registerForm(){
     //     return view("auth.register");
     // }
 
 
-
-
     public function register(Request $request){
         if($request->isMethod('post')){
+            // データを取得
             $data = $request->input();
-
+            // 本コントローラのvalidatorメソッドの結果を変数に格納
+            $validator=$this->validator($data);
+                // バリデーション失敗
+            if ($validator->fails()){
+                return redirect('/register')
+                ->withErrors($validator)
+                // セッションにエラー情報を入れる
+                ->withInput();
+            }
+            // バリデーション
+            // 本コントローラのcreateメソッドを発動
             $this->create($data);
-
+            // usernameを取得、登録後の画面を表示
             $username = $request->input('username');
             return redirect()->route('added')->with('username',$username);
         }
-            //usernameを反映させる
         return view('auth.register');
-    }
+        }
 
     public function added(){
         return view('auth.added');
     }
 }
+
+// isMethod() 引数に指定した文字列とHTTP動詞が一致するかを判定する
