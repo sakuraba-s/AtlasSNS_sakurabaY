@@ -1,27 +1,36 @@
 @extends('layouts.login')
+    @section('content')
+        <div class="profile">
+            <div class="profile_area_user">
+                <img src="images/icon1.png">
+            </div>
+            <div class="profile_area_content">
+                {!! Form::open(['url' => '/profile','method'=>'POST']) !!}
 
-@section('content')
-<div class="container">
+                {{ Form::label('user name') }}
+                {!! Form::text('username',null,['required','class'=> 'form-control','placeholder' =>'ユーザ名']) !!}
 
-    <div class="profile_area_user">
-        <img src="images/icon1.png">
-    </div>
-    <div class="profile_area_content">
-        {!! Form::input('text','newPost',null,['required','class'=> 'form-control','placeholder' =>'投稿内容を入力してください']) !!}
-        <span>user name</span>
-        <span>mail adress</span>
-        <span>password</span>
-        <span>password comfirm</span>
-        <span>bio</span>
-        <span>icon image</span>
-        <button type="submit"class="post_btn">更新</button>
-        {!! Form::close() !!}
+                {{ Form::label('mail address') }}
+                {!! Form::text('mail',null,['required','class'=> 'form-control','placeholder' =>'メールアドレス']) !!}
 
-    <!-- 編集、削除の際にidをGETで渡す
-    編集、削除ボタンは自分の投稿にのみ表示 -->
+                {{ Form::label('password') }}
+                {!! Form::password('password',null,['required','class'=> 'form-control','placeholder' =>'パスワード']) !!}
+                {{ Form::label('password confirm') }}
+                {!! Form::password('password_confirmation',null,['required','class'=> 'form-control','placeholder' =>'パスワード確認']) !!}
 
-<!-- endforeachする -->
+                {{ Form::label('bio') }}
+                {!! Form::text('bio',null,['class'=> 'form-control']) !!}
 
-</div>
+                {{ Form::label('icon image') }}
+                {!! Form::text('image',null,['required','class'=> 'form-control']) !!}
 
-@endsection
+
+                <button type="submit"class="post_btn">更新</button>
+                {!! Form::close() !!}
+            </div>
+        </div>
+        <!-- 編集、削除の際にidをGETで渡す
+        編集、削除ボタンは自分の投稿にのみ表示 -->
+
+    <!-- endforeachする -->
+    @endsection

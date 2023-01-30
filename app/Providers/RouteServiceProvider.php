@@ -21,6 +21,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+    // 何かとhomeに飛ばしてくる元凶
     public const HOME = '/home';
 
     /**

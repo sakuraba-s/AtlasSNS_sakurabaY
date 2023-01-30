@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Facades\Auth;
 /*use宣言
 ファイルの内で使うクラスや関数や定数などをインポートするために使用
 使用したいクラスなどが定義されているファイルのパスを「use パス」の書き方で記述
@@ -18,6 +19,8 @@ class PostsController extends Controller
     public function index(){
         $list=\DB::table('posts')->get();
         // postsテーブルからすべてのレコード情報を取得する
+        // $user= Auth::user();
+        // ログイン中のユーザー情報を取得する
         return view('posts.index');
         /* viewヘルパー:指定したphpファイルを画面に表示する
         【】内は受け渡したいデータ*/

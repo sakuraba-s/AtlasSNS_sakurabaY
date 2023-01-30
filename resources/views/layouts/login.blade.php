@@ -49,10 +49,14 @@
             <h1><a href="/top"><img src="images/atlas.png"></a></h1>
             <!-- ロゴを押下するとトップページに遷移する -->
             <div id="login_user_area">
-                <p>adminさん</p>
+                <!-- ログイン中のユーザ情報を取得 -->
+                <?php $user= Auth::user();?>
+                <p> {{ $user->username }}さん</p>
+
                 <!-- ハンバーガメニュー -->
                 <input type="button" class="menu-trigger" value="<" >
-                <img src="images/icon1.png">
+                <img> {{ $user->images }}</img>
+
             <div>
         </div>
     </header>

@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 {!! Form::open(['url' => '/login','method'=>'POST']) !!}
 
 <p>AtlasSNSへようこそ</p>
