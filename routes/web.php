@@ -42,6 +42,8 @@ Route::post('/top','PostsController@index');
 
 
 Route::get('/profile','UsersController@profile');
+Route::get('/update', 'UsersController@update')->name('update');
+Route::post('/update', 'UsersController@update');
 
 Route::get('/search','UsersController@index');
 

@@ -5,26 +5,45 @@
                 <img src="images/icon1.png">
             </div>
             <div class="profile_area_content">
-                {!! Form::open(['url' => '/profile','method'=>'POST']) !!}
+                <!-- ログイン中のユーザ情報の取得 -->
+                <?php
+                $username= \Auth::user()->username;
+                $mail= \Auth::user()->mail;
+                $password= \Auth::user()->password;
+                ?>
+                <table>
 
-                {{ Form::label('user name') }}
-                {!! Form::text('username',null,['required','class'=> 'form-control','placeholder' =>'ユーザ名']) !!}
+                {!! Form::open(['url' => '/update','method'=>'POST']) !!}
+                <tr>
+                    <th>{{ Form::label('user name') }}</th>
+                    <td>{!! Form::input('text','username',$username,['required','class'=> 'form-control'] ) !!}</td>
+                </tr>
 
-                {{ Form::label('mail address') }}
-                {!! Form::text('mail',null,['required','class'=> 'form-control','placeholder' =>'メールアドレス']) !!}
+                <tr>
+                    <th>{{ Form::label('mail address') }}</th>
+                    <td>{!! Form::input('text','mail',$mail,['required','class'=> 'form-control']) !!}</td>
+                </tr>
 
-                {{ Form::label('password') }}
-                {!! Form::password('password',null,['required','class'=> 'form-control','placeholder' =>'パスワード']) !!}
-                {{ Form::label('password confirm') }}
-                {!! Form::password('password_confirmation',null,['required','class'=> 'form-control','placeholder' =>'パスワード確認']) !!}
+                <tr>
+                    <th>{{ Form::label('password') }}</th>
+                    <td>{!! Form::input('password','password',$password,['required','class'=> 'form-control']) !!}</td>
+                </tr>
 
-                {{ Form::label('bio') }}
-                {!! Form::text('bio',null,['class'=> 'form-control']) !!}
+                <tr>
+                    <th>{{ Form::label('password confirm') }}</th>
+                    <td>{!! Form::input('password','password_confirmation',$password,['required','class'=> 'form-control']) !!}</td>
+                </tr>
 
-                {{ Form::label('icon image') }}
-                {!! Form::text('image',null,['required','class'=> 'form-control']) !!}
+                <tr>
+                    <th>{{ Form::label('bio') }}</th>
+                    <td>{!! Form::input('text','bio',null,['class'=> 'form-control']) !!}</td>
+                </tr>
 
-
+                <tr>
+                    <th>{{ Form::label('icon image') }}</th>
+                    <td>{!! Form::text('image',null,['class'=> 'form-control']) !!}</td>
+                </tr>
+                </table>
                 <button type="submit"class="post_btn">更新</button>
                 {!! Form::close() !!}
             </div>
