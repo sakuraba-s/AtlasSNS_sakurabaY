@@ -55,7 +55,7 @@
 
                 <!-- ハンバーガメニュー -->
                 <input type="button" class="menu-trigger" value="<" >
-                <img> {{ $user->images }}</img>
+                <img src="{{ asset('storage/'.$user->images) }}" alt="プロフィール画像">
 
             <div>
         </div>

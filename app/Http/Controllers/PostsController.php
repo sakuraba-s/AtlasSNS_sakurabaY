@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
+
 /*use宣言
 ファイルの内で使うクラスや関数や定数などをインポートするために使用
 使用したいクラスなどが定義されているファイルのパスを「use パス」の書き方で記述

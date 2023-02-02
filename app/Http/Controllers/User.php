@@ -14,8 +14,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+    // ホワイトリスト 変更可能なカラムを記述
     protected $fillable = [
-        'username', 'mail', 'password',
+        'username', 'mail', 'password','bio','images'
     ];
 
     /**

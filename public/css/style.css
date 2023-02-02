@@ -363,7 +363,7 @@ label{
     /* 頭文字が勝手に大文字になるのを直す */
 }
 
-/* 入力の箱部分 */
+/* プロフィール入力の箱部分 */
 input{
     display: block;
     /* インラインからブロック要素に変える */
@@ -374,4 +374,23 @@ input{
     /* 入力欄の下に余白 */
     border: none;
     /* 淵を消す */
+}
+/* 更新ボタン */
+.post_btn{
+    height: 20px;
+    width: 100px;
+    /* 縦幅と横幅を指定 */
+    border-radius: 5px;
+    /* 角丸 */
+    display: block;
+    margin: 0 auto;
+    /* ボタンを中央に寄せる */
+    text-align: center;
+    /* 「更新」文字を中央に寄せる */
+
+    border: none;
+    /* 淵を消す */
+    color: #ffffff;
+    /* padding: 12px 12px; */
+    background-color: #ee3939;
 }
