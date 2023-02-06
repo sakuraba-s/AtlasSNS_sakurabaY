@@ -25,7 +25,7 @@
                 ?>
                 <table>
 
-                {!! Form::open(['url' => '/update','method'=>'POST']) !!}
+                {!! Form::open(['url' => '/edit','method'=>'POST','enctype'=>'multipart/form-data']) !!}
                 {!! Form::hidden('id',$id)!!}
                 <tr>
                     <th>{{ Form::label('user name') }}</th>
@@ -54,7 +54,7 @@
 
                 <tr>
                     <th>{{ Form::label('icon image') }}</th>
-                    <td>{!! Form::text('image','images',null,['class'=> 'form-control']) !!}</td>
+                    <td>{!! Form::input('file','images',null,['class'=> 'form-control']) !!}</td>
                 </tr>
                 </table>
                 <button type="submit"class="post_btn">更新</button>

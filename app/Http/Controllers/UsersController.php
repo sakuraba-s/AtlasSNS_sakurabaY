@@ -36,16 +36,30 @@ class UsersController extends Controller
     //         'password' => bcrypt($data['password']),
     //     ]);
     // }
-    protected function up(Request $request)
+
+
+    // プロフィール更新部分
+    protected function update(Request $request)
     {
+        // フォームの入力内容を取得する
         $id = $request->input('id');
         $username = $request->input('username');
         $mail = $request->input('mail');
         $password = $request->input('password');
         $bio = $request->input('bio');
-        $images = $request->input('images');
-         // フォームから渡されたデータの取得
+
+        // アップロードされた画像を保存する
+        // ディレクトリ名
+        $dir = 'profiles';
+
+          // アップロードされたファイル名を取得
+        $images = $request->file('images')->getClientOriginalName();
+         // storageディレクトリに画像を保存
+        $request->file('images')->storeAs('public/' . $dir,$images);
+
+        // フォームから渡されたデータの取得
         //  該当のidはフォームよりhiddenで取得する
+        // どのidのユーザー情報を更新するのかを指定する
         User::where('id', $id)->update(
             [
             'username' => $username,
@@ -62,7 +76,7 @@ class UsersController extends Controller
     }
 
     // プロフィール更新メソッド全体
-    public function update(Request $request){
+    public function edit(Request $request){
         if($request->isMethod('post')){
             // データを取得
             $data = $request->input();
@@ -77,7 +91,7 @@ class UsersController extends Controller
             }
             // バリデーション
             // 本コントローラのsaveメソッドを発動
-            $this->up($request);
+            $this->update($request);
             // usernameを取得、登録後の画面を表示
             $username = $request->input('username');
             return redirect()->route('top')->with('username',$username);
