@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 
 class UsersController extends Controller
@@ -45,30 +46,44 @@ class UsersController extends Controller
         $id = $request->input('id');
         $username = $request->input('username');
         $mail = $request->input('mail');
-        $password = $request->input('password');
+        $password = Hash::make($request->input('password'));
         $bio = $request->input('bio');
 
-        // アップロードされた画像を保存する
-        // ディレクトリ名
-        $dir = 'profiles';
 
-          // アップロードされたファイル名を取得
-        $images = $request->file('images')->getClientOriginalName();
-         // storageディレクトリに画像を保存
-        $request->file('images')->storeAs('public/' . $dir,$images);
+        // 画像のアップロードがあったとき
+        if (is_uploaded_file($_FILES['images'])){
+            // アップロードされた画像を保存する
+            // ディレクトリ名
+            $dir = 'profiles';
+            // アップロードされたファイル名を取得
+            $images = $request->file('images')->getClientOriginalName();
+            // storageディレクトリに画像を保存
+            $request->file('images')->storeAs('public/' . $dir,$images);
 
-        // フォームから渡されたデータの取得
-        //  該当のidはフォームよりhiddenで取得する
-        // どのidのユーザー情報を更新するのかを指定する
-        User::where('id', $id)->update(
+            //  該当のidはフォームよりhiddenで取得する
+            // どのidのユーザー情報を更新するのかを指定する
+            User::where('id', $id)->update(
             [
             'username' => $username,
             'mail' => $mail,
             'password' => $password,
-            'bio' => $bio,
+            // 'bio' => $bio,
             'images' => $images,
             ]
             );
+
+        }else{
+            // 画像のアップロードがない場合
+            User::where('id', $id)->update(
+                [
+                'username' => $username,
+                'mail' => $mail,
+                'password' => $password,
+                'bio' => $bio,
+                ]
+            );
+        }
+
             /*
             0⃣モデルPostと接続(＝データベースと接続)
             ⓵postsテーブルのidカラムがフォームから持ってきた$id変数の値と一致するレコードを選択

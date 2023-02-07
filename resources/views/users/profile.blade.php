@@ -22,6 +22,7 @@
                 $password= \Auth::user()->password;
                 $images= \Auth::user()->images;
                 $id= \Auth::user()->id;
+                $bio= \Auth::user()->bio;
                 ?>
                 <table>
 
@@ -39,17 +40,17 @@
 
                 <tr>
                     <th>{{ Form::label('password') }}</th>
-                    <td>{!! Form::input('password','password',$password,['required','class'=> 'form-control']) !!}</td>
+                    <td>{!! Form::input('password','password',null,['required','class'=> 'form-control']) !!}</td>
                 </tr>
 
                 <tr>
                     <th>{{ Form::label('password confirm') }}</th>
-                    <td>{!! Form::input('password','password_confirmation',$password,['required','class'=> 'form-control']) !!}</td>
+                    <td>{!! Form::input('password','password_confirmation',null,['required','class'=> 'form-control']) !!}</td>
                 </tr>
 
                 <tr>
                     <th>{{ Form::label('bio') }}</th>
-                    <td>{!! Form::input('text','bio',null,['class'=> 'form-control']) !!}</td>
+                    <td>{!! Form::input('text','bio',$bio,['class'=> 'form-control']) !!}</td>
                 </tr>
 
                 <tr>
