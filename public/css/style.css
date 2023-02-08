@@ -394,3 +394,23 @@ input{
     /* padding: 12px 12px; */
     background-color: #ee3939;
 }
+
+/* ユーザー検索のcss */
+.search_area_box{
+    display: flex;
+    /* 検索ボックスと検索アイコンを横並びにする */
+    width: 40%;
+}
+.search_area_box input{
+    height: 100%;
+    /* 高さを検索ボタンと揃えたい */
+    border: 2px solid #9c9c9c;
+    border-radius: 1.5px;
+    /* 検索ボックスに枠線を引く */
+}
+
+.post_btn{
+background-color: #186AC9;
+height: auto;
+    /* 高さを検索ボックスと揃えたい */
+}

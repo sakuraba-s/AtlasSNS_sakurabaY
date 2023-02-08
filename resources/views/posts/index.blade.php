@@ -11,24 +11,36 @@
 
         <!-- foreachで繰り返す -->
         <div class="posted_area bottom">
-            <div class="posted_area--user">
-                <img src="images/icon1.png">
-            </div>
-            <div class="posted_area--content">
-                <span>user_id</span>
-                <span>post</span>
-            </div>
+        @foreach
+        <tr>
+            <td>
+                <div class="posted_area--user">
+                    <img src=" {{ asset('storage/profiles/'.$users->images) }}" alt="プロフィール画像">
+                </div>
+            </td>
+            <td>
+                <!--  posts(ただし、フォロー中の人)の投稿内容を表示 -->
+                <div class="posted_area--content">
+                    <span>{{ $posts->user_id }}</span>
+                    <span>{{ $posts->post }}</span>
+                </div>
+            </td>
             <div class="posted_area--right">
                 <div class="posted_area--time">
-                <span>created_at</span>
+                <span>{{ $posts->created_at }}</span>
                 </div>
                 <div class=posted_area--btn>
                     <td><a class="update_btn" href="post/index"><img src="images/edit.png" alt="編集"></a></td>
                     <td><a class="delete_btn" href="post/index"onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><img src="images/trash.png" alt="削除"></a></td>
                 </div>
             </div>
+            </td>
+
             <!-- 編集、削除の際にidをGETで渡す
             編集、削除ボタンは自分の投稿にのみ表示 -->
+        @endforeach
+        </tr>
+
         </div>
         <!-- endforeachする -->
 

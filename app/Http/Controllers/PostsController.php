@@ -18,11 +18,9 @@ class PostsController extends Controller
 
     /*indexメソッド(トップページ)*/
     public function index(){
-        $list=\DB::table('posts')->get();
+        $posts=\DB::table('posts')->get();
         // postsテーブルからすべてのレコード情報を取得する
-        // $user= Auth::user();
-        // ログイン中のユーザー情報を取得する
-        return view('posts.index');
+        return view('posts.index',['posts'=>$posts]);
         /* viewヘルパー:指定したphpファイルを画面に表示する
         【】内は受け渡したいデータ*/
     }

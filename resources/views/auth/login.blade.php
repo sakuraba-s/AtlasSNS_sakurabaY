@@ -4,6 +4,7 @@
 
 
 {!! Form::open(['url' => '/login','method'=>'POST']) !!}
+@csrf
 
 <p>AtlasSNSへようこそ</p>
 

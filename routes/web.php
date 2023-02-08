@@ -45,6 +45,7 @@ Route::get('/profile','UsersController@profile');
 Route::get('/edit', 'UsersController@edit')->name('edit');
 Route::post('/edit', 'UsersController@edit');
 
+// ユーザー検索
 Route::get('/search','UsersController@index');
 
 Route::get('/follow-list','PostsController@index');

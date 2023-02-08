@@ -114,4 +114,13 @@ class UsersController extends Controller
     public function search(){
         return view('posts.profile');
     }
+
+    //ユーザ検索画面
+        public function index(){
+            $users=\DB::table('users')->get();
+            // usersテーブルからすべてのレコード情報を取得する
+            return view('users.search',['users'=>$users]);
+            /* viewヘルパー:指定したphpファイルを画面に表示する
+            【】内は受け渡したいデータ*/
+        }
 }
