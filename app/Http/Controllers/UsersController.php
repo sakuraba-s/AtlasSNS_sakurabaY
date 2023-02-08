@@ -51,7 +51,7 @@ class UsersController extends Controller
 
 
         // 画像のアップロードがあったとき
-        if (is_uploaded_file($_FILES['images'])){
+        if (is_uploaded_file($_FILES['images']['tmp_name'])){
             // アップロードされた画像を保存する
             // ディレクトリ名
             $dir = 'profiles';
@@ -67,11 +67,10 @@ class UsersController extends Controller
             'username' => $username,
             'mail' => $mail,
             'password' => $password,
-            // 'bio' => $bio,
+            'bio' => $bio,
             'images' => $images,
             ]
             );
-
         }else{
             // 画像のアップロードがない場合
             User::where('id', $id)->update(
@@ -83,7 +82,6 @@ class UsersController extends Controller
                 ]
             );
         }
-
             /*
             0⃣モデルPostと接続(＝データベースと接続)
             ⓵postsテーブルのidカラムがフォームから持ってきた$id変数の値と一致するレコードを選択
