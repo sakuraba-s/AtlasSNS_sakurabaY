@@ -9,9 +9,39 @@
             {!! Form::close() !!}
         </div>
 
-        <!-- foreachで繰り返す -->
         <div class="posted_area bottom">
-        @foreach
+        <!-- 自分の投稿を表示 -->
+        <div class="mypost">
+        <tr>
+            <td>
+                <div class="posted_area--user">
+                    <img src=" {{ asset('storage/profiles/'.$users->images) }}" alt="プロフィール画像">
+                </div>
+            </td>
+            <td>
+                <!--  posts投稿内容を表示 -->
+                <div class="posted_area--content">
+                    <span>{{ $posts->user_id }}</span>
+                    <span>{{ $posts->post }}</span>
+                </div>
+            </td>
+            <!-- 編集・削除は自分の投稿にのみ表示 -->
+            <div class="posted_area--right">
+                <div class="posted_area--time">
+                <span>{{ $posts->created_at }}</span>
+                </div>
+                <div class=posted_area--btn>
+                    <td><a class="update_btn" href="post/index"><img src="images/edit.png" alt="編集"></a></td>
+                    <td><a class="delete_btn" href="post/index"onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><img src="images/trash.png" alt="削除"></a></td>
+                </div>
+            </div>
+            </td>
+        </div>
+
+
+        <!-- 投稿内容を時間系列で？表示 -->
+        <!-- foreachで繰り返す -->
+        @foreach ($posts as $posts)
         <tr>
             <td>
                 <div class="posted_area--user">

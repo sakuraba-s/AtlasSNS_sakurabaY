@@ -3,11 +3,13 @@
 @section('content')
     <div class="search_area top">
         <div class="search_area_box">
+        {!! Form::open(['url' => '/search','method'=>'POST']) !!}
+
             {!! Form::input('text','newPost',null,['required','class'=> 'form-control','placeholder' =>'ユーザー名']) !!}
                 <button type="submit"class="post_btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-                {!! Form::close() !!}
+        {!! Form::close() !!}
         </div>
     </div>
 

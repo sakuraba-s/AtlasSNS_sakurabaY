@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use App\Post;
+
 
 
 class UsersController extends Controller
@@ -90,37 +92,46 @@ class UsersController extends Controller
 
     // プロフィール更新メソッド全体
     public function edit(Request $request){
+        // ポスト送信されたら
         if($request->isMethod('post')){
-            // データを取得
             $data = $request->input();
             // 本コントローラのvalidatorメソッドの結果を変数に格納
             $validator=$this->validator($data);
-                // バリデーション失敗
-            if ($validator->fails()){
-                return redirect('/profile')
-                ->withErrors($validator)
-                // セッションにエラー情報を入れる
-                ->withInput();
-            }
-            // バリデーション
-            // 本コントローラのsaveメソッドを発動
-            $this->update($request);
-            // usernameを取得、登録後の画面を表示
-            $username = $request->input('username');
-            return redirect()->route('top')->with('username',$username);
+                // バリデーション失敗したら
+                if ($validator->fails()){
+                    return redirect('/profile')
+                    ->withErrors($validator)
+                    // セッションにエラー情報を入れる
+                    ->withInput();
+                }
+                // バリデーションに成功したら
+                // 本コントローラのsaveメソッドを発動
+                $this->update($request);
+                // usernameを取得、登録後の画面を表示
+                $username = $request->input('username');
+                return redirect()->route('top')->with('username',$username);
         }
+        // ポスト送信されていないとき
         return view('posts.profile');
         }
-    public function search(){
-        return view('posts.profile');
+
+
+    //ユーザ検索画面search
+    public function search(Request $request){
+        // ポスト送信（検索ワードの入力）があったら
+        if($request->isMethod('post')){
+            $data = $request->input('newPost');
+            // 検索ワードに一致するデータを絞り込んで変数に格納する
+
+            $users=\DB::table('users')->where('username', 'like', "%$data%")->get();
+            return view('users.search',['users'=>$users]);
+            // viewヘルパー:指定したphpファイルを画面に表示する
+            // 【】内は受け渡したいデータ
+        }
+        // ポスト送信されていないとき
+        // 全てのユーザの情報を取得
+        $users=\DB::table('users')->get();
+        return view('users.search',['users'=>$users]);
     }
 
-    //ユーザ検索画面
-        public function index(){
-            $users=\DB::table('users')->get();
-            // usersテーブルからすべてのレコード情報を取得する
-            return view('users.search',['users'=>$users]);
-            /* viewヘルパー:指定したphpファイルを画面に表示する
-            【】内は受け渡したいデータ*/
-        }
 }
