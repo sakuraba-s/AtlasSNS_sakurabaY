@@ -20,7 +20,7 @@ class RegisterController extends Controller
                 // セッションにエラー情報を入れる
                 ->withInput();
             }
-            // バリデーション
+            // バリデーション成功
             // 本コントローラのcreateメソッドを発動
             $this->create($data);
             // usernameを取得、登録後の画面を表示
@@ -29,6 +29,7 @@ class RegisterController extends Controller
         }
         return view('posts.index');
         }
+        // ？？？このファイルって要るんだっけ？(;'∀')
 }
 
 

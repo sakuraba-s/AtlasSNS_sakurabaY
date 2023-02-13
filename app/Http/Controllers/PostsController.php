@@ -20,7 +20,7 @@ class PostsController extends Controller
     public function index(){
         $posts=\DB::table('posts')->get();
         $users=\DB::table('users')->get();
-        // postsテーブルからすべてのレコード情報を取得する
+        // postsテーブルとusersからすべてのレコード情報を取得する
         return view('posts.index',[
             'posts'=>$posts,
             'users'=>$users]);
@@ -31,27 +31,32 @@ class PostsController extends Controller
 
     /*postメソッド(postのページ)
     ※処理だけなのでviewファイルはない*/
-    public function post(Request $request)
-    /* メソッドの引数に「POSTからの値を受け取る」$requestを用意
-    メソッドインジェクション(依存注入)
-    指定した変数に、指定したクラス(Requestクラス)のインスタンスが入る
-    Requestクラス:
-    アプリケーションが処理している現在のHTTPリクエストを操作し、
-    リクエストとともに送信される入力、クッキー、およびファイルを取得するオブジェクト指向の手段を提供
-    */
-    {
-        $post =$request -> input('newPost');
-        /*index.blade.phpにおいてフォームの送信先が「post/post」であり、
+    public function post(Request $request){
+        $user= Auth::user();
+        // $post =$request -> input('newPost');
+        /*index.blade.phpにおいてフォームの送信先が「/post」であり、
         ルーティングでここのコントローラーと繋がる。
         index.blade.phpのinputタグの値をrequest変数に入れる
         その中から「name属性が「newPost」と指定されていたという条件に合致するもの」をpost変数に入れる*/
-        Post::create(['post' => $post]);
+        return Post::create([
+            'post' => $request['newPost'],
+            'user_id' => $user->id,
+        ]);
         /*
         Postモデルとつなげる(＝データベースと繋がる)
         createする*/
 
         /*テーブルのpostカラムに、$post変数を当てはめる
         posted_areaに投稿が追加される*/
-        return redirect('index');
+        return redirect('top');
     }
+        /* メソッドの引数に「POSTからの値を受け取る」$requestを用意
+    メソッドインジェクション(依存注入)
+    指定した変数に、指定したクラス(Requestクラス)のインスタンスが入る
+    Requestクラス:
+    アプリケーションが処理している現在のHTTPリクエストを操作し、
+    リクエストとともに送信される入力、クッキー、およびファイルを取得するオブジェクト指向の手段を提供
+    */
 }
+
+
