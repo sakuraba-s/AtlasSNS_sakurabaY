@@ -29,8 +29,8 @@ class User extends Authenticatable
     ];
 
     // postsテーブルとのリレーション
-    public function posts()
+    public function users()
     {
-        return $this->hasMany(Book::class);
+        return $this->hasMany('App\Post');
     }
 }

@@ -12,11 +12,11 @@
         <div class="posted_area bottom">
 
         <!-- 投稿内容を時間系列で？表示 -->
-        <!-- foreachで繰り返す -->
+
+
+        <!-- foreachで上から順に繰り返す -->
         @foreach ($posts as $posts)
         <tr>
-            <!-- 投稿主のユーザ情報を取得 -->
-            <?php  $author_name = Book::find(7)->author->name;?>
             <td>
                 <div class="posted_area--user">
                     <img src=" {{ asset('storage/profiles/'.$users->images) }}" alt="プロフィール画像">

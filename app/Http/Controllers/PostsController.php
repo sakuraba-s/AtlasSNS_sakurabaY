@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
+use App\Follow;
 use Illuminate\Support\Facades\Auth;
 
 /*use宣言
@@ -18,8 +20,8 @@ class PostsController extends Controller
 
     /*indexメソッド(トップページ)*/
     public function index(){
-        $posts=\DB::table('posts')->get();
-        $users=\DB::table('users')->get();
+        $users=User::with(['posts'])->first();
+        $posts=Post::with(['users'])->first();
         // postsテーブルとusersからすべてのレコード情報を取得する
         return view('posts.index',[
             'posts'=>$posts,
