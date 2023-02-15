@@ -20,12 +20,12 @@ class PostsController extends Controller
 
     /*indexメソッド(トップページ)*/
     public function index(){
-        $users=User::with(['posts'])->first();
-        $posts=Post::with(['users'])->first();
-        // postsテーブルとusersからすべてのレコード情報を取得する
+        $posts=Post::with(['user'])->get();
+        // リレーション元を取得
+        // with()の中にはModelsで作ったメソッド名を入れる。
         return view('posts.index',[
             'posts'=>$posts,
-            'users'=>$users]);
+            ]);
         /* viewヘルパー:指定したphpファイルを画面に表示する
         【】内は受け渡したいデータ*/
     }
@@ -40,7 +40,7 @@ class PostsController extends Controller
         ルーティングでここのコントローラーと繋がる。
         index.blade.phpのinputタグの値をrequest変数に入れる
         その中から「name属性が「newPost」と指定されていたという条件に合致するもの」をpost変数に入れる*/
-        return Post::create([
+        Post::create([
             'post' => $request['newPost'],
             'user_id' => $user->id,
         ]);
@@ -50,7 +50,8 @@ class PostsController extends Controller
 
         /*テーブルのpostカラムに、$post変数を当てはめる
         posted_areaに投稿が追加される*/
-        return redirect('top');
+        return redirect('/top');
+
     }
         /* メソッドの引数に「POSTからの値を受け取る」$requestを用意
     メソッドインジェクション(依存注入)

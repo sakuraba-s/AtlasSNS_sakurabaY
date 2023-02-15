@@ -15,17 +15,18 @@
 
 
         <!-- foreachで上から順に繰り返す -->
+
         @foreach ($posts as $posts)
         <tr>
             <td>
                 <div class="posted_area--user">
-                    <img src=" {{ asset('storage/profiles/'.$users->images) }}" alt="プロフィール画像">
+                    <img src=" {{ asset('storage/profiles/'.$posts->user->images) }}" alt="プロフィール画像">
                 </div>
             </td>
             <td>
                 <!--  posts(ただし、フォロー中の人)の投稿内容を表示 -->
                 <div class="posted_area--content">
-                    <span>{{ $posts->user_id }}</span>
+                    <span>{{ $posts->user->username }}</span>
                     <span>{{ $posts->post }}</span>
                 </div>
             </td>

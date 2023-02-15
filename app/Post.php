@@ -10,8 +10,8 @@ class Post extends Model
     protected $fillable = ['post','user_id'];
 
         // usersテーブルとのリレーション
-    public function posts()
+    public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 }

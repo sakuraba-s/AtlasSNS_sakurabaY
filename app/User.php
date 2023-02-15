@@ -29,7 +29,7 @@ class User extends Authenticatable
     ];
 
     // postsテーブルとのリレーション
-    public function users()
+    public function posts()
     {
         return $this->hasMany('App\Post');
     }
