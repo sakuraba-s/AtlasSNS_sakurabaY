@@ -7,6 +7,9 @@ use App\Post;
 use App\User;
 use App\Follow;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+
 
 /*use宣言
 ファイルの内で使うクラスや関数や定数などをインポートするために使用
@@ -20,9 +23,23 @@ class PostsController extends Controller
 
     /*indexメソッド(トップページ)*/
     public function index(){
-        $posts=Post::with(['user'])->get();
-        // リレーション元を取得
+
+        // ログイン中のユーザ情報を取得
+        $id= Auth::user()->id;
+        // ログイン中のユーザがフォローしているユーザーリストを取得
+        $follows=Follow::where('following_id')
+                    ->where(function($query)use($id){
+                        $query->where('following_id', '=', $id);
+                        })
+                        ->toSql();
+
+        dd($follows);
+
+
+        // リレーション元のusersテーブルとともにpostsテーブルを取得
         // with()の中にはModelsで作ったメソッド名を入れる。
+        $posts=Post::with(['user'])->where('user_id','=',"$follows->following_id")->get();
+
         return view('posts.index',[
             'posts'=>$posts,
             ]);

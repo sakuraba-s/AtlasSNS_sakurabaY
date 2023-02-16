@@ -1,6 +1,7 @@
 @extends('layouts.login')
     @section('content')
 
+
         <div class="post_area top">
             {!! Form::open(['url' => '/post']) !!}
                 <img src="images/icon1.png">
@@ -9,45 +10,36 @@
             {!! Form::close() !!}
         </div>
 
+
         <div class="posted_area bottom">
-
-        <!-- 投稿内容を時間系列で？表示 -->
-
-
-        <!-- foreachで上から順に繰り返す -->
-
-        @foreach ($posts as $posts)
-        <tr>
-            <td>
-                <div class="posted_area--user">
-                    <img src=" {{ asset('storage/profiles/'.$posts->user->images) }}" alt="プロフィール画像">
-                </div>
-            </td>
-            <td>
-                <!--  posts(ただし、フォロー中の人)の投稿内容を表示 -->
-                <div class="posted_area--content">
-                    <span>{{ $posts->user->username }}</span>
-                    <span>{{ $posts->post }}</span>
-                </div>
-            </td>
-            <div class="posted_area--right">
-                <div class="posted_area--time">
-                <span>{{ $posts->created_at }}</span>
-                </div>
-                <div class=posted_area--btn>
-                    <td><a class="update_btn" href="post/index"><img src="images/edit.png" alt="編集"></a></td>
-                    <td><a class="delete_btn" href="post/index"onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><img src="images/trash.png" alt="削除"></a></td>
-                </div>
-            </div>
-            </td>
-
-            <!-- 編集、削除の際にidをGETで渡す
-            編集、削除ボタンは自分の投稿にのみ表示 -->
-        @endforeach
-        </tr>
-
+            <!-- 投稿内容を時間系列で？表示 -->
+            <!-- foreachで上から順に繰り返す ※postsはuserテーブルと炉レーション済み-->
+            <table>
+                @foreach ($posts as $posts)
+                <tr>
+                <!-- table row -->
+                    <td>
+                        <!-- table data -->
+                        <img src=" {{ asset('storage/profiles/'.$posts->user->images) }}" alt="プロフィール画像">
+                    </td>
+                    <td>
+                        <span>{{ $posts->user->username }}</span>
+                        <span>{{ $posts->post }}</span>
+                    </td>
+                    <td>
+                        <!-- 更新時間、編集、削除ボタンエリア -->
+                        <div class="posted_area--edit">
+                            <span>{{ $posts->created_at }}</span>
+                            <a class="update_btn" href="post/index"><img src="images/edit.png" alt="編集"></a>
+                            <a class="delete_btn" href="post/index"onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><img src="images/trash.png" alt="削除"></a>
+                        </div>
+                    </td>
+                    <!-- 編集、削除の際にidをGETで渡す
+                    編集、削除ボタンは自分の投稿にのみ表示 -->
+                </tr>
+                @endforeach
+            </table>
         </div>
-        <!-- endforeachする -->
 
     @endsection
 

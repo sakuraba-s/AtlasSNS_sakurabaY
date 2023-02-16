@@ -228,7 +228,7 @@ header{
 
 /* 共通 画像の大きさ */
 img{
-    width: 40px;
+    width: 30px;
     /* 高さはデフォルトで自動的に比率を合わせてくれ表示される */
 }
 
@@ -321,11 +321,18 @@ img{
 }
 
 
-/* TOPページ上半分 */
+/* TOPページ下半分 */
 
-
+tr:not(:last-child){
+    border-bottom: 0.5px solid #727272;
+    /* 最後の要素以外に下線を引く */
+}
 .post_btn{
     background-image: url(image/post.png);
+}
+.posted_area--edit{
+    background-color: #dadada;
+    margin:0 0 0 auto;
 
 }
 
