@@ -96,7 +96,7 @@ class RegisterController extends Controller
     //     return view("auth.register");
     // }
 
-
+    // 新規登録 register
     public function register(Request $request){
         if($request->isMethod('post')){
             // データを取得

@@ -15,7 +15,11 @@ class FollowsController extends Controller
     public function followerList(){
         return view('follows.followerList');
     }
+
+ 
 }
     /* viewヘルパー:指定したphpファイルを画面に表示する
     followsファイルの中のfollowerList.blade.phpファイルを開く
     C:\Users\yunyu\AtlasSNS\resources\views\follows*/
+
+

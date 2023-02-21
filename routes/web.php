@@ -41,15 +41,18 @@ Route::get('/top','PostsController@index')->name('top');
 Route::post('/top','PostsController@index');
 
 
-Route::get('/profile','UsersController@profile');
+Route::get('/profile','UsersController@profile')->name('profile');
 Route::get('/edit', 'UsersController@edit')->name('edit');
 Route::post('/edit', 'UsersController@edit');
 Route::get('/post', 'PostsController@post')->name('post');
 Route::post('/post', 'PostsController@post');
 
 // ユーザー検索
-Route::get('/search','UsersController@search');
-Route::post('/search','UsersController@search');
+Route::get('/search','UsersController@search')->name('search');
+Route::post('/search','UsersController@search')->name('search');
+// ユーザ検索 フォロー登録＆解除
+Route::get('/follow','UsersController@follow')->name('follow');
+Route::post('/follow','UsersController@follow')->name('follow');
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Follow;
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
-use App\Post;
 
 
 
@@ -133,5 +134,44 @@ class UsersController extends Controller
         $users=\DB::table('users')->get();
         return view('users.search',['users'=>$users]);
     }
+
+
+    // フォロー＆フォロー解除 search
+    public function follow(Request $request){
+        /* followsテーブルの「following_id」がログインユーザーである中の
+        followed_id」を確認する
+        name送信されたidがあれば削除(フォロー解除)、なければ登録(フォローする)*/
+
+        // ボタンを押下した行のユーザidを取得
+        $user_target=$request->input('user_target');
+        // ログインユーザのidを取得
+        $user=Auth::user()->id;
+        // followsテーブルの「following_id」がログインユーザーであり、
+        // かつ 「followed_id」がボタンを押した行のユーザidに合致するデータを取得する
+        $follows=\DB::table('follows')
+        ->where('following_id', '=', "$user")
+        ->where('followed_id', '=', $user_target)
+        ->get();
+
+
+        if(isset($follows)){
+            // フォロー中であれば解除(フォローデーブルから削除)
+            follow::where('followed_id', "$user_target")->delete();
+            return redirect()->route('search');
+        }
+            // フォローされていないユーザーであればフォローテーブルに登録
+            $this->register($request);
+            return redirect()->route('search');
+    }
+
+    // フォローテーブルへの登録
+    protected function register(Request $request)
+    {
+        return Follow::register([
+            'following_id' => $user,
+            'followed_id' => $user_target,
+        ]);
+    }
+
 
 }
