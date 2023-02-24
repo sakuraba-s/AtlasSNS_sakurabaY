@@ -27,12 +27,14 @@
                             <form action="follow" method="post">
                             @csrf
                                 <td>
-                                    <input type="hidden" name="user_target" value=" $users['id']">
+                                    <input type="hidden" name="user_target" value={{$users->id}}>
                                     <button type="submit" >フォローする</button>
-                                    <input type="hidden" name="user_target" value=" $users['id']">
+                                    <input type="hidden" name="user_target" value={{$users->id}}>
                                     <button type="submit" >フォロー解除</button>
+
                                 </td>
                             </form>
+
                         </div>
                         <!-- 繰り返し処理の中に、更新ボタンを追加→投稿の数だけボタンが自動的に作成される
                         URLにパラメータを付与 GET送信-->

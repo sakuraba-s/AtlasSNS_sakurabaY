@@ -136,7 +136,42 @@ class UsersController extends Controller
     }
 
 
-    // フォロー＆フォロー解除 search
+    // フォロー＆フォロー解除
+
+        // フォロー
+        // usersテーブルの全情報を変数userに入れる
+    public function follow(User $user){
+        // ⓵現在認証しているユーザー情報を取得し「フォロワー」とする
+        $follower = auth()->user();
+        // ⓶「現在認証しているユーザー」が「あるidをフォローしている場合」を変数に入れる
+        $is_following = $follower->isFollowing($user->id);
+        // ⓶が存在しない場合(フォローしていない場合)
+        if(!$is_following) {
+            // そのidをフォローする
+            $follower->follow($user->id);
+            return back();
+        }
+    }
+       // フォロー解除
+        // usersテーブルの全情報を変数userに入れる
+    public function unfollow(User $user){
+        // フォローしているか(フォロー側と同じ記述)
+        $is_following = $follower->isFollowing($user->id);
+        // フォローしていた場合
+        if($is_following) {
+            // そのidのフォローを解除する
+            $follower->unfollow($user->id);
+            return back();
+        }
+    }
+
+
+
+
+
+
+
+
     public function follow(Request $request){
         /* followsテーブルの「following_id」がログインユーザーである中の
         followed_id」を確認する
@@ -149,9 +184,10 @@ class UsersController extends Controller
         // followsテーブルの「following_id」がログインユーザーであり、
         // かつ 「followed_id」がボタンを押した行のユーザidに合致するデータを取得する
         $follows=\DB::table('follows')
-        ->where('following_id', '=', "$user")
+        ->where('following_id', $user)
         ->where('followed_id', '=', $user_target)
-        ->get();
+        ->toSql();
+        dd($follows);
 
 
         if(isset($follows)){
