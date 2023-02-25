@@ -136,42 +136,6 @@ class UsersController extends Controller
     }
 
 
-    // フォロー＆フォロー解除
-
-        // フォロー
-        // usersテーブルの全情報を変数userに入れる
-    public function follow(User $user){
-        // ⓵現在認証しているユーザー情報を取得し「フォロワー」とする
-        $follower = auth()->user();
-        // ⓶「現在認証しているユーザー」が「あるidをフォローしている場合」を変数に入れる
-        $is_following = $follower->isFollowing($user->id);
-        // ⓶が存在しない場合(フォローしていない場合)
-        if(!$is_following) {
-            // そのidをフォローする
-            $follower->follow($user->id);
-            return back();
-        }
-    }
-       // フォロー解除
-        // usersテーブルの全情報を変数userに入れる
-    public function unfollow(User $user){
-        // フォローしているか(フォロー側と同じ記述)
-        $is_following = $follower->isFollowing($user->id);
-        // フォローしていた場合
-        if($is_following) {
-            // そのidのフォローを解除する
-            $follower->unfollow($user->id);
-            return back();
-        }
-    }
-
-
-
-
-
-
-
-
     public function follow(Request $request){
         /* followsテーブルの「following_id」がログインユーザーである中の
         followed_id」を確認する
@@ -185,25 +149,29 @@ class UsersController extends Controller
         // かつ 「followed_id」がボタンを押した行のユーザidに合致するデータを取得する
         $follows=\DB::table('follows')
         ->where('following_id', $user)
-        ->where('followed_id', '=', $user_target)
-        ->toSql();
-        dd($follows);
+        ->where('followed_id', $user_target)
+        ->get();
+        // dd($follows);
 
-
+        // if(false){
         if(isset($follows)){
             // フォロー中であれば解除(フォローデーブルから削除)
             follow::where('followed_id', "$user_target")->delete();
+            dd($user_target);
+
             return redirect()->route('search');
         }
-            // フォローされていないユーザーであればフォローテーブルに登録
-            $this->register($request);
-            return redirect()->route('search');
+
+        // フォローされていないユーザーであればフォローテーブルに登録
+        $this->register($user,$user_target);
+        return redirect()->route('search');
     }
 
     // フォローテーブルへの登録
-    protected function register(Request $request)
+
+    public function register($user,$user_target)
     {
-        return Follow::register([
+        return Follow::create([
             'following_id' => $user,
             'followed_id' => $user_target,
         ]);
