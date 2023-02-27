@@ -135,46 +135,68 @@ class UsersController extends Controller
         return view('users.search',['users'=>$users]);
     }
 
-
-    public function follow(Request $request){
+    // public function follow(Request $request){
         /* followsテーブルの「following_id」がログインユーザーである中の
         followed_id」を確認する
         name送信されたidがあれば削除(フォロー解除)、なければ登録(フォローする)*/
 
-        // ボタンを押下した行のユーザidを取得
-        $user_target=$request->input('user_target');
-        // ログインユーザのidを取得
-        $user=Auth::user()->id;
-        // followsテーブルの「following_id」がログインユーザーであり、
-        // かつ 「followed_id」がボタンを押した行のユーザidに合致するデータを取得する
-        $follows=\DB::table('follows')
-        ->where('following_id', $user)
-        ->where('followed_id', $user_target)
-        ->get();
+        // // ボタンを押下した行のユーザidを取得
+        // $user_target=$request->input('user_target');
+        // // ログインユーザのidを取得
+        // $user=Auth::user()->id;
+        // // followsテーブルの「following_id」がログインユーザーであり、
+        // // かつ 「followed_id」がボタンを押した行のユーザidに合致するデータを取得する
+        // $follows=\DB::table('follows')
+        // ->where('following_id', $user)
+        // ->where('followed_id', $user_target)
+        // ->get();
+        // var_dump(empty($follows));
         // dd($follows);
 
         // if(false){
-        if(isset($follows)){
-            // フォロー中であれば解除(フォローデーブルから削除)
-            follow::where('followed_id', "$user_target")->delete();
-            dd($user_target);
-
-            return redirect()->route('search');
-        }
-
+        // if($follows){
+        //     // フォロー中であれば解除(フォローデーブルから削除)
+        //     follow::where('followed_id', "$user_target")->delete();
+        //     // dd($user_target);
+        //     return redirect()->route('search');
+        // }
         // フォローされていないユーザーであればフォローテーブルに登録
-        $this->register($user,$user_target);
-        return redirect()->route('search');
-    }
+    //     $this->register($user,$user_target);
+    //     return redirect()->route('search');
+    // }
 
     // フォローテーブルへの登録
+    // public function register($user,$user_target)
+    // {
+    //     return Follow::create([
+    //         'following_id' => $user,
+    //         'followed_id' => $user_target,
+    //     ]);
+    // }
 
-    public function register($user,$user_target)
+    // フォロー
+    public function follow(User $user)
     {
-        return Follow::create([
-            'following_id' => $user,
-            'followed_id' => $user_target,
-        ]);
+        $follower = auth()->user();
+        // フォローしているか
+        $is_following = $follower->isFollowing($user->id);
+        if(!$is_following) {
+            // フォローしていなければフォローする
+            $follower->follow($user->id);
+            return back();
+        }
+    }
+    // フォロー解除
+    public function unfollow(User $user)
+    {
+        $follower = auth()->user();
+        // フォローしているか
+        $is_following = $follower->isFollowing($user->id);
+        if($is_following) {
+            // フォローしていればフォローを解除する
+            $follower->unfollow($user->id);
+            return back();
+        }
     }
 
 
