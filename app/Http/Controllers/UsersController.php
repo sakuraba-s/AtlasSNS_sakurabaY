@@ -175,14 +175,24 @@ class UsersController extends Controller
     // }
 
     // フォロー
+    // Userモデルを使う
+    // 依存性注入 Userをインスタンスして変数userに入れる
     public function follow(User $user)
     {
+        // 「フォロワー」の定義
+        // 認証中のユーザーがフォロワー側
         $follower = auth()->user();
-        // フォローしているか
+        // follower変数に対してUserモデルに記載のisFollowingメソッドを呼び出す
+        // このときusersテーブルのidを引数として渡す
+        // isFollowingは引数として渡したidをフォローしているかどうかが真か偽で返すメソッド
         $is_following = $follower->isFollowing($user->id);
+
         if(!$is_following) {
+            // is_followingが「偽」であるとき(フォローしていなかった時)
             // フォローしていなければフォローする
             $follower->follow($user->id);
+            // follower変数に対してUserモデルに記載のisFollowメソッドを呼び出す
+            //   followは引数として渡したidをattach(フォロー)する
             return back();
         }
     }
