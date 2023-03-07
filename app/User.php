@@ -38,30 +38,32 @@ class User extends Authenticatable
     // ★フォロー関係のリレーション
     // フォローされているユーザIDから、フォローしているユーザIDにアクセス
     // 第一引数で参照するテーブルを指定(今回は自分自身)
-    // 第二引数には中間テーブルとなるfolloersテーブルを指定
+    // 第二引数には中間テーブルとなるfollowsテーブルを指定
     public function followers(){
-        return $this->belongsToMany(self::class,"followers",'followed_id', 'following_id');
+        return $this->belongsToMany(self::class,"follows",'followed_id', 'following_id');
     }
-    // ★フォロー関係のリレーション
     // フォローしているユーザIDから、フォローされているユーザIDにアクセス
     public function follows(){
-        return $this->belongsToMany(self::class,"followers",'following_id', 'followed_id');
+        return $this->belongsToMany(self::class,"follows",'following_id', 'followed_id');
     }
 
-    // フォローする
+
+    // ★フォローorフォロー解除機能
     // コントローラーで引数として渡したidをIntで受け取る
     // attach 新たにリレーションに紐づけする
     public function follow(Int $user_id)
     {
+        // フォロー対象の追加 ※this->followsに注目
         return $this->follows()->attach($user_id);
     }
     // フォロー解除する
     // detach リレーションを解除する
     public function unfollow(Int $user_id)
     {
+        // フォロー対象の削除 ※this->followsに注目
         return $this->follows()->detach($user_id);
     }
-    // フォローしているか
+    // フォローしているかの判断
     // boolean真か偽かを表す変数の型
     public function isFollowing(Int $user_id)
     {
@@ -69,6 +71,7 @@ class User extends Authenticatable
     // つまりフォローしているユーザIDから、フォローされているユーザIDにアクセスし、フォローしているかの判定をする
         return (boolean) $this->follows()->where('followed_id', $user_id)->first(['id']);
     }
+
 
     // フォローされているか
     public function isFollowed(Int $user_id) 

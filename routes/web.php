@@ -53,6 +53,8 @@ Route::post('/search','UsersController@search')->name('search');
 // ユーザ検索 フォロー登録＆解除
 Route::get('/follow','UsersController@follow')->name('follow');
 Route::post('/follow','UsersController@follow')->name('follow');
+Route::get('/unfollow','UsersController@unfollow')->name('unfollow');
+Route::post('/unfollow','UsersController@unfollow')->name('unfollow');
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
