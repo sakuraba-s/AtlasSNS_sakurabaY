@@ -67,9 +67,12 @@ class User extends Authenticatable
     // boolean真か偽かを表す変数の型
     public function isFollowing(Int $user_id)
     {
+        $this->int =$user_id;
+        // dd($user_id);
     // 「follows」を使用
     // つまりフォローしているユーザIDから、フォローされているユーザIDにアクセスし、フォローしているかの判定をする
-        return (boolean) $this->follows()->where('followed_id', $user_id)->first(['id']);
+    // followed_idが$user_id に一致するデータがあれば、真を返す。
+        return (boolean) $this->follows()->where('followed_id', $user_id)->exists();
     }
 
 
@@ -78,7 +81,7 @@ class User extends Authenticatable
     {
     // 「followers」を使用
     // つまりフォローされているユーザIDから、フォローしているユーザIDにアクセスし、フォローされているかの判定をする
-        return (boolean) $this->followers()->where('following_id', $user_id)->first(['id']);
+        return (boolean) $this->followers()->where('following_id', $user_id)->exists();
     }
 
 }

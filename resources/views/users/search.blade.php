@@ -23,24 +23,24 @@
                         <td>{{ $user->username }}</td>
 
                         <div class="table_btn">
-                            <!-- フォロー解除まはたフォローボタン -->
-                            <!-- UserモデルのisFollowingメソッドの結果が真ならば(すでにフォローしているならば)
-                            フォローを解除する。この時、解除するメソッドに解除対象のユーザーのidを渡す-->
-                            @if (auth()->user()->isFollowing($user->id))
-                                <form action="{{ route('unfollow', ['id' => $users->id]) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-
-                                    <td> <button type="submit" >フォローする</button></td>
-                                </form>
-                            @else
-                                <form action="{{ route('follow', ['id' => $user->id]) }}" method="POST">
+                            <td>
+                                <!-- フォロー解除まはたフォローボタン -->
+                                <!-- UserモデルのisFollowingメソッドの結果が真ならば(すでにフォローしているならば)
+                                フォローを解除する。この時、解除するメソッドに解除対象のユーザーのidを渡す-->
+                                @if (auth()->user()->isFollowing($user->id))
+                                    <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST">
                                         {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+
                                         <button type="submit" >フォロー解除</button>
-                                </form>
-                            @endif
-
-
+                                    </form>
+                                @else
+                                    <form action="{{ route('follow', ['id' => $user->id]) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <button type="submit" >フォローする</button>
+                                    </form>
+                                @endif
+                            </td>
                         </div>
                         <!-- 繰り返し処理の中に、更新ボタンを追加→投稿の数だけボタンが自動的に作成される
                         URLにパラメータを付与 GET送信-->

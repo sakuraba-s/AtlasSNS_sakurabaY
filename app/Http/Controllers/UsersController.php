@@ -174,44 +174,43 @@ class UsersController extends Controller
     //     ]);
     // }
 
-    // フォロー
-    public function follow(User $user)
+    // フォローボタンの中身
+    // フォローしていなかった場合、フォローするボタン
+    public function follow($id)
     {
-        // var_dump($user);
-        // dd($user->id);
-        // dd($user->id);
-
         // 「フォロワー」の定義
-        // 認証中のユーザーがフォロワー側
-        $follower = auth()->user();
+        // 認証中のユーザーがフォロワーする側
+        $follower = auth()->id();
+        // フォローされる側
         // follower変数に対してUserモデルに記載のisFollowingメソッドを呼び出す
         // このときusersテーブルのidを引数として渡す
         // isFollowingは引数として渡したidをフォローしているかどうかが真か偽で返すメソッド
-        $is_following = $follower->isFollowing($user_id);
 
-        if(!$is_following) {
+        // $is_following = $follower->isFollowing($id);
+
+        // if(!$is_following) {
             // is_followingが「偽」であるとき(フォローしていなかった時)
             // フォローしていなければフォローする
-            $follower->follow($user->id);
+            $follower->follow($id);
             // follower変数に対してUserモデルに記載のisFollowメソッドを呼び出す
             //   followは引数として渡したidをattach(フォロー)する
-            return back();
-        }
+            return redirect('/search');
+        // }
     }
     // フォロー解除
-    public function unfollow(User $user)
+    // フォローしていた場合、フォロー解除するボタン
+    public function unfollow($id)
     {
-        $follower = auth()->user();
+        $follower = auth()->id();
         // フォローしているか
-        $is_following = $follower->isFollowing($user->id);
-        if($is_following) {
+        // $is_following = $follower->isFollowing($id);
+        // if($is_following) {
             // フォローしていればフォローを解除する
-            $follower->unfollow($user->id);
+            $follower->unfollow($id);
             // follower変数に対してUserモデルに記載のunFollowメソッドを呼び出す
             //   unfollowは引数として渡したidをdetach(フォロー解除)する
-            return back();
+            return redirect('/search');
         }
-    }
-
+    // }
 
 }
