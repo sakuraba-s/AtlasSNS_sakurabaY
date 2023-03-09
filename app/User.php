@@ -13,7 +13,7 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var arraycd C:\Users\yunyu\Documents\AtlasSNS_sakurabaY
      */
     protected $fillable = [
         'username', 'mail', 'password',
@@ -27,6 +27,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    // 型キャスト
+    protected $casts = [
+        'id'       => 'integer',
+    ];
 
     // ★postsテーブルとのリレーション(親子関係)
     public function posts()
@@ -36,12 +40,15 @@ class User extends Authenticatable
 
 
     // ★フォロー関係のリレーション
+
+    // フォローされているユーザの取得
     // フォローされているユーザIDから、フォローしているユーザIDにアクセス
     // 第一引数で参照するテーブルを指定(今回は自分自身)
     // 第二引数には中間テーブルとなるfollowsテーブルを指定
     public function followers(){
         return $this->belongsToMany(self::class,"follows",'followed_id', 'following_id');
     }
+    // フォローしているユーザの取得
     // フォローしているユーザIDから、フォローされているユーザIDにアクセス
     public function follows(){
         return $this->belongsToMany(self::class,"follows",'following_id', 'followed_id');
@@ -53,6 +60,7 @@ class User extends Authenticatable
     // attach 新たにリレーションに紐づけする
     public function follow(Int $user_id)
     {
+        // ddd($user_id);
         // フォロー対象の追加 ※this->followsに注目
         return $this->follows()->attach($user_id);
     }
@@ -67,8 +75,7 @@ class User extends Authenticatable
     // boolean真か偽かを表す変数の型
     public function isFollowing(Int $user_id)
     {
-        $this->int =$user_id;
-        // dd($user_id);
+    // dd($user_id);
     // 「follows」を使用
     // つまりフォローしているユーザIDから、フォローされているユーザIDにアクセスし、フォローしているかの判定をする
     // followed_idが$user_id に一致するデータがあれば、真を返す。

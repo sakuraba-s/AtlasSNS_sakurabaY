@@ -1,6 +1,7 @@
 @extends('layouts.login')
 
 @section('content')
+
     <div class="search_area top">
         <div class="search_area_box">
         {!! Form::open(['url' => '/search','method'=>'POST']) !!}
@@ -28,7 +29,7 @@
                                 <!-- UserモデルのisFollowingメソッドの結果が真ならば(すでにフォローしているならば)
                                 フォローを解除する。この時、解除するメソッドに解除対象のユーザーのidを渡す-->
                                 @if (auth()->user()->isFollowing($user->id))
-                                    <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST">
+                                    <form action="{{ route('unfollow', ['user' => $user->id]) }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 
