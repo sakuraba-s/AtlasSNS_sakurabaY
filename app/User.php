@@ -41,14 +41,15 @@ class User extends Authenticatable
 
     // ★フォロー関係のリレーション
 
-    // フォローされているユーザの取得
-    // フォローされているユーザIDから、フォローしているユーザIDにアクセス
     // 第一引数で参照するテーブルを指定(今回は自分自身)
     // 第二引数には中間テーブルとなるfollowsテーブルを指定
+    // 第三引数 リレーションを定義しているモデルの外部キー名
+    // 第四引数 結合するモデルの外部キー名
+
+    // フォローされているユーザIDから、フォローしているユーザIDにアクセス
     public function followers(){
         return $this->belongsToMany(self::class,"follows",'followed_id', 'following_id');
     }
-    // フォローしているユーザの取得
     // フォローしているユーザIDから、フォローされているユーザIDにアクセス
     public function follows(){
         return $this->belongsToMany(self::class,"follows",'following_id', 'followed_id');

@@ -15,21 +15,21 @@
             <!-- 投稿内容を時間系列で？表示 -->
             <!-- foreachで上から順に繰り返す ※postsはuserテーブルと炉レーション済み-->
             <table>
-                @foreach ($posts as $posts)
+                @foreach ($posts as $post)
                 <tr>
                 <!-- table row -->
                     <td>
                         <!-- table data -->
-                        <img src=" {{ asset('storage/profiles/'.$posts->user->images) }}" alt="プロフィール画像">
+                        <img src=" {{ asset('storage/profiles/'.$post->user->images) }}" alt="プロフィール画像">
                     </td>
                     <td>
-                        <span>{{ $posts->user->username }}</span>
-                        <span>{{ $posts->post }}</span>
+                        <span>{{ $post->user->username }}</span>
+                        <span>{{ $post->post }}</span>
                     </td>
                     <td>
                         <!-- 更新時間、編集、削除ボタンエリア -->
                         <div class="posted_area--edit">
-                            <span>{{ $posts->created_at }}</span>
+                            <span>{{ $post->created_at }}</span>
                             <a class="update_btn" href="post/index"><img src="images/edit.png" alt="編集"></a>
                             <a class="delete_btn" href="post/index"onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><img src="images/trash.png" alt="削除"></a>
                         </div>

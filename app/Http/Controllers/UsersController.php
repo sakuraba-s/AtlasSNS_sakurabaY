@@ -177,24 +177,23 @@ class UsersController extends Controller
     // フォローボタンの中身
     // フォローしていなかった場合、フォローするボタン
     // ビュー側で渡したidを引数にセットする★
-    public function followUser($id)
+    public function follow($id)
     {
-        // 「フォロワー」の定義
-        // 認証中のユーザーがフォロワーする側
+        // 認証中のユーザーが「フォローする側」
         $follower = Auth::user();
-        // フォローされる側
+        // ddd($follower);
+        // フォロー対象側
         // follower変数に対してUserモデルに記載のisFollowingメソッドを呼び出す
-
         // isFollowingは引数として渡したidをフォローしているかどうかが真か偽で返すメソッド
         // フォローしているかの判定は、ボタンの出現の時にすでに判定をしているのでここは不要ではないか？
         // $is_following = $follower->isFollowing($id);
         // if(!$is_following) {
-            // is_followingが「偽」であるとき(フォローしていなかった時)
-            // フォローしていなければフォローする
-            $follower->follow($id);
-            // follower変数に対してUserモデルに記載のisFollowメソッドを呼び出す
-            //   followは引数として渡したidをattach(フォロー)する
-            return redirect('/search');
+        // is_followingが「偽」であるとき(フォローしていなかった時)
+        // フォローしていなければフォローする
+        $follower->follow($id);
+        // follower変数に対してUserモデルに記載のisFollowメソッドを呼び出す
+        //   followは引数として渡したidをattach(フォロー)する
+        return redirect('/search');
         // }
     }
     // フォロー解除
