@@ -61,8 +61,8 @@ class User extends Authenticatable
     // attach 新たにリレーションに紐づけする
     public function follow(Int $user_id)
     {
-        // ddd($user_id);
         // フォロー対象の追加 ※this->followsに注目
+        // ※このthisはUsersControllerのfollower(つまりログインユーザ)※
         return $this->follows()->attach($user_id);
     }
     // フォロー解除する

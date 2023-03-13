@@ -77,9 +77,14 @@ class PostsController extends Controller
         posted_areaに投稿が追加される*/
         return redirect('/top');
     }
+    /*編集*/
+    //ポップアップが出る！
+    public function update(Request $request){
+        Post::update([
+            'post' => $request['newPost'],
+            'user_id' => $user->id,
+        ]);
 
-    // 投稿の編集 ポップアップが出る！
-    public function edit(){
 
     }
 

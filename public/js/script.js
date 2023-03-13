@@ -1,6 +1,7 @@
 
 $(function(){
      // 一つの機能を作るとき、functionでまとめる
+    //  ハンバーガーメニュー
     $('.menu-trigger').click(function(){
         // 対象.menu-tigger(ハンバーガー)をクリックした時、function以下の操作をする。
         $(".menu").toggleClass('active');
@@ -16,9 +17,16 @@ $(function(){
         //     $('.g-navi').removeClass('active');
         // }
     });
+    // ナビゲーションの表示非表示
     $('.nav-wrapper ul li a').click(function(){ // 対象nav-wrapper ul li a　をクリックした時、function以下の操作をする。
         $('.menu-trigger').removeClass('active'); // タップ後はメニューが閉じるようにactiveを外す。
         $('.g-navi').removeClass('active');
+    });
+    
+    // 投稿編集のダイアログボックス
+    // 編集アイコンを押下したときにダイアログボックスが出現する
+    $('.update_btn').click(function() {
+
     });
 });   // 全体のfunctionを閉じる
 

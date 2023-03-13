@@ -181,15 +181,7 @@ class UsersController extends Controller
     {
         // 認証中のユーザーが「フォローする側」
         $follower = Auth::user();
-        // ddd($follower);
-        // フォロー対象側
-        // follower変数に対してUserモデルに記載のisFollowingメソッドを呼び出す
-        // isFollowingは引数として渡したidをフォローしているかどうかが真か偽で返すメソッド
-        // フォローしているかの判定は、ボタンの出現の時にすでに判定をしているのでここは不要ではないか？
-        // $is_following = $follower->isFollowing($id);
-        // if(!$is_following) {
-        // is_followingが「偽」であるとき(フォローしていなかった時)
-        // フォローしていなければフォローする
+        // フォローする
         $follower->follow($id);
         // follower変数に対してUserモデルに記載のisFollowメソッドを呼び出す
         //   followは引数として渡したidをattach(フォロー)する
@@ -201,11 +193,7 @@ class UsersController extends Controller
     public function unfollow($id)
     {
         $follower = Auth::user();
-
-        // フォローしているか
-        // $is_following = $follower->isFollowing($id);
-        // if($is_following) {
-            // フォローしていればフォローを解除する
+            // フォローを解除する
             $follower->unfollow($id);
             // follower変数に対してUserモデルに記載のunFollowメソッドを呼び出す
             //   unfollowは引数として渡したidをdetach(フォロー解除)する
