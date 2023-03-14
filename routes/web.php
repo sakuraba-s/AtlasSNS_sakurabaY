@@ -25,9 +25,10 @@ Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
+// ユーザ登録
 Route::get('/register', 'Auth\RegisterController@register')->name('register');
 Route::post('/register', 'Auth\RegisterController@register');
-
+// ユーザ登録後
 Route::get('/added', 'Auth\RegisterController@added')->name('added');
 Route::post('/added', 'Auth\RegisterController@added');
 
@@ -44,8 +45,11 @@ Route::post('/top','PostsController@index');
 Route::get('/profile','UsersController@profile')->name('profile');
 Route::get('/edit', 'UsersController@edit')->name('edit');
 Route::post('/edit', 'UsersController@edit');
+// つぶやき投稿
 Route::get('/post', 'PostsController@post')->name('post');
-Route::post('/post', 'PostsController@post');
+Route::post('/post', 'PostsController@post')->name('post');
+// つぶやき編集
+Route::post('/post_edit', 'PostsController@edit')->name('edit');
 
 // ユーザー検索
 Route::get('/search','UsersController@search')->name('search');

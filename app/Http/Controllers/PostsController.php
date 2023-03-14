@@ -8,8 +8,7 @@ use App\User;
 use App\Follow;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
-
+use Illuminate\Support\Facades\Validator;
 
 /*use宣言
 ファイルの内で使うクラスや関数や定数などをインポートするために使用
@@ -19,30 +18,13 @@ use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
-    /*indexメソッド(トップページ)
-    postsに必要なデータを取って、ビューに渡す*/
-    // public function index01(){
-
-    //     // ログイン中のユーザ情報を取得
-    //     $id= Auth::user()->id;
-    //     // ログイン中のユーザがフォローしているユーザーリストを取得
-    //     $follows=Follow::where('following_id')
-    //                 ->where(function($query)use($id){
-    //                     $query->where('following_id', '=', $id);
-    //                     })
-    //                     ->get();
-
-    //     // dd($follows);
-    //     // リレーション元のusersテーブルとともにpostsテーブルを取得
-    //     // with()の中にはModelsで作ったメソッド名を入れる。
-    //     $posts=Post::with(['user'])->where('user_id','=',"$follows->following_id")->get();
-
-    //     return view('posts.index',[
-    //         'posts'=>$posts,
-    //         ]);
-    //     /* viewヘルパー:指定したphpファイルを画面に表示する
-    //     【】内は受け渡したいデータ*/
-    // }
+    // 投稿内容のバリデーション
+    public function validator(array $data){
+        $validator=Validator::make($data,[
+        'newPost' => 'required|string|min:1|max:150',
+        ]);
+        return $validator;
+    }
     // postsに必要なデータを取って、ビューに渡す
     public function index(){
         // user_id（誰の投稿か）が認証中のユーザに紐づくフォロー対象のidに一致するものを取得
@@ -53,40 +35,84 @@ class PostsController extends Controller
         return view('posts.index')->with([
             'posts' => $posts,
             ]);
-
     }
 
     /*新規投稿
     ※処理だけなのでviewファイルはない*/
     public function post(Request $request){
-        $user= Auth::user();
-        // $post =$request -> input('newPost');
-        /*index.blade.phpにおいてフォームの送信先が「/post」であり、
-        ルーティングでここのコントローラーと繋がる。
-        index.blade.phpのinputタグの値をrequest変数に入れる
-        その中から「name属性が「newPost」と指定されていたという条件に合致するもの」をpost変数に入れる*/
-        Post::create([
-            'post' => $request['newPost'],
-            'user_id' => $user->id,
-        ]);
-        /*
-        Postモデルとつなげる(＝データベースと繋がる)
-        createする*/
-
-        /*テーブルのpostカラムに、$post変数を当てはめる
-        posted_areaに投稿が追加される*/
-        return redirect('/top');
+        // ポスト送信されたら
+        if($request->isMethod('post')){
+            // data変数にinputで送信された値を格納する
+            $data = $request->input();
+            // dataに対してバリデーションを適用する
+            $validator=$this->validator($data);
+            // バリデーション失敗したら
+                if ($validator->fails()){
+                    return redirect('top')
+                    ->withErrors($validator)
+                    // セッションにエラー情報を入れる
+                    ->withInput();
+                }
+                 // バリデーションに成功したら
+                //  認証中のユーザ情報を取得、登録
+                $user= Auth::user();
+                Post::create([
+                    'post' => $request['newPost'],
+                    'user_id' => $user->id,
+                ]);
+                // トップページに戻る
+            return redirect('/top');
+        };
     }
+    // $post =$request -> input('newPost');
+    /*index.blade.phpにおいてフォームの送信先が「/post」であり、
+    ルーティングでここのコントローラーと繋がる。
+    index.blade.phpのinputタグの値をrequest変数に入れる
+    その中から「name属性が「newPost」と指定されていたという条件に合致するもの」をpost変数に入れる*/
+    /*
+    Postモデルとつなげる(＝データベースと繋がる)
+    createする*/
+    /*テーブルのpostカラムに、$post変数を当てはめる
+    posted_areaに投稿が追加される*/
+
     /*編集*/
     //ポップアップが出る！
+    // 投稿内容更新メソッド全体
+    public function edit(Request $request){
+        // ポスト送信されたら
+        if($request->isMethod('post')){
+            $data = $request->input();
+            // 本コントローラのvalidatorメソッドの結果を変数に格納
+            // バリデーションを適用
+            $validator=$this->validator($data);
+                // バリデーション失敗したら
+                if ($validator->fails()){
+                    return redirect('top')
+                    ->withErrors($validator)
+                    // セッションにエラー情報を入れる
+                    ->withInput();
+                }
+                // バリデーションに成功したら
+                // 本コントローラのupdateメソッドを発動
+                $this->update($request);
+                // usernameを取得、登録後の画面を表示
+                return redirect()->route('top');
+        }
+        // ポスト送信されていないときは何も起こらない
+        return view('top');
+        }
     public function update(Request $request){
-        Post::update([
+        // だれの投稿かを取得（hiddenで送信したもの）
+        $user_id = $request->input('user_id');
+        // フォームの入力内容を取得する
+        $post = $request->input('newPost');
+        Post::where('user_id', $user_id)->update([
             'post' => $request['newPost'],
-            'user_id' => $user->id,
         ]);
-
-
+        return redirect('/top');
     }
+
+
 
 
     /* メソッドの引数に「POSTからの値を受け取る」$requestを用意

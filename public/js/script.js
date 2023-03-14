@@ -25,7 +25,9 @@ $(function(){
     
     // 投稿編集のダイアログボックス
     // 編集アイコンを押下したときにダイアログボックスが出現する
+    // もう一度押したら閉じるようにしたい
     $('.update_btn').click(function() {
+        $('.dialog').addClass('active');
 
     });
 });   // 全体のfunctionを閉じる
