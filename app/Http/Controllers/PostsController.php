@@ -102,11 +102,11 @@ class PostsController extends Controller
         return view('top');
         }
     public function update(Request $request){
-        // だれの投稿かを取得（hiddenで送信したもの）
-        $user_id = $request->input('user_id');
+        // どの投稿かを取得（hiddenで送信したもの）
+        $id = $request->input('id');
         // フォームの入力内容を取得する
         $post = $request->input('newPost');
-        Post::where('user_id', $user_id)->update([
+        Post::where('id', $id)->update([
             'post' => $request['newPost'],
         ]);
         return redirect('/top');

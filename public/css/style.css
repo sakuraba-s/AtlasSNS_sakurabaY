@@ -337,25 +337,33 @@ tr:not(:last-child){
 }
 
 /* 編集ダイアログの表示非表示 */
-.dialog{
-    /* display: none; */
-/* デフォルトでは非表示にしておく */
+.modal{
+    display: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 /* activeの時だけ表示にしておく */
-.dialog.active{
+/* ダイアログを広げたときのバックの薄い色 */
+.modal__bg{
+    background: rgba(0,0,0,0.8);
+    height: 100vh;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    z-index: 1;
-    /* 親要素、confirmに大きさを合わせる 要素の上に重ねる */
-    display: flex;
-    /* display noneを解除する */
-    background: #13fc6c;
-    font-size: 1.5rem;
-    text-align: center;
+    width: 100%;
 }
+/* ダイアログ本体の設定 */
+.modal__content{
+    background: #fff;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 60%;
+}
+
+
 /* ダイアログが表示されているとき、トップページは少し薄くなる
 バックに鵜宇井レイヤーを一枚引く？？ */
 

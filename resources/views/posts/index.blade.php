@@ -40,35 +40,45 @@
                         <!-- 更新時間、編集、削除ボタンエリア -->
                         <div class="posted_area--edit">
                             <span>{{ $post->created_at }}</span>
-                            <button type="button"class="update_btn"><img src="images/edit.png" alt="編集"></a>
+                            <!-- 投稿内容と投稿のidを渡す
+                            ※編集ボタンにpost属性とpost_id属性を追加し、それぞれの投稿内容と投稿idのデータを持たせる
+                            ※このボタンが押されたら、、というjQueryを記述するのにわかりやすいよう、クラスを「open」などと設定する-->
+                            <a class="js-modal-open" href="top" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" alt="編集"></a>
+                            <!-- <button type="button"class="update_btn"><img src="images/edit.png" alt="編集"></a> -->
                             <a class="delete_btn" href="top"onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><img src="images/trash.png" alt="削除"></a>
-                        </div>
-
-                    <!-- 編集のダイアログボックス (編集アイコンを押すと現れる)-->
-                        <div class="dialog">
-                                {!! Form::open(['url' => '/post_edit']) !!}
-                                    {{ csrf_field() }}
-                                        {!! Form::input('text','newPost',$post->post,['required','class'=> 'form-control']) !!}
-                                        <button type="submit"class="update_btn"><img src="images/edit.png" alt="編集"></button>
-                                        {!!Form::hidden('user_id', '$post->user_id') !!}
-                                {!! Form::close() !!}
                         </div>
                     </td>
                     <!-- 編集、削除の際にidをGETで渡す
                     編集、削除ボタンは自分の投稿にのみ表示 -->
-
-                </tr>
-        </div>
-
-    <!-- 編集ダイアログボックス終わり -->
-
-
-
-
-
                 </tr>
                 @endforeach
             </table>
+        </div>
+
+            <!-- 編集のダイアログボックス (編集アイコンを押すと現れる)
+            押下した投稿内容ただ一つを表示させる-->
+        <div class="modal js-modal">
+            <!-- ここのbgに対して薄い色をcssで引く -->
+            <div class="modal__bg js-modal-close"></div>
+                <div class="modal__content">
+                    <!-- {!! Form::open(['url' => '/post_edit']) !!}
+                        {{ csrf_field() }}
+                            {!! Form::input('text','newPost',$post->post,['required','class'=> 'form-control']) !!}
+                            <button type="submit"class="update_btn"><img src="images/edit.png" alt="編集"></button>
+                            {!!Form::hidden('user_id', '$post->user_id') !!}
+                    {!! Form::close() !!} -->
+                    <form action="/post_edit" method="post">
+                        <!-- 取得した投稿内容をモーダルのどこへ渡すかの判別のためにクラス名「modal_post」「modal_id」を設定
+                            textareaで枠の右下から入力欄を拡大縮小させることができる-->
+                        <textarea name="newPost" class="modal_post"></textarea>
+                        <!-- ※ここのvalueにiQueryで渡した投稿idが入ってくる -->
+                        <input type="hidden" name="id" class="modal_id" value="">
+
+                        <input type="image" name="submit" width="40px" height="40px" src="images/edit.png" alt="編集" class="js-modal-close">
+                        {{ csrf_field() }}
+                    </form>
+                </div>
+            </div>
         </div>
 
     @endsection
