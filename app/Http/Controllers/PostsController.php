@@ -78,10 +78,11 @@ class PostsController extends Controller
     /*編集*/
     //ポップアップが出る！
     // 投稿内容更新メソッド全体
-    public function edit(Request $request){
+    public function post_edit(Request $request){
         // ポスト送信されたら
         if($request->isMethod('post')){
             $data = $request->input();
+            // ddd($data);
             // 本コントローラのvalidatorメソッドの結果を変数に格納
             // バリデーションを適用
             $validator=$this->validator($data);
@@ -90,7 +91,9 @@ class PostsController extends Controller
                     return redirect('top')
                     ->withErrors($validator)
                     // セッションにエラー情報を入れる
-                    ->withInput();
+                    // 入力欄に内容を入れたままにする
+                    // ->withInput();
+                    ;
                 }
                 // バリデーションに成功したら
                 // 本コントローラのupdateメソッドを発動
@@ -108,6 +111,12 @@ class PostsController extends Controller
         $post = $request->input('newPost');
         Post::where('id', $id)->update([
             'post' => $request['newPost'],
+        ]);
+        return redirect('/top');
+    }
+    /*削除*/
+    public function post_delete($id){
+        Post::where('id', $id)->delete([
         ]);
         return redirect('/top');
     }

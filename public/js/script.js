@@ -32,16 +32,16 @@ $(function(){
         $('.js-modal').fadeIn();
         // 押されたボタンから投稿内容を取得し変数へ格納
         // ※編集ボタンにpost属性とpost_id属性を追加し、それぞれの投稿内容と投稿idのデータを持たせてある
-        // attr()は属性を指す
+        // data-属性を取得
         // varは変数の定義
-        var post = $(this).attr('post');
+        var post = $(this).data('post');
         // 押されたボタンから投稿のidを取得し変数へ格納（どの投稿を編集するか特定するのに必要な為）
-        var post_id = $(this).attr('post_id');
+        var post_id = $(this).data('post_id');
 
-        // 取得した投稿内容をモーダルの中身へ渡す
+        // 取得した投稿内容をモーダルの中身(text)へ渡す
         // 文字を渡したいのでtextメソッドを使う
         $('.modal_post').text(post);
-        // 取得した投稿のidをモーダルの中身へ渡す
+        // 取得した投稿のidをモーダルの中身(val)へ渡す
         $('.modal_id').val(post_id);
         return false;
     });

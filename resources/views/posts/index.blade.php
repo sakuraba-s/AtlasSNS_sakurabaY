@@ -1,16 +1,5 @@
 @extends('layouts.login')
     @section('content')
-        <!-- バリデーションのエラーを表示 -->
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach($errors->all() as $errors)
-                    <li>{{$errors}}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-
         <div class="post_area top">
 
             {!! Form::open(['url' => '/post']) !!}
@@ -43,9 +32,29 @@
                             <!-- 投稿内容と投稿のidを渡す
                             ※編集ボタンにpost属性とpost_id属性を追加し、それぞれの投稿内容と投稿idのデータを持たせる
                             ※このボタンが押されたら、、というjQueryを記述するのにわかりやすいよう、クラスを「open」などと設定する-->
-                            <a class="js-modal-open" href="top" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" alt="編集"></a>
+                            <!-- <a class="js-modal-open" href="top" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" alt="編集"></a> -->
+                            <!-- トップページを再度読み込む必要はないかなと思った -->
+                            <button type="button"class="js-modal-open" data-post="{{ $post->post }}" data-post_id="{{ $post->id }}"><img src="images/edit.png" alt="編集"></button>
                             <!-- <button type="button"class="update_btn"><img src="images/edit.png" alt="編集"></a> -->
-                            <a class="delete_btn" href="top"onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><img src="images/trash.png" alt="削除"></a>
+                            <!-- 削除ボタン -->
+                            <a href="post_delete"=<?php echo htmlspecialchars($post["id"]); ?>" onclick="return confirm('このレコードを削除します。よろしいでしょうか？')">
+
+
+                            <form action="{{ route('unfollow', ['user' => $user->id]) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+
+                                        <button type="submit" >フォロー解除</button>
+                                    </form>
+
+
+
+
+
+
+                            <!-- 削除ボタンを押下→遷移先のdelete.phpに 該当のid番号の情報を渡す -->
+                                <button type="button"><img src="images/trash.png" alt="削除"></button>
+                            </a>
                         </div>
                     </td>
                     <!-- 編集、削除の際にidをGETで渡す
@@ -61,20 +70,32 @@
             <!-- ここのbgに対して薄い色をcssで引く -->
             <div class="modal__bg js-modal-close"></div>
                 <div class="modal__content">
+
+                    <!-- バリデーションのエラーを表示 -->
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $errors)
+                            <li>{{$errors}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
                     <!-- {!! Form::open(['url' => '/post_edit']) !!}
                         {{ csrf_field() }}
                             {!! Form::input('text','newPost',$post->post,['required','class'=> 'form-control']) !!}
                             <button type="submit"class="update_btn"><img src="images/edit.png" alt="編集"></button>
                             {!!Form::hidden('user_id', '$post->user_id') !!}
                     {!! Form::close() !!} -->
-                    <form action="/post_edit" method="post">
+                    <form action="post_edit" method="post">
                         <!-- 取得した投稿内容をモーダルのどこへ渡すかの判別のためにクラス名「modal_post」「modal_id」を設定
                             textareaで枠の右下から入力欄を拡大縮小させることができる-->
+                        <!-- <input type="textarea" name="newPost" class="modal_post" value=""> -->
                         <textarea name="newPost" class="modal_post"></textarea>
-                        <!-- ※ここのvalueにiQueryで渡した投稿idが入ってくる -->
+                        <!-- ※ここの空欄部分valueにiQueryで渡した投稿idが入ってくる -->
                         <input type="hidden" name="id" class="modal_id" value="">
-
-                        <input type="image" name="submit" width="40px" height="40px" src="images/edit.png" alt="編集" class="js-modal-close">
+                        <button type="submit"><img src="images/edit.png"  alt="編集" width="30px" height="30px">
                         {{ csrf_field() }}
                     </form>
                 </div>
