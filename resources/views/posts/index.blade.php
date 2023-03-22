@@ -37,28 +37,14 @@
                             <button type="button"class="js-modal-open" data-post="{{ $post->post }}" data-post_id="{{ $post->id }}"><img src="images/edit.png" alt="編集"></button>
                             <!-- <button type="button"class="update_btn"><img src="images/edit.png" alt="編集"></a> -->
                             <!-- 削除ボタン -->
-                            <a href="post_delete"=<?php echo htmlspecialchars($post["id"]); ?>" onclick="return confirm('このレコードを削除します。よろしいでしょうか？')">
-
-
-                            <form action="{{ route('unfollow', ['user' => $user->id]) }}" method="POST">
+                            <form action="{{ route('post_delete', ['id' => $post->id]) }}" method="POST" onclick="return confirm('このレコードを削除します。よろしいでしょうか？')">
                                         {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-
-                                        <button type="submit" >フォロー解除</button>
-                                    </form>
-
-
-
-
-
-
-                            <!-- 削除ボタンを押下→遷移先のdelete.phpに 該当のid番号の情報を渡す -->
-                                <button type="button"><img src="images/trash.png" alt="削除"></button>
-                            </a>
+                                        <!-- {{ method_field('DELETE') }} -->
+                                        <!-- 削除ボタンを押下→コントローラに 該当のid番号の情報を渡す -->
+                                        <button type="submit" ><img src="images/trash.png" alt="削除"></button>
+                            </form>
                         </div>
                     </td>
-                    <!-- 編集、削除の際にidをGETで渡す
-                    編集、削除ボタンは自分の投稿にのみ表示 -->
                 </tr>
                 @endforeach
             </table>

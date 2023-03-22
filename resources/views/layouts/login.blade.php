@@ -53,7 +53,8 @@
             <!-- ロゴを押下するとトップページに遷移する -->
             <div id="login_user_area">
                 <!-- ログイン中のユーザ情報を取得 -->
-                <?php $user= Auth::user();?>
+                <?php $user= Auth::user();
+                $id=Auth::user()->id?>
                 <p> {{ $user->username }}さん</p>
 
                 <!-- ハンバーガメニュー -->
@@ -82,12 +83,12 @@
                     </div>
 
             <!-- 上記メニューが表示されている時は非表示にする -->
-                <p>〇〇さんの</p>
+                <p>{{ $user->username }}さんの</p>
 
                 <div class="confirm_follow">
                     <div class="confirm_follow--num">
                         <p>フォロー数</p>
-                        <p>〇〇名</p>
+                        <p>{{ Auth::user()->follows()->where('following_id',$id)->get()->count() }}名</p>
                     </div>
                     <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 </div>
@@ -96,7 +97,8 @@
                 <div class="confirm_follow">
                     <div class="confirm_follow--num">
                         <p>フォロワー数</p>
-                        <p>〇〇名</p>
+                        <p>{{ Auth::user()->follows()->where('followed_id',$id)->get()->count() }}名</p>
+
                     </div>
                     <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
                 </div>

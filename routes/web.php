@@ -51,7 +51,7 @@ Route::post('/post', 'PostsController@post')->name('post');
 // つぶやき編集
 Route::post('/post_edit', 'PostsController@post_edit')->name('post_edit');
 // つぶやき削除
-Route::get('/posts/{id}/post_delete', 'PostsController@post_delete')->name('post_delete');
+Route::post('/posts/{id}/post_delete', 'PostsController@post_delete')->name('post_delete');
 
 // ユーザー検索
 Route::get('/search','UsersController@search')->name('search');

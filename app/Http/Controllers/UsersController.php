@@ -185,6 +185,8 @@ class UsersController extends Controller
         $follower->follow($id);
         // follower変数に対してUserモデルに記載のisFollowメソッドを呼び出す
         //   followは引数として渡したidをattach(フォロー)する
+        $followCount = count(FollowUser::where('followed_user_id', $user->id)->get());
+        return response()->json(['followCount' => $followCount]);
         return redirect('/search');
         // }
     }
