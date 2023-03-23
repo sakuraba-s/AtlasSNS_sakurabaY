@@ -85,7 +85,7 @@ class User extends Authenticatable
 
 
     // フォローされているか
-    public function isFollowed(Int $user_id) 
+    public function isFollowed(Int $user_id)
     {
     // 「followers」を使用
     // つまりフォローされているユーザIDから、フォローしているユーザIDにアクセスし、フォローされているかの判定をする

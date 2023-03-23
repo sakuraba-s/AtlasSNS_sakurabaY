@@ -446,9 +446,17 @@ input{
     border-radius: 1.5px;
     /* 検索ボックスに枠線を引く */
 }
-
 .post_btn{
 background-color: #186AC9;
 height: auto;
     /* 高さを検索ボックスと揃えたい */
+}
+/* 検索ワードの表示 */
+.search_area_box p{
+    display: block;
+    height: 100%;
+    border: 2px solid #9c9c9c;
+    border-radius: 1.5px;
+    background-color: aqua;
+    /* 検索ボックスに枠線を引く */
 }

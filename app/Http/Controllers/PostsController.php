@@ -25,12 +25,16 @@ class PostsController extends Controller
         ]);
         return $validator;
     }
+    // トップページ
     // postsに必要なデータを取って、ビューに渡す
     public function index(){
         // user_id（誰の投稿か）が認証中のユーザに紐づくフォロー対象のidに一致するものを取得
         // pluckでfollowed_idの値だけを取得できる
         // latest新しい順に
-        $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->latest()->get();
+        $posts = Post::query()
+        ->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))
+        ->orWhere('user_id', Auth::user()->id)
+        ->latest()->get();
         // ddd($posts);
         return view('posts.index')->with([
             'posts' => $posts,

@@ -3,7 +3,14 @@
 @section('content')
 <div class="content">
     <div class="followlist_icon">
-        <img src="images/icon1.png">
+        @foreach ($followlist as $followlist)
+        <img src=" {{ asset('storage/profiles/'.$followlist->images) }}" alt="プロフィール画像">
+        @endforeach
+
+
+
+
+
     </div>
     <div class="followlist_table">
         <table class='table'>

@@ -121,17 +121,20 @@ class UsersController extends Controller
     public function search(Request $request){
         // ポスト送信（検索ワードの入力）があったら
         if($request->isMethod('post')){
-            $data = $request->input('newPost');
-            // 検索ワードに一致するデータを絞り込んで変数に格納する
-
-            $users=\DB::table('users')->where('username', 'like', "%$data%")->get();
-            return view('users.search',['users'=>$users]);
-            // viewヘルパー:指定したphpファイルを画面に表示する
-            // 【】内は受け渡したいデータ
+            // 入力された文字を取得
+            $search_word = $request->input('newPost');
+            // 検索ワードに一致するユーザのデータを絞り込む
+            $users=\DB::table('users')->where('username', 'like', "%$search_word%")->get();
+            // 絞り込んだ結果をビューに受け渡す
+            return view('users.search',['users'=>$users],['search_word'=>$search_word]);
+            // ※viewヘルパー:指定したphpファイルを画面に表示する
+            // ※【】内は受け渡したいデータ
         }
         // ポスト送信されていないとき
-        // 全てのユーザの情報を取得
-        $users=\DB::table('users')->get();
+        // 自分以外の全てのユーザの情報を取得
+        $users=\DB::table('users')
+        ->Where('id','!=', Auth::user()->id)
+        ->get();
         return view('users.search',['users'=>$users]);
     }
 
@@ -185,8 +188,6 @@ class UsersController extends Controller
         $follower->follow($id);
         // follower変数に対してUserモデルに記載のisFollowメソッドを呼び出す
         //   followは引数として渡したidをattach(フォロー)する
-        $followCount = count(FollowUser::where('followed_user_id', $user->id)->get());
-        return response()->json(['followCount' => $followCount]);
         return redirect('/search');
         // }
     }

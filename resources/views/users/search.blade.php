@@ -4,6 +4,7 @@
 
     <div class="search_area top">
         <div class="search_area_box">
+        <!-- 検索窓エリア -->
         {!! Form::open(['url' => '/search','method'=>'POST']) !!}
 
             {!! Form::input('text','newPost',null,['required','class'=> 'form-control','placeholder' =>'ユーザー名']) !!}
@@ -11,6 +12,11 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
         {!! Form::close() !!}
+        <!-- 検索ワード表示 Usersコントローラから$search_wordの受け渡しがあった場合に表示する-->
+        @if(isset($search_word))
+        <p>検索ワード：{{$search_word}}</p>
+        @endif
+
         </div>
     </div>
 

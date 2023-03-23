@@ -9,6 +9,9 @@
             {!! Form::close() !!}
         </div>
 
+            <!-- ログイン中のユーザ情報を取得 -->
+            <?php $id=Auth::user()->id;?>
+
 
         <div class="posted_area bottom">
             <!-- 投稿内容を時間系列で？表示 -->
@@ -22,11 +25,14 @@
                         <img src=" {{ asset('storage/profiles/'.$post->user->images) }}" alt="プロフィール画像">
                     </td>
                     <td>
+                        <!--変数postに対して、 Postモデルのuserメソッド(リレーションを定義したメソッド)を実行する
+                        そのなかからusernameのカラムの値を取得する -->
                         <span>{{ $post->user->username }}</span>
                         <span>{{ $post->post }}</span>
                     </td>
                     <td>
-                        <!-- 更新時間、編集、削除ボタンエリア -->
+                        <!-- 更新時間、編集、削除ボタンエリア (自分の投稿にのみ表示させる)-->
+                        @if($post->user_id==$id)
                         <div class="posted_area--edit">
                             <span>{{ $post->created_at }}</span>
                             <!-- 投稿内容と投稿のidを渡す
@@ -44,6 +50,7 @@
                                         <button type="submit" ><img src="images/trash.png" alt="削除"></button>
                             </form>
                         </div>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

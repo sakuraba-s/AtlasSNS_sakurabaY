@@ -1,11 +1,13 @@
 @extends('layouts.login')
-<?php
-echo"followList のページ"
-?>
+
 @section('content')
 <div class="content">
-    <div class="followlist_icon">
-        <img src="images/icon1.png">
+    <div class="followerlist_icon">
+    @foreach ($followerlist as $followerlist)
+    <img src=" {{ asset('storage/profiles/'.$followerlist->images) }}" alt="プロフィール画像">
+    @endforeach
+
+
     </div>
     <div class="followlist_table">
         <table class='table'>
