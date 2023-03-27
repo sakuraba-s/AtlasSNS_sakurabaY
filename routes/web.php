@@ -41,10 +41,16 @@ Route::group(['middleware'=>'auth'],function(){
 Route::get('/top','PostsController@index')->name('top');
 Route::post('/top','PostsController@index');
 
-
+// プロフィール画面(自分)
 Route::get('/profile','UsersController@profile')->name('profile');
+
+// プロフィール編集機能
 Route::get('/edit', 'UsersController@edit')->name('edit');
 Route::post('/edit', 'UsersController@edit');
+
+// プロフィール画面(相手)
+Route::get('/othersprofile','UsersController@othersprofile')->name('othersprofile');
+
 // つぶやき投稿
 Route::get('/post', 'PostsController@post')->name('post');
 Route::post('/post', 'PostsController@post')->name('post');
@@ -67,6 +73,8 @@ Route::delete('/users/{user}/unfollow','UsersController@unfollow')->name('unfoll
 
 Route::get('/follow-list','FollowsController@followList');
 Route::get('/follower-list','FollowsController@followerList');
+
+
 
 });
 

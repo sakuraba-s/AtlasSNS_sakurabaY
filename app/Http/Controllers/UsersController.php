@@ -18,6 +18,10 @@ class UsersController extends Controller
     public function profile(){
         return view('users.profile');
     }
+    //プロフィール画面(相手)
+    public function othersprofile(){
+        return view('users.othersprofile');
+    }
 
     // プロフィール更新
     // バリデーション
