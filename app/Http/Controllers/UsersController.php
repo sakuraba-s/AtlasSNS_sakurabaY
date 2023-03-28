@@ -19,8 +19,13 @@ class UsersController extends Controller
         return view('users.profile');
     }
     //プロフィール画面(相手)
-    public function othersprofile(){
-        return view('users.othersprofile');
+    public function othersprofile($id){
+        // フォームの入力内容を取得する
+        // 押下したユーザidに一致するデータをpostsテーブルから持ってくる
+        $otheruser=Post::where('user_id', $id)
+        ->Where('user_id', $id)
+        ->get();
+        return view('users.othersprofile',['otheruser'=>$otheruser]);
     }
 
     // プロフィール更新

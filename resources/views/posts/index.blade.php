@@ -1,17 +1,16 @@
 @extends('layouts.login')
     @section('content')
+        <!-- ログイン中のユーザ情報を取得 -->
+        <?php $user= Auth::user();
+        $id=Auth::user()->id?>
         <div class="post_area top">
 
             {!! Form::open(['url' => '/post']) !!}
-                <img src="images/icon1.png">
+                <img src=" {{ asset('storage/profiles/'.$user->images) }}">
                 {!! Form::input('text','newPost',null,['required','class'=> 'form-control','placeholder' =>'投稿内容を入力してください']) !!}
                 <button type="submit"class="post_btn">送信</button>
             {!! Form::close() !!}
         </div>
-
-            <!-- ログイン中のユーザ情報を取得 -->
-            <?php $id=Auth::user()->id;?>
-
 
         <div class="posted_area bottom">
             <!-- 投稿内容を時間系列で？表示 -->
@@ -72,7 +71,7 @@
                             <li>{{$errors}}</li>
                             @endforeach
                         </ul>
-                    </div>
+                    </div>  
                     @endif
 
                     <!-- {!! Form::open(['url' => '/post_edit']) !!}

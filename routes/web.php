@@ -49,7 +49,7 @@ Route::get('/edit', 'UsersController@edit')->name('edit');
 Route::post('/edit', 'UsersController@edit');
 
 // プロフィール画面(相手)
-Route::get('/othersprofile','UsersController@othersprofile')->name('othersprofile');
+Route::post('/users/{id}/othersprofile','UsersController@othersprofile')->name('othersprofile');
 
 // つぶやき投稿
 Route::get('/post', 'PostsController@post')->name('post');
