@@ -97,7 +97,7 @@
                 <div class="confirm_follow">
                     <div class="confirm_follow--num">
                         <p>フォロワー数</p>
-                        <p>{{ Auth::user()->follows()->where('followed_id',$id)->get()->count() }}名</p>
+                        <p>{{ Auth::user()->followers()->where('followed_id',$id)->get()->count() }}名</p>
 
                     </div>
                     <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>

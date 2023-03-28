@@ -84,7 +84,6 @@
                     <form action="post_edit" method="post">
                         <!-- 取得した投稿内容をモーダルのどこへ渡すかの判別のためにクラス名「modal_post」「modal_id」を設定
                             textareaで枠の右下から入力欄を拡大縮小させることができる-->
-                        <!-- <input type="textarea" name="newPost" class="modal_post" value=""> -->
                         <textarea name="newPost" class="modal_post"></textarea>
                         <!-- ※ここの空欄部分valueにiQueryで渡した投稿idが入ってくる -->
                         <input type="hidden" name="id" class="modal_id" value="">
