@@ -49,6 +49,8 @@ Route::get('/edit', 'UsersController@edit')->name('edit');
 Route::post('/edit', 'UsersController@edit');
 
 // プロフィール画面(相手)
+// ルートパラメータとして渡したいものを{}で囲う
+Route::get('/users/{id}/othersprofile','UsersController@othersprofile')->name('othersprofile');
 Route::post('/users/{id}/othersprofile','UsersController@othersprofile')->name('othersprofile');
 
 // つぶやき投稿

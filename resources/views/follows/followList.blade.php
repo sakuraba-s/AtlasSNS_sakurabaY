@@ -4,9 +4,10 @@
 <div class="follows_area top">
             <div class="followlist_icon">
                 @foreach ($followlist as $followlist_icon)
-                @csrf
-                        <form action="{{ route('othersprofile', ['id' => $followlist_icon->id]) }}" method="POST" >
+                    <form action="{{ route('othersprofile', ['id' => $followlist_icon->id]) }}" method="POST" >
+                        {{ csrf_field() }}
                         <button type="submit" ><img src=" {{ asset('storage/profiles/'.$followlist_icon->images) }}" alt="プロフィール画像"></button>
+                    </form>
                 @endforeach
             </div>
         </div>
@@ -20,8 +21,12 @@
                 @foreach ($followposts as $followposts)
                         <tr>
                             <td>
+                            <!-- ルートパラメータとして渡したい中身をrouteヘルパーの中に描く -->
                                 <form action="{{ route('othersprofile', ['id' => $followposts->user->id]) }}" method="POST" >
-                                <button type="submit" ><img src=" {{ asset('storage/profiles/'.$followposts->user->images) }}" alt="プロフィール画像"></button>
+                                    {{ csrf_field() }}
+                                    <button type="submit" ><img src=" {{ asset('storage/profiles/'.$followposts->user->images) }}" alt="プロフィール画像"></button>
+                                </form>
+
                             </td>
                             <td>
                                 <span>{{ $followposts->user->username }}</span>

@@ -6,7 +6,9 @@
                 @foreach ($followerlist as $followerlist_icon)
                 @csrf
                     <form action="{{ route('othersprofile', ['id' => $followerlist_icon->id]) }}" method="POST" >
-                    <button type="submit" ><img src=" {{ asset('storage/profiles/'.$followerlist_icon->images) }}" alt="プロフィール画像"></button>
+                        {{ csrf_field() }}
+                        <button type="submit" ><img src=" {{ asset('storage/profiles/'.$followerlist_icon->images) }}" alt="プロフィール画像"></button>
+                    </form>
                 @endforeach
             </div>
         </div>
@@ -20,8 +22,11 @@
                 @foreach ($followerposts as $followerposts)
                         <tr>
                             <td>
-                                <form action="{{ route('othersprofile', ['id' => $followerlist_icon->id]) }}" method="POST" >
-                                <button type="submit" ><img src=" {{ asset('storage/profiles/'.$followerposts->user->images) }}" alt="プロフィール画像"></button>
+                                <form action="{{ route('othersprofile', ['id' => $followerposts->user->id]) }}" method="POST" >
+                                    {{ csrf_field() }}
+                                    <button type="submit" ><img src=" {{ asset('storage/profiles/'.$followerposts->user->images) }}" alt="プロフィール画像"></button>
+                                </form>
+
                             </td>
                             <td>
                                 <span>{{ $followerposts->user->username }}</span>

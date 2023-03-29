@@ -20,12 +20,17 @@ class UsersController extends Controller
     }
     //プロフィール画面(相手)
     public function othersprofile($id){
+        // ルートパラメータで渡した値がアクションメソッドの引数に渡されるので、それをそのまま利用する
         // フォームの入力内容を取得する
         // 押下したユーザidに一致するデータをpostsテーブルから持ってくる
         $otheruser=Post::where('user_id', $id)
-        ->Where('user_id', $id)
         ->get();
-        return view('users.othersprofile',['otheruser'=>$otheruser]);
+        // ddd($id);
+        // ddd($otheruser);
+        // echo($otheruser);
+        return view('users/othersprofile',['otheruser'=>$otheruser]);
+            // ※viewヘルパー:指定したphpファイルを画面に表示する
+            // ※【】内は受け渡したいデータ
     }
 
     // プロフィール更新
@@ -197,8 +202,8 @@ class UsersController extends Controller
         $follower->follow($id);
         // follower変数に対してUserモデルに記載のisFollowメソッドを呼び出す
         //   followは引数として渡したidをattach(フォロー)する
-        return redirect('/search');
-        // }
+        // 元居たページへリダイレクト
+        return back();
     }
     // フォロー解除
     // フォローしていた場合、フォロー解除するボタン
@@ -209,7 +214,9 @@ class UsersController extends Controller
             $follower->unfollow($id);
             // follower変数に対してUserモデルに記載のunFollowメソッドを呼び出す
             //   unfollowは引数として渡したidをdetach(フォロー解除)する
-            return redirect('/search');
+            // return redirect('/search');
+            // 元居たページへリダイレクト
+            return back();
         }
     // }
 
