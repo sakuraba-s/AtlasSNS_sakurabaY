@@ -49,7 +49,7 @@
 <body>
     <header>
         <div id = "head">
-            <h1><a href="/top"><img src="images/atlas.png"></a></h1>
+            <h1><a href="/top"><img src="{{asset('images/atlas.png')}}"></a></h1>
             <!-- ロゴを押下するとトップページに遷移する -->
             <div id="login_user_area">
                 <!-- ログイン中のユーザ情報を取得 -->
