@@ -25,8 +25,8 @@
     size:アイコンのサイズ-->
 
     <!-- JQueryを読み込む(この記述が無いと使えないよ) -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js')}}"></script>
+    <script src="{{ asset('js/script.js')}}"></script>
     <!-- scriptタグ　javaScriptやVBscriptなどのスクリプトをHTMLファイル内に埋め込んだり外部のスクリプトを読み込んだりするためにために使用する -->
     <!-- src=source attribute 外部から読み込む資源の所在の記述 -->
     <script src="https://kit.fontawesome.com/8328899644.js" crossorigin="anonymous"></script>

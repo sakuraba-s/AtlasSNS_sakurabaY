@@ -1,108 +1,111 @@
 @charset "UTF-8";
 
+/* ログイン・新規登録・登録完了のレイアウト */
 html{
-    height: 100%;
+    /* 縦いっぱいに広げる */
+    /* height: 100%; */
+    height:100vh
 }
 
 body{
+    /* 縦いっぱいに広げる */
     height: 100%;
-    /* height: auto; */
-    min-height: 400px;
+    /* グラデーション */
     background: linear-gradient( #1577b4,#4fa9f3,#FFD400);
-    position: relative;
-}
-#wrap{
-    min-height: 150px;
-    width: auto;
-    /* 最小の高さを決める。伸び縮できるように */
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    /* 上下中央に寄せたいのだけれど(;'∀') */
-
 }
 
+.wrapper{
+    /* 幅を指定 */
+    width:400px;
+    /* 上 | 右 | 下 | 左  上を少し下げる*/
+    padding:20px 0 0 0;
+    background-color:#28304b;
+    /* 中央寄せ */
+    margin:0 auto;
+}
 header{
-    /* background-color: blue; */
-    background-color: transparent;
-    /* 背景色を透明にする */
-    text-align: center;
-    /* 内容物を中央寄せにする */
-    /* position: relative; */
-    /* 上から少し位置を下げる */
-    top: 100px;
     /* containerとの距離を開ける */
-    /* margin-bottom: 150px; */
+    margin-bottom: 100px;
 }
 /* 「Atlas」画像 */
 img{
+    /* ブロック要素にする */
     display: block;
+    /* 中央寄せ */
     margin: 0 auto;
-    width: 110px;
-    /* 高さはデフォルトで自動的に比率を合わせてくれ表示される */
+    /* 画像サイズ */
+    width: 150px;
+    /* ※高さはデフォルトで自動的に比率を合わせてくれ表示される */
 }
 
 /* 「Social Network Service」 */
 header p{
+    background-color: #FFD400;
+    /* 文字中央寄せ */
+    text-align: center;
+    /* 文字色 */
     color: #ffffff;
-    font-size: 1.6rem;
-    display: block;
+    /* 文字のサイズ */
+    font-size: 2.2rem;
+    /* 文字を折り返さない */
+    white-space: nowrap
 }
 
 /* 以下コンテナ部分 */
 #container{
-    background-color: chocolate;
-    background: linear-gradient( #2a78dd,#9ea04c);
-    text-align: center;
-    /* 文字中央寄せ */
-    /* height: 280px; */
-    height: auto;
-    /* 中身に合わせて高さを設定 */
-    width: 180px;
-    /* 幅と高さを決める */
-    /* position: relative; */
-    margin-bottom: 0%;
-    padding: 20px 20px 5px 20px;
-    /* 周りに余白 上右下左 */
-    /* box-sizing: border-box; */
-    border-radius: 13px;
-    /* 角を丸くする */
-    /* position: absolute; */
-    /* bottom: 0; */
-    /* 親要素の下辺にくっつける */
-
     margin: 0 auto;
-    /* 中央に寄せる */
+    background: linear-gradient( #2a78dd,#9ea04c);
+    /* 文字中央寄せ */
+    text-align: center;
+    /* 中身に合わせて高さを設定 */
+    height: auto;
+    /* ラッパーに対する割合 */
+    width: 70%;
+    /* 文字周りの余白 上右下左 */
+    padding: 20px 20px 5px 20px;
+    /* 淵を丸く */
+    border-radius: 13px;
 }
 
 /* 「AtlasSNSへようこそ」「新規ユーザ登録」 */
 #container p{
     color: #ffffff;
+    /* 上下に余白 */
     margin-top: 10px;
     margin-bottom: 30px;
-    /* 上下に余白 */
+    /* 文字サイズ */
+    font-size: 1.3rem;
 }
 /* 「新規ユーザーの方はこちら」 */
 #container p a{
-    display: block;
     /* ブロック要素にする */
+    display: block;
     color: #ffffff;
-    margin-top: 40px;
     /* 上のログインボタンとの隙間をあける */
-    font-size: 0.8px;
+    margin-top: 40px;
+    /* 文字サイズ */
+    font-size: 1.0rem;
 }
 
 /* Lalabelのフォームに対して */
 label{
-    font-size: 0.8px;
+    /* 文字サイズ */
+    font-size: 0.9rem;
     color: #ffffff;
-    display: block;
     /* インラインからブロック要素に変える(縦に並ぶ)*/
-    text-align: left;
+    display: block;
     /* 左寄せ */
-    text-transform:lowercase;
+    text-align: left;
     /* 頭文字が勝手に大文字になるのを直す */
+    text-transform:lowercase;
 }
+
+/* Loginボタンのサイズ */
+submit{
+        /* 文字サイズ */
+        font-size: 0.9rem;
+}
+
 
 /* 入力の箱部分 */
 input{
@@ -110,7 +113,7 @@ input{
     /* インラインからブロック要素に変える */
     border-radius: 8px;
     width: 100%;
-    height: 30px;
+    height: 40px;
     /* 縦幅と横幅を指定 */
     margin-bottom: 18px;
     /* 入力欄の下に余白 */
