@@ -2,30 +2,26 @@
 
 /* ログイン・新規登録・登録完了のレイアウト */
 html{
-    /* 縦いっぱいに広げる */
-    /* height: 100%; */
-    height:100vh
+    /* 高さは指定せず、内容量に合わせて自動で合わせるようにする */
+    /* ある程度高さを持たせたいのであればpaddingで余白を持たせる */
+    /* 上右下左 */
+    padding:80px 0  90px 0;
 }
-
 body{
-    /* 縦いっぱいに広げる */
-    height: 100%;
     /* グラデーション */
     background: linear-gradient( #1577b4,#4fa9f3,#FFD400);
 }
-
 .wrapper{
+    height: auto;
     /* 幅を指定 */
     width:400px;
-    /* 上 | 右 | 下 | 左  上を少し下げる*/
-    padding:20px 0 0 0;
     background-color:#28304b;
     /* 中央寄せ */
     margin:0 auto;
 }
 header{
-    /* containerとの距離を開ける */
-    margin-bottom: 100px;
+    /* containerとの距離を開ける 個々の隙間はページで違うけど。。(;'∀')*/
+    margin-bottom: 80px;
 }
 /* 「Atlas」画像 */
 img{
@@ -37,7 +33,6 @@ img{
     width: 150px;
     /* ※高さはデフォルトで自動的に比率を合わせてくれ表示される */
 }
-
 /* 「Social Network Service」 */
 header p{
     background-color: #FFD400;
@@ -52,13 +47,13 @@ header p{
 }
 
 /* 以下コンテナ部分 */
+/* コンテナ・共通パーツ */
 #container{
+    /* 中央寄せ */
     margin: 0 auto;
     background: linear-gradient( #2a78dd,#9ea04c);
     /* 文字中央寄せ */
     text-align: center;
-    /* 中身に合わせて高さを設定 */
-    height: auto;
     /* ラッパーに対する割合 */
     width: 70%;
     /* 文字周りの余白 上右下左 */
@@ -66,28 +61,24 @@ header p{
     /* 淵を丸く */
     border-radius: 13px;
 }
-
 /* 「AtlasSNSへようこそ」「新規ユーザ登録」 */
 #container p{
     color: #ffffff;
-    /* 上下に余白 */
-    margin-top: 10px;
+    /* ようこそ・ユーザ登録の上下に余白 */
+    margin-top: 20px;
     margin-bottom: 30px;
     /* 文字サイズ */
     font-size: 1.3rem;
 }
-/* 「新規ユーザーの方はこちら」 */
+/* 「新規ユーザーの方はこちら」「ログイン画面に戻る」 */
 #container p a{
-    /* ブロック要素にする */
-    display: block;
     color: #ffffff;
     /* 上のログインボタンとの隙間をあける */
     margin-top: 40px;
     /* 文字サイズ */
-    font-size: 1.0rem;
+    font-size: 1.2rem;
 }
-
-/* Lalabelのフォームに対して */
+/* Lalabelのフォームの見た目調整 */
 label{
     /* 文字サイズ */
     font-size: 0.9rem;
@@ -99,14 +90,6 @@ label{
     /* 頭文字が勝手に大文字になるのを直す */
     text-transform:lowercase;
 }
-
-/* Loginボタンのサイズ */
-submit{
-        /* 文字サイズ */
-        font-size: 0.9rem;
-}
-
-
 /* 入力の箱部分 */
 input{
     display: block;
@@ -120,8 +103,11 @@ input{
     border: none;
     /* 淵を消す */
 }
-
+/* 赤いボタン */
 .button{
+    /* 文字サイズ */
+    font-size: 1.2rem;
+    /* ボタンの大きさ */
     height: 40px;
     width: 50%;
     /* 縦幅と横幅を指定 */
@@ -132,33 +118,42 @@ input{
     color: #ffffff;
     padding: 12px 12px;
     background-color: #ee3939;
+    /* 淵を丸く */
+    border-radius: 8px;
 }
-
-/* 登録後画面 */
+/* 登録完了画面 */
 #clear p{
     color: #ffffff;
-    font-size: 0.7rem;
+    font-size: 1.1rem;
+    /* 余白 */
     margin-top: 0.3rem;
     margin-bottom: 0;
 }
+#clear p:nth-child(1) {
+    font-weight: bold;
+}
+#clear p:nth-child(2) {
+    font-weight: bold;
+}
 #clear p:nth-child(3){
-    margin-top: 20px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+#clear p:nth-child(4){
+    margin-bottom: 30px;
 }
 
 /* 「ログイン画面へ」 */
 #clear p a{
-    font-size: 0.8rem;
     text-align: center;
+    /* font-size: 1.2rem; */
 }
 #clear .button{
-    display: block;
-    /* インラインからブロック要素に変える */
-    border-radius: 8px;
-    height: 30px;
+    /* height: 30px; */
     /* 縦幅と横幅を指定 */
-    margin-bottom: 18px;
     /* 入力欄の下に余白 */
-    border: none;
-    /* 淵を消す */
+    /* margin-bottom: 30px; */
+    margin: 0 auto;
+
 
 }
