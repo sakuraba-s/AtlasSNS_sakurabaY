@@ -8,7 +8,10 @@
   <p>ユーザー登録が完了しました。</p>
   <p>早速ログインをしてみましょう。</p>
 
-  <p class="button"><a href="/login">ログイン画面へ</a></p>
+  {!! Form::open(['url' => '/login','method'=>'POST']) !!}
+    @csrf
+      {{ Form::submit('ログイン画面へ' , ['class' => 'button'] )}}
+  {!! Form::close() !!}
 </div>
 
 @endsection

@@ -5,7 +5,7 @@ html{
     /* 高さは指定せず、内容量に合わせて自動で合わせるようにする */
     /* ある程度高さを持たせたいのであればpaddingで余白を持たせる */
     /* 上右下左 */
-    padding:80px 0  90px 0;
+    padding:150px 0  170px 0;
 }
 body{
     /* グラデーション */
@@ -15,7 +15,7 @@ body{
     height: auto;
     /* 幅を指定 */
     width:400px;
-    background-color:#28304b;
+    /* background-color:#28304b; */
     /* 中央寄せ */
     margin:0 auto;
 }
@@ -35,7 +35,7 @@ img{
 }
 /* 「Social Network Service」 */
 header p{
-    background-color: #FFD400;
+    /* background-color: #FFD400; */
     /* 文字中央寄せ */
     text-align: center;
     /* 文字色 */
@@ -109,14 +109,13 @@ input{
     font-size: 1.2rem;
     /* ボタンの大きさ */
     height: 40px;
-    width: 50%;
+    width: 55%;
     /* 縦幅と横幅を指定 */
     margin: 0 0 0 auto;
     /* 右寄せにする */
     border: none;
     /* 淵を消す */
     color: #ffffff;
-    padding: 12px 12px;
     background-color: #ee3939;
     /* 淵を丸く */
     border-radius: 8px;
@@ -146,14 +145,10 @@ input{
 /* 「ログイン画面へ」 */
 #clear p a{
     text-align: center;
-    /* font-size: 1.2rem; */
 }
 #clear .button{
-    /* height: 30px; */
-    /* 縦幅と横幅を指定 */
-    /* 入力欄の下に余白 */
-    /* margin-bottom: 30px; */
+    /* 中央寄せ */
     margin: 0 auto;
-
-
+    /* 下に余白 */
+    margin-bottom: 30px;
 }
