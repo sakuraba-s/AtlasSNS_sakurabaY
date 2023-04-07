@@ -11,10 +11,10 @@
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
-    <link rel="icon" href="画像URL" sizes="16x16" type="image/png" />
+    <!-- <link rel="icon" href="画像URL" sizes="16x16" type="image/png" />
     <link rel="icon" href="画像URL" sizes="32x32" type="image/png" />
     <link rel="icon" href="画像URL" sizes="48x48" type="image/png" />
-    <link rel="icon" href="画像URL" sizes="62x62" type="image/png" />
+    <link rel="icon" href="画像URL" sizes="62x62" type="image/png" /> -->
 
     <!-- JQueryを読み込む(この記述が無いと使えないよ) -->
     <script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js')}}"></script>
@@ -23,9 +23,19 @@
     <!-- src=source attribute 外部から読み込む資源の所在の記述 -->
 
     <!--iphoneのアプリアイコン指定-->
-    <link rel="apple-touch-icon-precomposed" href="画像のURL" />
-    <!--OGPタグ/twitterカード-->
+    <link rel="apple-touch-icon-precomposed" href="images/atlas.png" />
+
+    <!--OGPタグ/twitterカード
+    Open Graph Protcol
+    FacebookやTwitterなどのSNSでシェアした際に、Webページのタイトルや概要、イメージ画像、URL含めた詳細情報を正しく伝えるためのHTML要素 -->
+    <meta property="og:url" content="post/index" />
+    <meta property="og:type" content=" website" />
+    <meta property="og:title" content=" AtlasSNS" />
+    <meta property="og:description" content=" SNSです" />
+    <meta property="og:site_name" content="AtlasSNS" />
+    <meta property="og:image" content="images/atlas.png'" />
   </head>
+
   <body>
     <div class="wrapper">
         <header>

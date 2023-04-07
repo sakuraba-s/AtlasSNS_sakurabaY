@@ -164,29 +164,33 @@ header{
     margin-left: 20px;
 }
 
-
-/* main content */
+/* ページの構造全体の設定 */
+/* ヘッダー以外のページ全体（サイド含む） */
 #row{
     display: flex;
     /*★★side-barと合わせてid名rowに入っている。それを横並びにしている */
-    flex-flow: row wrap;
+    /* flex-flow: row wrap; */
     /* 折り返さない */
     padding: 30px 0px 0px 40px;
     /* 左側に余白 上右下左*/
     height: 80vh;
     /* 高さの指定 */
 }
+/* サイド以外の部分 */
 #container{
     /* flex: 0 0 80%; */
-    flex-grow: 1;
     /*containerとside-barが横いっぱいに広がるようにする
     side-barのほうに幅を指定する*/
-    background-color:orange;
+    flex-grow: 1;
     /* 仮の色付け */
+    background-color:orange;
+    /* 折り返さない */
+    flex-wrap: nowrap;
 }
 
 #side-bar{
-    flex: 0 0 22%;
+    width: 20%;
+    /* flex: 0 0 22%; */
     /* flex-grow  フレックスコンテナ内のアイテムの伸び方の比率を指定
     flex-shrink フレックスコンテナ内のアイテムの縮み方の比率
     flex-basis フレックスアイテムの幅
@@ -206,8 +210,7 @@ header{
 
 
 
-/* 共通部分の設定(;'∀') */
-
+/* 共通の構造の設定！！ */
 /* 共通上半分 */
 .top{
     background-color:rgb(252, 231, 117);
@@ -226,15 +229,100 @@ header{
     /* 高さに最低ラインを設ける */
 }
 
-/* 共通 画像の大きさ */
+/* 共通 ヘッダー画像の大きさ */
 img{
-    width: 30px;
+    width: 100px;
     /* 高さはデフォルトで自動的に比率を合わせてくれ表示される */
 }
 
 
 /* ここから個別ページの設定 */
-/* TOPページ右側 */
+/* 編集と削除のボタン */
+.post_icon button{
+    /* background-color: transparent; */
+    border: none;
+    /* ボタンエリアのサイズ */
+    height: 45px;
+    width: 45px;
+}
+/* 編集アイコン */
+.js-modal-open{
+    background-image:url("../images/edit.png");
+    /* 高さ１００％ */
+    background-size:auto 100% ;
+}
+/* 削除アイコン */
+form .delete{
+    background-image:url("../images/trash.png");
+    background-size: auto 100%;
+}
+form .delete:hover{
+    background-image:url("../images/trash-h.png");
+    background-size: auto 100%;
+}
+/* アイコンを横並びにする */
+.post_icon{
+    display: flex;
+}
+/* 投稿エリア */
+li{
+    list-style:none;
+    /* 下に下線 */
+    border-bottom:1px solid #2e2e2e;
+    display:flex;
+}
+.post_content{
+    width:100%;
+    padding:15px;
+}
+.post_content > div{
+    display:flex;
+    justify-content:space-between;
+}
+.post_name{
+    margin-bottom:10px;
+}
+
+/* TOPページ下半分 */
+
+
+.posted_area--edit{
+    background-color: #dadada;
+    margin:0 0 0 auto;
+
+}
+
+/* TOPページ上半分 */
+.post_top button{
+    /* ボタンエリアのサイズ */
+    height: 45px;
+    width: 45px;
+    background-image: url(../images/post.png);
+}
+.posted_area{
+    display: flex;
+    /* 横並びにする */
+    position: relative;
+    /* これを基準に、子(time,btnの位置を決める) */
+}
+
+.posted_area--time{
+    position: absolute;
+    /* デフォルトはposition:static 位置が変えられないため**位置を変えたいときはrelativeやabsoluteにする */
+    right: 0;
+    top: 0;
+}
+
+.posted_area--btn{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+}
+
+
+
+/* サイドバー*/
 #confirm{
     position: relative;
     /* 親要素にrelativeを設定 */
@@ -298,43 +386,10 @@ img{
 }
 
 
-/* TOPページ上半分 */
-.posted_area{
-    display: flex;
-    /* 横並びにする */
-    position: relative;
-    /* これを基準に、子(time,btnの位置を決める) */
-}
-
-.posted_area--time{
-    position: absolute;
-    /* デフォルトはposition:static 位置が変えられないため**位置を変えたいときはrelativeやabsoluteにする */
-    right: 0;
-    top: 0;
-}
-
-.posted_area--btn{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-
-}
 
 
-/* TOPページ下半分 */
 
-tr:not(:last-child){
-    border-bottom: 0.5px solid #727272;
-    /* 最後の要素以外に下線を引く */
-}
-.post_btn{
-    background-image: url(image/post.png);
-}
-.posted_area--edit{
-    background-color: #dadada;
-    margin:0 0 0 auto;
 
-}
 
 /* 編集ダイアログの表示非表示 */
 .modal{
