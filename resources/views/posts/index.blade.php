@@ -14,7 +14,7 @@
         <!-- ログイン中のユーザ情報を取得 -->
         <?php $user= Auth::user();
         $id=Auth::user()->id?>
-        <div class="post_top">
+        <div class="post_top top">
             {!! Form::open(['url' => '/post']) !!}
                 <img src=" {{ asset('storage/profiles/'.$user->images) }}">
                 {!! Form::input('text','newPost',null,['required','class'=> 'form-control','placeholder' =>'投稿内容を入力してください']) !!}
@@ -22,7 +22,7 @@
             {!! Form::close() !!}
         </div>
 
-        <div class="post_bottom">
+        <div class="post_bottom bottom">
             <!-- 投稿内容を時間系列で？表示 -->
             <!-- foreachで上から順に繰り返す ※postsはuserテーブルと炉レーション済み-->
             <table>
@@ -53,12 +53,13 @@
                             <button type="button"class="js-modal-open" data-post="{{ $post->post }}" data-post_id="{{ $post->id }}"></button>
                             <!-- <button type="button"class="update_btn"><img src="images/edit.png" alt="編集"></a> -->
                             <!-- 削除ボタン -->
-                            <form action="{{ route('post_delete', ['id' => $post->id]) }}"  method="POST" onclick="return confirm('このレコードを削除します。よろしいでしょうか？')">
+                            <form action="{{ route('post_delete', ['id' => $post->id]) }}"  method="POST" >
                                     {{ csrf_field() }}
                                     <!-- {{ method_field('DELETE') }} -->
                                     <!-- 削除ボタンを押下→コントローラに 該当のid番号の情報を渡す -->
-                                <button type="submit" class="delete"></button>
+                                <button type="submit" class="delete" onclick="return confirm('このレコードを削除します。よろしいでしょうか？')"></button>
                             </form>
+
                         </div>
                         @endif
                     </li>
