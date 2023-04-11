@@ -5,6 +5,7 @@
 <p>新規ユーザー登録</p>
 
 <!-- バリデーションのエラーを表示 -->
+
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>

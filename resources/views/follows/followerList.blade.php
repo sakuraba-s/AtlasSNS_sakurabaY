@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="followers_area top">
+            <span>Folower List</span>
             <div class="followerlist_icon">
                 @foreach ($followerlist as $followerlist_icon)
                 @csrf
@@ -31,7 +32,7 @@
                             <td>
                                 <span>{{ $followerposts->user->username }}</span>
                                 <!-- ユーザ情報からさらにpostテーブルへのアクセスが必要 -->
-                                <span>{{ $followerposts->user->post }}</span>
+                                <span>{{ $followerposts->post }}</span>
                             </td>
                             <td>
                                 <span>{{ $followerposts->created_at }}</span>

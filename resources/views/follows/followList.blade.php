@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="follows_area top">
+            <span>Folow List</span>
             <div class="followlist_icon">
                 @foreach ($followlist as $followlist_icon)
                     <form action="{{ route('othersprofile', ['id' => $followlist_icon->id]) }}" method="POST" >
@@ -31,7 +32,7 @@
                             <td>
                                 <span>{{ $followposts->user->username }}</span>
                                 <!-- ユーザ情報からさらにpostテーブルへのアクセスが必要 -->
-                                <span>{{ $followposts->user->post }}</span>
+                                <span>{{ $followposts->post }}</span>
                             </td>
                             <td>
                                 <span>{{ $followposts->created_at }}</span>

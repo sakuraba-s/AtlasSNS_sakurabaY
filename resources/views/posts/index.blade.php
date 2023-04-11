@@ -1,5 +1,16 @@
 @extends('layouts.login')
     @section('content')
+        <!-- バリデーションのエラーを表示 -->
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $errors)
+                    <li>{{$errors}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <!-- ログイン中のユーザ情報を取得 -->
         <?php $user= Auth::user();
         $id=Auth::user()->id?>
@@ -62,18 +73,6 @@
             <!-- ここのbgに対して薄い色をcssで引く -->
             <div class="modal__bg js-modal-close"></div>
                 <div class="modal__content">
-
-                    <!-- バリデーションのエラーを表示 -->
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach($errors->all() as $errors)
-                            <li>{{$errors}}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-
                     <form action="post_edit" method="post">
                         <!-- 取得した投稿内容をモーダルのどこへ渡すかの判別のためにクラス名「modal_post」「modal_id」を設定
                             textareaで枠の右下から入力欄を拡大縮小させることができる-->
