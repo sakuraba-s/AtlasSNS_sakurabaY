@@ -18,7 +18,7 @@
             {!! Form::open(['url' => '/post']) !!}
                 <img src=" {{ asset('storage/profiles/'.$user->images) }}">
                 {!! Form::input('text','newPost',null,['required','class'=> 'form-control','placeholder' =>'投稿内容を入力してください']) !!}
-                <button type="submit"class="post_btn"></button>
+                <button type="submit"class="post"></button>
             {!! Form::close() !!}
         </div>
 

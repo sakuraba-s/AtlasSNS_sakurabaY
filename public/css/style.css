@@ -239,16 +239,49 @@ img{
 /* ここから個別ページの設定 */
 /* 新規投稿エリア */
 /* 横並び */
+.post_top{
+    height: 30%;
+    /* display: flex; */
+}
 .post_top form{
+    background-color: turquoise;
+    /* フォームの三要素を横並びにする */
     display: flex;
+    /* フォームエリアの大きさ */
+    width: 100%;
+    height: 100%;
+    /* 下ぞろえ */
+    align-items: flex-end
+
 }
 /* 投稿フォームの箱の大きさ */
-
+.post_top input{
+    /* インプットエリアの大きさ */
+    width: 70%;
+    height: 100%;
+    border: none;
+    /* 淵を消す */
+}
+.post_top img{
+    /* 横幅はデフォルトで自動的に比率を合わせてくれ表示される */
+    height: 80px;
+    /* アイコンは上にそろえたい */
+    vertical-align: top;
+}
 /* 投稿ボタン */
 .post_top button{
-    background-image:url("../images/post.png")
+    /* background-color: transparent; */
+    border: none;
+    /* ボタンエリアのサイズ */
+    height: 45px;
+    width: 45px;
+    /* 角丸 */
+    border-radius: 5px;
 }
-
+.post{
+    background:url("../images/post.png") #777e86;
+    background-size:auto 100% ;
+}
 
 /* 編集と削除のボタン */
 .post_icon button{
@@ -305,13 +338,6 @@ li{
 
 }
 
-/* TOPページ上半分 */
-.post_top button{
-    /* ボタンエリアのサイズ */
-    height: 45px;
-    width: 45px;
-    background-image: url(../images/post.png);
-}
 .posted_area{
     display: flex;
     /* 横並びにする */
@@ -470,7 +496,7 @@ label{
 }
 
 /* プロフィール入力の箱部分 */
-input{
+.profile input{
     display: block;
     /* インラインからブロック要素に変える */
     width: 100%;
@@ -482,7 +508,7 @@ input{
     /* 淵を消す */
 }
 /* 更新ボタン */
-.post_btn{
+.profile post_btn{
     height: 20px;
     width: 100px;
     /* 縦幅と横幅を指定 */
@@ -514,7 +540,7 @@ input{
     border-radius: 1.5px;
     /* 検索ボックスに枠線を引く */
 }
-.post_btn{
+search .post_btn{
 background-color: #186AC9;
 height: auto;
     /* 高さを検索ボックスと揃えたい */
