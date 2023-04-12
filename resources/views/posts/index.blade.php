@@ -16,7 +16,7 @@
         $id=Auth::user()->id?>
         <div class="post_top top">
             {!! Form::open(['url' => '/post']) !!}
-                <img src=" {{ asset('storage/profiles/'.$user->images) }}">
+                <img src=" {{ asset('storage/profiles/'.$user->images) }}"class="pro_img">
                 {!! Form::input('text','newPost',null,['required','class'=> 'form-control','placeholder' =>'投稿内容を入力してください']) !!}
                 <button type="submit"class="post"></button>
             {!! Form::close() !!}
@@ -31,7 +31,7 @@
                     <li class="post_block">
                         <!-- table row -->
                         <!-- table data -->
-                        <figure><img src=" {{ asset('storage/profiles/'.$post->user->images) }}" alt="プロフィール画像"></figure>
+                        <figure><img src=" {{ asset('storage/profiles/'.$post->user->images) }}" class="pro_img" alt="プロフィール画像"></figure>
                         <!--変数postに対して、 Postモデルのuserメソッド(リレーションを定義したメソッド)を実行する
                         そのなかからusernameのカラムの値を取得する -->
                         <div class="post_content">

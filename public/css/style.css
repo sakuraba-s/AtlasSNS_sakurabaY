@@ -34,7 +34,7 @@ header{
     /* 右寄せ 上右下左 */
 }
 #head h1 a{
-    position: absolute;
+    position: relative;
     top: 0;
     bottom: 0;
     right: 0;
@@ -43,11 +43,58 @@ header{
     display: flex;
     /* flexとは何なのか。。。(;'∀') */
 }
+/* 共通 画像の大きさ */
 #head h1 a img{
-    margin-top: auto;
-    margin-bottom: auto;
-    /* 上下中央寄せ */
+    height: 50px;
+    position: absolute;
 }
+/* プロフィール画像のサイズを一括で指定したい (;'∀')*/
+.pro_img{
+    height: 60px;
+    /* アイコンは上にそろえたい 指定要素を上端揃えにします。 */
+    vertical-align: top;
+}
+/* ボタンクラス要素共通 */
+button{
+    border: none;
+    background-color: transparent;
+}
+/* ボタン共通 */
+.btn{
+    background-color: #186AC9;
+    width: 8rem;
+    text-align: center;
+    padding: 10px 10px;
+    /* 上下の余白 左右の余白 */
+    border-radius: 5px;
+    /* 角を丸くする */
+}
+.btn a{
+    color: #ffffff; /*文字色*/
+    /* 文字を折り返さない */
+    white-space: nowrap
+}
+
+/* 共通 リストの下線 */
+li{
+    list-style:none;
+    /* 下に下線 */
+    border-bottom:1px solid #2e2e2e;
+    display:flex;
+}
+/* 共通 ポストエリア */
+.post_content{
+    width:100%;
+    padding:15px;
+}
+.post_content > div{
+    display:flex;
+    justify-content:space-between;
+}
+.post_name{
+    margin-bottom:10px;
+}
+
 
 
 /* ヘッダーの右側（名前、ハンバーガー、アイコン） */
@@ -218,6 +265,12 @@ header{
     /* 下にグレーの線を引く */
     min-height: 100px;
     /* 高さに最低ラインを設ける */
+    /* エリアの大きさ */
+    width: 100%;
+    height: 25%;
+    /* トップにあるアイテムは横並びである */
+    display: flex;
+
 }
 
 /* 共通下半分 */
@@ -229,35 +282,13 @@ header{
     /* 高さに最低ラインを設ける */
 }
 
-/* 共通 ヘッダー画像の大きさ */
-img{
-    width: 100px;
-    /* 高さはデフォルトで自動的に比率を合わせてくれ表示される */
-}
-
-
 /* ここから個別ページの設定 */
 /* 新規投稿エリア */
-/* 横並び */
-.post_top{
-    height: 30%;
-    /* display: flex; */
-}
-.post_top form{
-    background-color: turquoise;
-    /* フォームの三要素を横並びにする */
-    display: flex;
-    /* フォームエリアの大きさ */
-    width: 100%;
-    height: 100%;
-    /* 下ぞろえ */
-    align-items: flex-end
 
-}
 /* 投稿フォームの箱の大きさ */
 .post_top .form-control{
     /* インプットエリアの大きさ */
-    width: 70%;
+    /* width: 80%; */
     height: 100%;
     border: none;
     /* 淵を消す */
@@ -265,16 +296,9 @@ img{
     display: table-cell;
     vertical-align: top;
 }
-.post_top img{
-    /* 横幅はデフォルトで自動的に比率を合わせてくれ表示される */
-    height: 80px;
-    /* アイコンは上にそろえたい */
-    vertical-align: top;
-}
 /* 投稿ボタン */
 .post_top button{
     /* background-color: transparent; */
-    border: none;
     /* ボタンエリアのサイズ */
     height: 45px;
     width: 45px;
@@ -288,8 +312,6 @@ img{
 
 /* 編集と削除のボタン */
 .post_icon button{
-    /* background-color: transparent; */
-    border: none;
     /* ボタンエリアのサイズ */
     height: 45px;
     width: 45px;
@@ -309,59 +331,6 @@ img{
     background-image:url("../images/trash-h.png");
     background-size: auto 100%;
 }
-/* アイコンを横並びにする */
-.post_icon{
-    display: flex;
-}
-/* 投稿エリア */
-li{
-    list-style:none;
-    /* 下に下線 */
-    border-bottom:1px solid #2e2e2e;
-    display:flex;
-}
-.post_content{
-    width:100%;
-    padding:15px;
-}
-.post_content > div{
-    display:flex;
-    justify-content:space-between;
-}
-.post_name{
-    margin-bottom:10px;
-}
-
-/* TOPページ下半分 */
-
-
-.posted_area--edit{
-    background-color: #dadada;
-    margin:0 0 0 auto;
-
-}
-
-.posted_area{
-    display: flex;
-    /* 横並びにする */
-    position: relative;
-    /* これを基準に、子(time,btnの位置を決める) */
-}
-
-.posted_area--time{
-    position: absolute;
-    /* デフォルトはposition:static 位置が変えられないため**位置を変えたいときはrelativeやabsoluteにする */
-    right: 0;
-    top: 0;
-}
-
-.posted_area--btn{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-
-}
-
 
 
 /* サイドバー*/
@@ -381,16 +350,9 @@ li{
     min-height: 60px;
     /* 高さを指定 */
 }
-
-#side-bar #confirm .confirm_follow .btn{
+/* サイドバーのボタン */
+.list_btn{
     /* btnのあるpタグはブロック要素である */
-    background-color: #186AC9;
-    width: 8rem;
-    text-align: center;
-    padding: 10px 10px;
-    /* 上下の余白 左右の余白 */
-    border-radius: 5px;
-    /* 角を丸くする */
     position: absolute;
     right: 0;
     bottom: 0;
@@ -404,34 +366,12 @@ li{
     margin-left: 30px;
     /* フォロー数・フォロワー数と〇〇名との間を開ける */
 }
-
-
-#side-bar #confirm .confirm_follow .btn a{
-    color: #ffffff; /*文字色*/
+/* フォローフォロワーリスト */
+/* なぜアイコンが横並びにならない？？(;'∀') */
+.followerlist_icon{
+    display: block;
+    display: flex;
 }
-
-/* ユーザ検索ボタン */
-
-#side-bar .btn{
-    background-color: #186AC9;
-    width: 10rem;
-    text-align: center;
-    padding: 10px 10px;
-    /* 上下の余白 左右の余白 */
-    border-radius: 5px;
-    /* 角を丸くする */
-    margin: 0 auto;
-    /* 中央寄せにする */
-}
-#side-bar .btn a{
-    color: #ffffff; /*文字色*/
-}
-
-
-
-
-
-
 
 /* 編集ダイアログの表示非表示 */
 .modal{
@@ -543,11 +483,6 @@ label{
     border-radius: 1.5px;
     /* 検索ボックスに枠線を引く */
 }
-search .post_btn{
-background-color: #186AC9;
-height: auto;
-    /* 高さを検索ボックスと揃えたい */
-}
 /* 検索ワードの表示 */
 .search_area_box p{
     display: block;
@@ -556,4 +491,17 @@ height: auto;
     border-radius: 1.5px;
     background-color: aqua;
     /* 検索ボックスに枠線を引く */
+}
+/* フォロー解除ボタンを赤にする */
+.unfollow_btn{
+    background-color: #e63a3a;
+}
+
+/* 検索ボタンの横幅を狭める */
+.search_btn{
+    width: 20%;
+}
+/* 検索の虫眼鏡を白にする */
+.search_btn i{
+    color: #fff;
 }

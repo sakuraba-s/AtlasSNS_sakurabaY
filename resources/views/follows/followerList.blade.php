@@ -1,14 +1,14 @@
 @extends('layouts.login')
 
 @section('content')
-<div class="followers_area top">
+<div class="followers_top top">
             <span>Folower List</span>
             <div class="followerlist_icon">
                 @foreach ($followerlist as $followerlist_icon)
                 @csrf
                     <form action="{{ route('othersprofile', ['id' => $followerlist_icon->id]) }}" method="POST" >
                         {{ csrf_field() }}
-                        <button type="submit" ><img src=" {{ asset('storage/profiles/'.$followerlist_icon->images) }}" alt="プロフィール画像"></button>
+                        <button type="submit" ><img src=" {{ asset('storage/profiles/'.$followerlist_icon->images) }}" class="pro_img" alt="プロフィール画像"></button>
                     </form>
                 @endforeach
             </div>
@@ -16,28 +16,26 @@
         <!-- ※$followerlisにはフォロー中のユーザー情報が入っている -->
 
 
-        <div class="follows_area bottom">
+        <div class="follows_bottom bottom">
 
             <div class="followerlist_table">
                 <table class='table'>
                 @foreach ($followerposts as $followerposts)
-                        <tr>
-                            <td>
+                        <ul>
+                            <li class="follower_block">
                                 <form action="{{ route('othersprofile', ['id' => $followerposts->user->id]) }}" method="POST" >
                                     {{ csrf_field() }}
-                                    <button type="submit" ><img src=" {{ asset('storage/profiles/'.$followerposts->user->images) }}" alt="プロフィール画像"></button>
+                                    <button type="submit"><img src=" {{ asset('storage/profiles/'.$followerposts->user->images) }}" class="pro_img" alt="プロフィール画像"></button>
                                 </form>
-
-                            </td>
-                            <td>
-                                <span>{{ $followerposts->user->username }}</span>
-                                <!-- ユーザ情報からさらにpostテーブルへのアクセスが必要 -->
-                                <span>{{ $followerposts->post }}</span>
-                            </td>
-                            <td>
-                                <span>{{ $followerposts->created_at }}</span>
-                            </td>
-                        </tr>
+                                <div class="post_content">
+                                    <div>
+                                        <div class="post_name">{{ $followerposts->user->username }}</div>
+                                        <div>{{ $followerposts->created_at }}</div>
+                                    </div>
+                                    <div>{{ $followerposts->post }}</div>
+                                </div>
+                            </li>
+                        </ul>
                     @endforeach
                 </table>
             </div>

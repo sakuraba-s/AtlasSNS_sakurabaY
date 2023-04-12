@@ -2,13 +2,13 @@
 
 @section('content')
 
-    <div class="search_area top">
+    <div class="search_top top">
         <div class="search_area_box">
         <!-- 検索窓エリア -->
         {!! Form::open(['url' => '/search','method'=>'POST']) !!}
 
             {!! Form::input('text','newPost',null,['required','class'=> 'form-control','placeholder' =>'ユーザー名']) !!}
-                <button type="submit"class="post_btn">
+                <button type="submit"class="search_btn btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
         {!! Form::close() !!}
@@ -20,13 +20,13 @@
         </div>
     </div>
 
-    <div class="search_area bottom">
+    <div class="search_bottom bottom">
         <div class="search_area_results">
             <table class='table'>
                 <!-- ※この↓usersはUsersコントローラで取得したユーザのデータ -->
                 @foreach ($users as $user)
                     <tr>
-                        <td><img src=" {{ asset('storage/profiles/'.$user->images) }}" alt="プロフィール画像"></td>
+                        <td><img src=" {{ asset('storage/profiles/'.$user->images) }}" class="pro_img" alt="プロフィール画像"></td>
                         <td>{{ $user->username }}</td>
 
                         <div class="table_btn">
@@ -39,12 +39,12 @@
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 
-                                        <button type="submit" >フォロー解除</button>
+                                        <button type="submit" class="unfollow_btn btn" ><a>フォロー解除</a></button>
                                     </form>
                                 @else
                                     <form action="{{ route('follow', ['id' => $user->id]) }}" method="POST">
                                             {{ csrf_field() }}
-                                            <button type="submit" >フォローする</button>
+                                            <button type="submit" class="follow_btn btn"><a>フォローする</a></button>
                                     </form>
                                 @endif
                             </td>

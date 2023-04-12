@@ -50,7 +50,7 @@
 <body>
     <header>
         <div id = "head">
-            <h1><a href="/top"><img src="{{asset('images/atlas.png')}}"></a></h1>
+            <h1><a href="/top"><img src="{{asset('images/atlas.png')}}"class="top_img"></a></h1>
             <!-- ロゴを押下するとトップページに遷移する -->
             <div id="login_user_area">
                 <!-- ログイン中のユーザ情報を取得 -->
@@ -61,7 +61,7 @@
                 <!-- ハンバーガメニュー -->
                 <input type="button" class="menu-trigger" value="<" >
                 <!-- プロフィール画像 -->
-                <img src=" {{ asset('storage/profiles/'.$user->images) }}" alt="プロフィール画像">
+                <img src=" {{ asset('storage/profiles/'.$user->images) }}"class="pro_img" alt="プロフィール画像">
 
             <div>
         </div>
@@ -94,7 +94,7 @@
                         <p>フォロー数</p>
                         <p>{{ Auth::user()->follows()->where('following_id',$id)->get()->count() }}名</p>
                     </div>
-                    <p class="btn"><a href="/follow-list">フォローリスト</a></p>
+                    <p class="list_btn btn"><a href="/follow-list">フォローリスト</a></p>
                 </div>
 
 
@@ -104,12 +104,12 @@
                         <p>{{ Auth::user()->followers()->where('followed_id',$id)->get()->count() }}名</p>
 
                     </div>
-                    <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
+                    <p class="list_btn btn"><a href="/follower-list">フォロワーリスト</a></p>
                 </div>
 
 
             </div>
-            <p class="btn"><a href="/search">ユーザー検索</a></p>
+            <p class="list_btn btn"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
