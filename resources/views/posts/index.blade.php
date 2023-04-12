@@ -29,7 +29,7 @@
                 @foreach ($posts as $post)
                 <ul>
                     <li class="post_block">
-                <!-- table row -->
+                        <!-- table row -->
                         <!-- table data -->
                         <figure><img src=" {{ asset('storage/profiles/'.$post->user->images) }}" alt="プロフィール画像"></figure>
                         <!--変数postに対して、 Postモデルのuserメソッド(リレーションを定義したメソッド)を実行する
@@ -66,13 +66,12 @@
                 </ul>
                 @endforeach
             </table>
-        </div>
 
             <!-- 編集のダイアログボックス (編集アイコンを押すと現れる)
             押下した投稿内容ただ一つを表示させる-->
         <div class="modal js-modal">
             <!-- ここのbgに対して薄い色をcssで引く -->
-            <div class="modal__bg js-modal-close"></div>
+            <di class="modal__bg js-modal-close">
                 <div class="modal__content">
                     <form action="post_edit" method="post">
                         <!-- 取得した投稿内容をモーダルのどこへ渡すかの判別のためにクラス名「modal_post」「modal_id」を設定

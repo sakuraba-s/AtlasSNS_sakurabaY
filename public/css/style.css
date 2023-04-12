@@ -185,7 +185,7 @@ header{
     /* 仮の色付け */
     background-color:orange;
     /* 折り返さない */
-    flex-wrap: nowrap;
+    /* flex-wrap: nowrap; */
 }
 
 #side-bar{
@@ -255,12 +255,15 @@ img{
 
 }
 /* 投稿フォームの箱の大きさ */
-.post_top input{
+.post_top .form-control{
     /* インプットエリアの大きさ */
     width: 70%;
     height: 100%;
     border: none;
     /* 淵を消す */
+    /* 上寄せにしたい */
+    display: table-cell;
+    vertical-align: top;
 }
 .post_top img{
     /* 横幅はデフォルトで自動的に比率を合わせてくれ表示される */
