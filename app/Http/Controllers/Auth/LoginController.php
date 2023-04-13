@@ -38,6 +38,8 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        // すでに認証中の場合にリダイレクトさせるミドルウェア
+        // ミドルウェアはKernel.phpに記載あり
         $this->middleware('guest')->except('logout');
     }
 

@@ -17,5 +17,6 @@ class Authenticate extends Middleware
         if (! $request->expectsJson()) {
             return route('login');
         }
+        // JSONとは JavaScriptのオブジェクト記法を用いたデータ交換フォーマット
     }
 }

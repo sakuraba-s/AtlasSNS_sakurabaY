@@ -18,6 +18,7 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        // 既にユーザー情報があるかを判断
         if (Auth::guard($guard)->check()) {
             return redirect(RouteServiceProvider::HOME);
         }

@@ -20,11 +20,9 @@ Auth::routes();
 
 
 //ログアウト中のページ
+// ※リダイレクトのミドルウェアはコントローラ側に記載あり
 Route::get('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
-
-Route::get('/logout', 'Auth\LoginController@logout');
-
 // ユーザ登録
 Route::get('/register', 'Auth\RegisterController@register')->name('register');
 Route::post('/register', 'Auth\RegisterController@register');
@@ -37,22 +35,20 @@ Route::post('/added', 'Auth\RegisterController@added');
 Route::group(['middleware'=>'auth'],function(){
 /*認証のルーティング
 グループの中に書いたルーティングは、ログイン認証した人だけが使える*/
-
+// ログアウト
+Route::get('/logout', 'Auth\LoginController@logout');
+// トップページ
 Route::get('/top','PostsController@index')->name('top');
 Route::post('/top','PostsController@index');
-
 // プロフィール画面(自分)
 Route::get('/profile','UsersController@profile')->name('profile');
-
 // プロフィール編集機能
 Route::get('/edit', 'UsersController@edit')->name('edit');
 Route::post('/edit', 'UsersController@edit');
-
 // プロフィール画面(相手)
 // ルートパラメータとして渡したいものを{}で囲う
 Route::get('/users/{id}/othersprofile','UsersController@othersprofile')->name('othersprofile');
 Route::post('/users/{id}/othersprofile','UsersController@othersprofile')->name('othersprofile');
-
 // つぶやき投稿
 Route::get('/post', 'PostsController@post')->name('post');
 Route::post('/post', 'PostsController@post')->name('post');
@@ -60,7 +56,6 @@ Route::post('/post', 'PostsController@post')->name('post');
 Route::post('/post_edit', 'PostsController@post_edit')->name('post_edit');
 // つぶやき削除
 Route::post('/posts/{id}/post_delete', 'PostsController@post_delete')->name('post_delete');
-
 // ユーザー検索
 Route::get('/search','UsersController@search')->name('search');
 Route::post('/search','UsersController@search')->name('search');
