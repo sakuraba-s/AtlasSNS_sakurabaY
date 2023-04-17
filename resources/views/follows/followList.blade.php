@@ -19,13 +19,13 @@
 
         <div class="followlist_table">
             <table class='table'>
-            @foreach ($followposts as $followposts)
                     <ul>
-                        <li class="follow_block">
+                        @foreach ($followposts as $followposts)
+                        <li class="post_block">
                                 <!-- ルートパラメータとして渡したい中身をrouteヘルパーの中に描く -->
                                 <form action="{{ route('othersprofile', ['id' => $followposts->user->id]) }}" method="POST" >
                                     {{ csrf_field() }}
-                                    <button type="submit" ><img src=" {{ asset('storage/profiles/'.$followposts->user->images) }}" class="pro_img" alt="プロフィール画像"></button>
+                                    <button type="submit" ><figure><img src=" {{ asset('storage/profiles/'.$followposts->user->images) }}" class="pro_img" alt="プロフィール画像"></figure></button>
                                 </form>
                                 <div class="post_content">
                                     <div>
@@ -36,8 +36,8 @@
                                 </div>
                             </td>
                         </li>
+                        @endforeach
                     </ul>
-                @endforeach
             </table>
         </div>
     </div>

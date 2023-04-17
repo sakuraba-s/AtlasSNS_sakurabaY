@@ -70,7 +70,7 @@ class RegisterController extends Controller
             'username' => 'required|string|min:2|max:12',
             'mail' => 'required|string|email:filter,dns|min:5|max:40|unique:users',
             'password' => 'required|string|min:8|max:20|confirmed',
-            'password_confirmation' => 'required|string|min:8|max:20',
+            // 'password_confirmation' => 'required|string|min:8|max:20',
             ]);
             return $validator;
         }

@@ -77,16 +77,23 @@ button{
 
 /* 共通 リストの下線 */
 li{
-    list-style:none;
+    /* 中身を横並び */
+    display: flex;
+}
+li:not(:last-child){
     /* 下に下線 */
     border-bottom:1px solid #2e2e2e;
-    display:flex;
+    /* 中身を横並び */
+    display: flex;
 }
-/* 共通 ポストエリア */
+li figure{
+    margin-left: 40px;
+}
+/* 下段 アイコンより右側 */
 .post_content{
     width:100%;
-    padding:15px;
 }
+/* divの塊の要素を横並びにして両端に寄せる */
 .post_content > div{
     display:flex;
     justify-content:space-between;
@@ -218,7 +225,7 @@ li{
     /*★★side-barと合わせてid名rowに入っている。それを横並びにしている */
     /* flex-flow: row wrap; */
     /* 折り返さない */
-    padding: 30px 0px 0px 40px;
+    padding: 30px 0px 0px 0px;
     /* 左側に余白 上右下左*/
     height: 80vh;
     /* 高さの指定 */
@@ -270,13 +277,16 @@ li{
     height: 25%;
     /* トップにあるアイテムは横並びである */
     display: flex;
+    /* 左に余白 */
+    padding-left: 40px;
+
 
 }
 
 /* 共通下半分 */
 .bottom{
     background-color:rgb(116, 186, 255);
-    padding: 0px 0px 0px 40px;
+    /* padding: 0px 0px 0px 40px; */
     /* 左側に余白 */
     min-height: 100px;
     /* 高さに最低ラインを設ける */
@@ -284,26 +294,33 @@ li{
 
 /* ここから個別ページの設定 */
 /* 新規投稿エリア */
-
 /* 投稿フォームの箱の大きさ */
+.post_top form{
+    /* フォームの中の要素を親要素の幅いっぱいに広げる */
+    display:flex;
+    justify-content:space-between;
+    /* フォームエリアの幅 */
+    width: 85%;
+    background-color: #186AC9;
+}
+/* フォームエリアの中の各要素 */
 .post_top .form-control{
     /* インプットエリアの大きさ */
-    /* width: 80%; */
+    width: 80%;
     height: 100%;
-    border: none;
     /* 淵を消す */
-    /* 上寄せにしたい */
-    display: table-cell;
-    vertical-align: top;
+    border: none;
 }
 /* 投稿ボタン */
 .post_top button{
-    /* background-color: transparent; */
     /* ボタンエリアのサイズ */
     height: 45px;
     width: 45px;
     /* 角丸 */
     border-radius: 5px;
+    /* ボタンを親要素の下辺に */
+
+
 }
 .post{
     background:url("../images/post.png") #777e86;
@@ -311,6 +328,10 @@ li{
 }
 
 /* 編集と削除のボタン */
+.post_icon{
+    /* 横並びにする */
+    display: flex;
+}
 .post_icon button{
     /* ボタンエリアのサイズ */
     height: 45px;
@@ -331,7 +352,10 @@ li{
     background-image:url("../images/trash-h.png");
     background-size: auto 100%;
 }
-
+/* 投稿の表示幅を決める */
+.post_area{
+    width: 65%;
+}
 
 /* サイドバー*/
 #confirm{
@@ -504,4 +528,14 @@ label{
 /* 検索の虫眼鏡を白にする */
 .search_btn i{
     color: #fff;
+}
+
+/* ほかのユーザのプロフィール */
+/* 投稿フォームの箱の大きさ */
+.othersprofile_content{
+    background-color: #186AC9;
+    /* フォームの中の要素を親要素の幅いっぱいに広げる */
+    justify-content:space-between;
+    /* フォームエリアの幅 */
+    width: 85%;
 }

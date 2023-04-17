@@ -20,12 +20,12 @@
 
             <div class="followerlist_table">
                 <table class='table'>
-                @foreach ($followerposts as $followerposts)
                         <ul>
-                            <li class="follower_block">
+                            @foreach ($followerposts as $followerposts)
+                            <li class="post_block">
                                 <form action="{{ route('othersprofile', ['id' => $followerposts->user->id]) }}" method="POST" >
                                     {{ csrf_field() }}
-                                    <button type="submit"><img src=" {{ asset('storage/profiles/'.$followerposts->user->images) }}" class="pro_img" alt="プロフィール画像"></button>
+                                    <button type="submit"><figure><img src=" {{ asset('storage/profiles/'.$followerposts->user->images) }}" class="pro_img" alt="プロフィール画像"></figure></button>
                                 </form>
                                 <div class="post_content">
                                     <div>
@@ -35,8 +35,8 @@
                                     <div>{{ $followerposts->post }}</div>
                                 </div>
                             </li>
+                            @endforeach
                         </ul>
-                    @endforeach
                 </table>
             </div>
         </div>
