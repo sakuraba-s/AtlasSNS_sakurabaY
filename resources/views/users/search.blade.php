@@ -3,25 +3,25 @@
 @section('content')
 
     <div class="search_top top">
-        <div class="search_area_box">
-        <!-- 検索窓エリア -->
-        {!! Form::open(['url' => '/search','method'=>'POST']) !!}
+        <div class="search_box">
+            <!-- 検索窓エリア -->
+            {!! Form::open(['url' => '/search','method'=>'POST']) !!}
 
-            {!! Form::input('text','newPost',null,['required','class'=> 'form-control','placeholder' =>'ユーザー名']) !!}
+                {!! Form::input('text','newPost',null,['required','class'=> 'form-control','placeholder' =>'ユーザー名']) !!}
                 <button type="submit"class="search_btn btn">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-        {!! Form::close() !!}
-        <!-- 検索ワード表示 Usersコントローラから$search_wordの受け渡しがあった場合に表示する-->
-        @if(isset($search_word))
-        <p>検索ワード：{{$search_word}}</p>
-        @endif
+            {!! Form::close() !!}
+            <!-- 検索ワード表示 Usersコントローラから$search_wordの受け渡しがあった場合に表示する-->
+            @if(isset($search_word))
+            <p>検索ワード：{{$search_word}}</p>
+            @endif
 
         </div>
     </div>
 
     <div class="search_bottom bottom">
-        <div class="search_area_results">
+        <div class="search_results">
             <table class='table'>
                 <!-- ※この↓usersはUsersコントローラで取得したユーザのデータ -->
                 @foreach ($users as $user)

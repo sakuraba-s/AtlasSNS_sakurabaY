@@ -282,6 +282,14 @@ li figure{
 
 
 }
+/* 共通フォームエリアの中の各要素 */
+.form-control{
+    /* インプットエリアの大きさ */
+    width: 100%;
+    height: 100%;
+    /* 淵を消す */
+    border: none;
+}
 
 /* 共通下半分 */
 .bottom{
@@ -303,14 +311,9 @@ li figure{
     width: 85%;
     background-color: #186AC9;
 }
-/* フォームエリアの中の各要素 */
-.post_top .form-control{
-    /* インプットエリアの大きさ */
-    width: 80%;
-    height: 100%;
-    /* 淵を消す */
-    border: none;
-}
+
+
+
 /* 投稿ボタン */
 .post_top button{
     /* ボタンエリアのサイズ */
@@ -435,9 +438,10 @@ li figure{
 
 /* プロフィール画面のcss */
 .profile{
+    /* アイコンと入力エリアを横並び */
     display: flex;
     padding: 10px 0px 0px 100px;
-    /* 左側に余白 上右下左*/
+    /* 上と左側に余白 上右下左*/
 }
 .profile_area_user{
     margin-right: 20px;
@@ -464,21 +468,27 @@ label{
 
 /* プロフィール入力の箱部分 */
 .profile input{
-    display: block;
-    /* インラインからブロック要素に変える */
     width: 100%;
     height: 30px;
-    /* 縦幅と横幅を指定 */
-    margin-bottom: 18px;
     /* 入力欄の下に余白 */
-    border: none;
-    /* 淵を消す */
+    margin-bottom: 18px;
 }
-/* 更新ボタン */
-.profile post_btn{
-    height: 20px;
-    width: 100px;
-    /* 縦幅と横幅を指定 */
+/* ファイルをアップロードの見た目修正 */
+/* スタイルを無効にする */
+input[type="file"] {
+    display: none;
+}
+/* ラベル要素に対してスタイルを指定する */
+label.file{
+    padding: 10px 40px;
+    height: 50px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+/* プロフィール更新ボタン */
+.profile_btn{
+    width: 20%;
     border-radius: 5px;
     /* 角丸 */
     display: block;
@@ -495,20 +505,42 @@ label{
 }
 
 /* ユーザー検索のcss */
-.search_area_box{
+.search_box{
+    /* 検索エリアと検索結果を横並びにする */
     display: flex;
+    background-color: beige;
+    width: 100%;
+    justify-content:space-between;
+}
+
+.search_box form{
     /* 検索ボックスと検索アイコンを横並びにする */
+    display: flex;
+    background-color: #727272;
     width: 40%;
 }
-.search_area_box input{
-    height: 100%;
-    /* 高さを検索ボタンと揃えたい */
+.search_box input{
+    height: 45px;
     border: 2px solid #9c9c9c;
     border-radius: 1.5px;
     /* 検索ボックスに枠線を引く */
+    margin-right: 20px;
 }
+/* 検索ボタン */
+.search_box button{
+    height: 45px;
+    width: 45px;
+}
+.search_btn i{
+    /* 検索の虫眼鏡を白にする */
+    color: #fff;
+    /* 大きさ */
+    font-size: 2rem;
+}
+
 /* 検索ワードの表示 */
-.search_area_box p{
+
+.search_box p{
     display: block;
     height: 100%;
     border: 2px solid #9c9c9c;
@@ -519,15 +551,6 @@ label{
 /* フォロー解除ボタンを赤にする */
 .unfollow_btn{
     background-color: #e63a3a;
-}
-
-/* 検索ボタンの横幅を狭める */
-.search_btn{
-    width: 20%;
-}
-/* 検索の虫眼鏡を白にする */
-.search_btn i{
-    color: #fff;
 }
 
 /* ほかのユーザのプロフィール */

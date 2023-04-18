@@ -55,10 +55,11 @@
 
                 <tr>
                     <th>{{ Form::label('icon image') }}</th>
-                    <td>{!! Form::input('file','images',null,['class'=> 'form-control']) !!}</td>
+                    <td> <label class="file">{!! Form::input('file','images',null,['class'=> 'form-control','placeholder' => 'ファイルを選択']) !!} </label></td>
                 </tr>
                 </table>
-                <button type="submit"class="post_btn">更新</button>
+
+                <button type="submit"class="profile_btn btn"><a>更新</a></button>
                 {!! Form::close() !!}
             </div>
         </div>
