@@ -1,6 +1,9 @@
 @charset "utf-8";
 html{
-    font-size: 12px; /*ページ全体にテキストの大きさの基準を指定する*/
+    /* 高さは指定せず、内容量に合わせて自動で合わせるようにする */
+    /* ある程度高さを持たせたいのであればpaddingで余白を持たせる */
+    /* 上右下左 */
+    padding:0 0 170px 0;
 }
 body{
     color: #624649; /*文字色　赤茶色*/
@@ -232,17 +235,17 @@ li figure{
 }
 /* サイド以外の部分 */
 #container{
-    /* flex: 0 0 80%; */
-    /*containerとside-barが横いっぱいに広がるようにする
-    side-barのほうに幅を指定する*/
+    /* 左側8割 */
+    flex: 0 0 80%;
+    /*containerとside-barが横いっぱいに広がるようにする*/
     flex-grow: 1;
     /* 仮の色付け */
     background-color:orange;
     /* 折り返さない */
     /* flex-wrap: nowrap; */
 }
-
 #side-bar{
+    /* 右側2割 */
     width: 20%;
     /* flex: 0 0 22%; */
     /* flex-grow  フレックスコンテナ内のアイテムの伸び方の比率を指定
@@ -262,13 +265,11 @@ li figure{
 }
 
 
-
-
 /* 共通の構造の設定！！ */
 /* 共通上半分 */
 .top{
     background-color:rgb(252, 231, 117);
-    border-bottom: 5px solid #dadada;
+    border-bottom: 10px solid #dadada;
     /* 下にグレーの線を引く */
     min-height: 100px;
     /* 高さに最低ラインを設ける */
@@ -279,8 +280,9 @@ li figure{
     display: flex;
     /* 左に余白 */
     padding-left: 40px;
-
-
+}
+.bottom{
+    /* 高さはコンテンツによる */
 }
 /* 共通フォームエリアの中の各要素 */
 .form-control{
@@ -322,6 +324,7 @@ li figure{
     /* 角丸 */
     border-radius: 5px;
     /* ボタンを親要素の下辺に */
+    margin-top: 80px;
 
 
 }
@@ -364,8 +367,8 @@ li figure{
 #confirm{
     position: relative;
     /* 親要素にrelativeを設定 */
-    padding: 20px 20px;
     /* 上下の余白 左右の余白 */
+    padding: 20px 20px;
 }
 
 #side-bar #confirm .confirm_follow{
@@ -509,7 +512,7 @@ label.file{
     /* 検索エリアと検索結果を横並びにする */
     display: flex;
     background-color: beige;
-    width: 100%;
+    width: 70%;
     justify-content:space-between;
 }
 
@@ -517,13 +520,14 @@ label.file{
     /* 検索ボックスと検索アイコンを横並びにする */
     display: flex;
     background-color: #727272;
-    width: 40%;
+    width: 60%;
 }
 .search_box input{
     height: 45px;
-    border: 2px solid #9c9c9c;
-    border-radius: 1.5px;
     /* 検索ボックスに枠線を引く */
+    border: 2px solid #9c9c9c;
+    /* 角丸 */
+    border-radius: 4.0px;
     margin-right: 20px;
 }
 /* 検索ボタン */
@@ -539,15 +543,29 @@ label.file{
 }
 
 /* 検索ワードの表示 */
-
-.search_box p{
+.search_result{
     display: block;
-    height: 100%;
-    border: 2px solid #9c9c9c;
+    height: 40%;
+    width: 25%;
+    border: 4px solid #e63a3a;
     border-radius: 1.5px;
-    background-color: aqua;
-    /* 検索ボックスに枠線を引く */
 }
+.search_box p{
+    text-align: center;
+    padding:20px 0;
+}
+/* 検索結果一覧 */
+.search_results{
+    background-color: bisque;
+    width: 40%;
+    /* 中央に配置 */
+    margin: 0 auto;
+}
+.search_results li{
+    /* 下線不要 */
+    border-bottom: none;
+}
+
 /* フォロー解除ボタンを赤にする */
 .unfollow_btn{
     background-color: #e63a3a;

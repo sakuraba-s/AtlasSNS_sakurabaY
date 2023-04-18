@@ -88,7 +88,6 @@
 
             <!-- 上記メニューが表示されている時は非表示にする -->
                 <p>{{ $user->username }}さんの</p>
-
                 <div class="confirm_follow">
                     <div class="confirm_follow--num">
                         <p>フォロー数</p>
@@ -96,13 +95,10 @@
                     </div>
                     <p class="list_btn btn"><a href="/follow-list">フォローリスト</a></p>
                 </div>
-
-
                 <div class="confirm_follow">
                     <div class="confirm_follow--num">
                         <p>フォロワー数</p>
                         <p>{{ Auth::user()->followers()->where('followed_id',$id)->get()->count() }}名</p>
-
                     </div>
                     <p class="list_btn btn"><a href="/follower-list">フォロワーリスト</a></p>
                 </div>
