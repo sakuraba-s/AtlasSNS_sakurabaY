@@ -86,7 +86,7 @@
                         </ul>
                     </div>
 
-            <!-- 上記メニューが表示されている時は非表示にする -->
+                <!-- 上記メニューが表示されている時は非表示にする -->
                 <p>{{ $user->username }}さんの</p>
                 <div class="confirm_follow">
                     <div class="confirm_follow--num">
@@ -102,10 +102,8 @@
                     </div>
                     <p class="list_btn btn"><a href="/follower-list">フォロワーリスト</a></p>
                 </div>
-
-
             </div>
-            <p class="list_btn btn"><a href="/search">ユーザー検索</a></p>
+            <p class="listsearch_btn btn"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>

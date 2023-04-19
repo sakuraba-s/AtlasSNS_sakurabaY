@@ -90,7 +90,8 @@ li:not(:last-child){
     display: flex;
 }
 li figure{
-    margin-left: 40px;
+    /* アイコンの左側に余白 */
+    margin-left: 80px;
 }
 /* 下段 アイコンより右側 */
 .post_content{
@@ -230,59 +231,52 @@ li figure{
     /* 折り返さない */
     padding: 30px 0px 0px 0px;
     /* 左側に余白 上右下左*/
-    height: 80vh;
     /* 高さの指定 */
+    height: auto;
 }
 /* サイド以外の部分 */
 #container{
+    height: 100%;
     /* 左側8割 */
     flex: 0 0 80%;
-    /*containerとside-barが横いっぱいに広がるようにする*/
-    flex-grow: 1;
     /* 仮の色付け */
     background-color:orange;
-    /* 折り返さない */
-    /* flex-wrap: nowrap; */
+    /* 右側に線 */
+    border-right: 1px solid #727272;
 }
 #side-bar{
+    position: relative;
     /* 右側2割 */
     width: 20%;
-    /* flex: 0 0 22%; */
-    /* flex-grow  フレックスコンテナ内のアイテムの伸び方の比率を指定
-    flex-shrink フレックスコンテナ内のアイテムの縮み方の比率
-    flex-basis フレックスアイテムの幅
-    この方法で描くと右側に絶妙な隙間ができる*/
-    border-left: 1px solid #727272;
-    /* 縦線 */
-
-    background-color:rgb(255, 241, 254);
+    height: 360px;
     /* 仮の色付け */
-
+    background-color: #fff0af;
 }
-
 #login_user_area p{
     color: #ffffff;
 }
-
 
 /* 共通の構造の設定！！ */
 /* 共通上半分 */
 .top{
     background-color:rgb(252, 231, 117);
-    border-bottom: 10px solid #dadada;
     /* 下にグレーの線を引く */
-    min-height: 100px;
-    /* 高さに最低ラインを設ける */
+    border-bottom: 10px solid #dadada;
     /* エリアの大きさ */
-    width: 100%;
-    height: 25%;
+    /* width: 100%; */
+    height: 20%;
     /* トップにあるアイテムは横並びである */
     display: flex;
     /* 左に余白 */
     padding-left: 40px;
+
 }
 .bottom{
     /* 高さはコンテンツによる */
+    height: auto;
+    /* 高さに最低ラインを設ける */
+    min-height: 400px;
+    background-color:rgb(116, 186, 255);
 }
 /* 共通フォームエリアの中の各要素 */
 .form-control{
@@ -291,15 +285,6 @@ li figure{
     height: 100%;
     /* 淵を消す */
     border: none;
-}
-
-/* 共通下半分 */
-.bottom{
-    background-color:rgb(116, 186, 255);
-    /* padding: 0px 0px 0px 40px; */
-    /* 左側に余白 */
-    min-height: 100px;
-    /* 高さに最低ラインを設ける */
 }
 
 /* ここから個別ページの設定 */
@@ -365,10 +350,11 @@ li figure{
 
 /* サイドバー*/
 #confirm{
-    position: relative;
-    /* 親要素にrelativeを設定 */
     /* 上下の余白 左右の余白 */
     padding: 20px 20px;
+    background-color:rgb(60, 230, 117);
+    /* 下にグレーの線を引く */
+    border-bottom: 1px solid #727272;
 }
 
 #side-bar #confirm .confirm_follow{
@@ -381,13 +367,23 @@ li figure{
     /* 高さを指定 */
 }
 /* サイドバーのボタン */
-.list_btn{
+#confirm .list_btn{
     /* btnのあるpタグはブロック要素である */
     position: absolute;
     right: 0;
     bottom: 0;
     /* デフォルトはposition:static 位置が変えられないため**位置を変えたいときはrelativeやabsoluteにする */
 }
+
+/* ユーザ検索ボタン */
+.listsearch_btn{
+    position: absolute;
+    margin: 10px 10px;
+    bottom: 0;
+    /* デフォルトはposition:static 位置が変えられないため**位置を変えたいときはrelativeやabsoluteにする */
+}
+
+
 .confirm_follow--num{
     display: flex;
     /* フォロー数・フォロワー数と〇〇名とを横並びにする */
@@ -477,19 +473,21 @@ label{
     margin-bottom: 18px;
 }
 /* ファイルをアップロードの見た目修正 */
-/* スタイルを無効にする */
-input[type="file"] {
-    display: none;
-}
+
 /* ラベル要素に対してスタイルを指定する */
 label.file{
     padding: 10px 40px;
     height: 50px;
     background-color: #ffffff;
     cursor: pointer;
+    color: #2e2e2e;
+}
+/* スタイルを無効にする */
+input[type="file"] {
+    display: none;
 }
 
-/* プロフィール更新ボタン */
+/* プロフィール更新ボタン */                                
 .profile_btn{
     width: 20%;
     border-radius: 5px;

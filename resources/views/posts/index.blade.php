@@ -1,7 +1,6 @@
 @extends('layouts.login')
     @section('content')
         <!-- バリデーションのエラーを表示 -->
-
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

@@ -55,7 +55,7 @@
 
                 <tr>
                     <th>{{ Form::label('icon image') }}</th>
-                    <td> <label class="file">{!! Form::input('file','images','ファイルを選択',['class'=> 'form-control',]) !!} </label></td>
+                    <td> <label class="file">{!! Form::input('file','images',null,['class'=> 'form-control',]) !!} ファイルを選択</label></td>
                 </tr>
                 </table>
 
