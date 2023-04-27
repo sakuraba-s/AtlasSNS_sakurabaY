@@ -357,7 +357,7 @@ li figure{
     border-bottom: 1px solid #727272;
 }
 
-#side-bar #confirm .confirm_follow{
+.follow_box{
     margin-top: 15px;
     /* 〇〇さんの、との間に距離を開ける */
     position: relative;
@@ -378,7 +378,7 @@ li figure{
 /* ユーザ検索ボタン */
 .listsearch_btn{
     position: absolute;
-    margin: 10px 10px;
+    margin: 0 auto;
     bottom: 0;
     /* デフォルトはposition:static 位置が変えられないため**位置を変えたいときはrelativeやabsoluteにする */
 }
