@@ -46,8 +46,8 @@ $(function(){
         return false;
     });
 
-    // 背景部分や閉じるボタン(js-modal-close)が押されたら発火
-    $('.js-modal-close').on('click',function(){
+    // 投稿ボタンが押されたらモーダルを閉じる
+    $('.modal_submit').on('click',function(){
         // モーダルの中身(class="js-modal")を非表示
         $('.js-modal').fadeOut();
         return false;

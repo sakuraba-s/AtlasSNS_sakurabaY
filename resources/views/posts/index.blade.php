@@ -76,10 +76,11 @@
                     <form action="post_edit" method="post">
                         <!-- 取得した投稿内容をモーダルのどこへ渡すかの判別のためにクラス名「modal_post」「modal_id」を設定
                             textareaで枠の右下から入力欄を拡大縮小させることができる-->
-                        <textarea name="newPost" class="modal_post"></textarea>
-                        <!-- ※ここの空欄部分valueにiQueryで渡した投稿idが入ってくる -->
+                        <textarea name="newPost" class="modal_post">
+                            <!-- ※ここの空欄部分valueにiQueryで渡した投稿idが入ってくる -->
+                        </textarea>
                         <input type="hidden" name="id" class="modal_id" value="">
-                        <button type="submit"><img src="images/edit.png"  alt="編集" width="30px" height="30px">
+                        <button type="submit" class="modal_submit"></button>
                         {{ csrf_field() }}
                     </form>
                 </div>

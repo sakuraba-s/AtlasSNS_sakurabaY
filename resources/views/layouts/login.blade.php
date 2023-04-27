@@ -67,13 +67,10 @@
         </div>
     </header>
     <div id="row">
-    <!-- ヘッダー以外のページ全体（サイド含む） -->
+        <!-- ヘッダー以外のページ全体（サイド含む） -->
         <div id="container">
-    <!-- サイド以外の部分 -->
-
-
-
-@yield('content')
+            <!-- サイド以外の部分 -->
+            @yield('content')
         </div >
         <div id="side-bar">
             <div id="confirm">

@@ -408,6 +408,9 @@ li figure{
     height: 100vh;
     position: absolute;
     width: 100%;
+    z-index: 6;
+    /* left: 0;
+    top: 0; */
 }
 /* ダイアログ本体の設定 */
 .modal__content{
@@ -417,7 +420,23 @@ li figure{
     position: absolute;
     top: 50%;
     transform: translate(-50%,-50%);
-    width: 60%;
+    /* 箱の大きさ */
+    width: 50%;
+}
+
+.modal_post{
+    border:1px solid #2e2e2e;
+    padding: 1em;          /* 内側の余白量 */
+    width: 100%;             /* 横幅 */
+    height: 150px;
+}
+
+.modal_submit {
+    height: 45px;
+    width: 45px;
+    background-image: url(../images/edit.png);
+    background-size: auto 100%;
+    margin: 0 0 0 auto;
 }
 
 
