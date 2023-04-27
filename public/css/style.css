@@ -134,23 +134,23 @@ li figure{
 }
 
 .menu{
+    position: relative;
     display: none;
 /* メニューは非表示にしておく */
 }
 /* メニューはactiveの時だけ表示にしておく */
 .menu.active{
     position: absolute;
+    /* 親要素、confirmに大きさを合わせる 要素の上に重ねる */
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
     z-index: 1;
-    /* 親要素、confirmに大きさを合わせる 要素の上に重ねる */
     display: flex;
     /* display noneを解除する */
     background: #fff0af;
     font-size: 1.5rem;
-    text-align: center;
 }
 .menu.active li{
     /* liはブロック要素である */
@@ -159,23 +159,17 @@ li figure{
     height: calc(100% / 3);
     /* きれいに三分割！
     カルク：計算*/
-    position: relative;
+    border-bottom: none;
 }
 
 .menu.active li a{
-    display: block;
     /* ブロック要素にすることでリンク範囲が横幅いっぱいになる */
-    /* line-height: 4; */
-    /* ★★★ここがはみ出している(;'∀') */
-    /* 行ボックスの高さ */
-    /* 縦にもいっぱいにしたい */
-    height: calc(100% / 3);
-    
-
-
-    /* position: absolute;
-    margin-top: auto;
-    margin-bottom: auto; */
+    /* ブロック要素になれば、横幅や縦幅の指定ができる */
+    display: block;
+    width: 100%;
+    /* テキストを上下中央寄せに */
+    text-align: center;
+    padding:50px 0;
 
 }
 .menu.active li a:hover{
