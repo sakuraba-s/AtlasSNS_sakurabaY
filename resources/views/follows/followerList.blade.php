@@ -1,9 +1,9 @@
 @extends('layouts.login')
 
 @section('content')
-<div class="followers_top top">
+<div class="follow_top top">
             <span>Folower List</span>
-            <div class="followerlist_icon">
+            <div class="list_icon">
                 @foreach ($followerlist as $followerlist_icon)
                 @csrf
                     <form action="{{ route('othersprofile', ['id' => $followerlist_icon->id]) }}" method="POST" >

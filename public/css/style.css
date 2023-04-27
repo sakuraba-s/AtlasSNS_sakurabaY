@@ -96,6 +96,8 @@ li figure{
 /* 下段 アイコンより右側 */
 .post_content{
     width:100%;
+    /* 右に余白 */
+    padding-right: 30px;
 }
 /* divの塊の要素を横並びにして両端に寄せる */
 .post_content > div{
@@ -262,7 +264,7 @@ li figure{
     /* トップにあるアイテムは横並びである */
     display: flex;
     /* 左に余白 */
-    padding-left: 40px;
+    padding-left: 60px;
 
 }
 .bottom{
@@ -387,11 +389,16 @@ li figure{
     /* フォロー数・フォロワー数と〇〇名との間を開ける */
 }
 /* フォローフォロワーリスト */
-/* なぜアイコンが横並びにならない？？(;'∀') */
-.followerlist_icon{
+.list_icon{
     display: block;
     display: flex;
+    /* 左に余白 */
+    padding-left: 30px;
 }
+.follow_top span{
+    font-size: 1.5rem;
+}
+
 
 /* 編集ダイアログの表示非表示 */
 .modal{
