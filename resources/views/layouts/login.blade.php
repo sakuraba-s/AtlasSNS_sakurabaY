@@ -75,13 +75,13 @@
         <div id="side-bar">
             <div id="confirm">
                 <!-- ハンバーガー押下で出現する部分(デフォルトでは非表示にする) -->
-                    <div class="menu">
-                        <ul>
-                            <li><a href="/top">HOME</a></li>
-                            <li><a href="/profile">プロフィール編集</a></li>
-                            <li><a href="/logout">ログアウト</a></li>
-                        </ul>
-                    </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="/top">HOME</a></li>
+                        <li><a href="/profile">プロフィール編集</a></li>
+                        <li><a href="/logout">ログアウト</a></li>
+                    </ul>
+                </div>
 
                 <!-- 上記メニューが表示されている時は非表示にする -->
                 <p>{{ $user->username }}さんの</p>

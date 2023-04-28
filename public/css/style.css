@@ -78,10 +78,72 @@ button{
     white-space: nowrap
 }
 
+
+/* サイドバー*/
+#confirm{
+    height: 250px;
+    /* 上下の余白 左右の余白 */
+    padding: 20px 20px;
+    background-color:rgb(60, 230, 117);
+    /* 下にグレーの線を引く */
+    border-bottom: 1px solid #727272;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.follow_box{
+    margin-top: 15px;
+    /* 〇〇さんの、との間に距離を開ける */
+    position: relative;
+    background-color: rgb(253, 222, 144);
+    /* 仮の色 */
+    height: 80px;
+    /* 高さを指定 */
+}
+/* サイドバーのボタン */
+#confirm .list_btn{
+    /* btnのあるpタグはブロック要素である */
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    /* デフォルトはposition:static 位置が変えられないため**位置を変えたいときはrelativeやabsoluteにする */
+}
+
+/* ユーザ検索ボタン */
+.listsearch_btn{
+    /* position: absolute; */
+    margin: 0 auto;
+    /* bottom: 0; */
+    /* デフォルトはposition:static 位置が変えられないため**位置を変えたいときはrelativeやabsoluteにする */
+}
+
+
+.confirm_follow--num{
+    display: flex;
+    /* フォロー数・フォロワー数と〇〇名とを横並びにする */
+}
+.confirm_follow--num p:nth-child( 2 ) {
+    margin-left: 30px;
+    /* フォロー数・フォロワー数と〇〇名との間を開ける */
+}
+/* フォローフォロワーリスト */
+.list_icon{
+    display: block;
+    display: flex;
+    /* 左に余白 */
+    padding-left: 30px;
+}
+.follow_top span{
+    font-size: 1.5rem;
+}
+
+
 /* 共通 リストの下線 */
 li{
     /* 中身を横並び */
     display: flex;
+    /* 上下の余白 左右の余白 */
+    padding: 20px 20px;
 }
 li:not(:last-child){
     /* 下に下線 */
@@ -152,7 +214,7 @@ li figure{
     display: flex;
     /* display noneを解除する */
     background: #fff0af;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 .menu.active li{
     /* liはブロック要素である */
@@ -162,6 +224,7 @@ li figure{
     /* きれいに三分割！
     カルク：計算*/
     border-bottom: none;
+    padding: 0;
 }
 
 .menu.active li a{
@@ -171,8 +234,10 @@ li figure{
     width: 100%;
     /* テキストを上下中央寄せに */
     text-align: center;
-    padding:50px 0;
-
+    /* 親要素からはみ出ないようにサイズに余白も含める */
+    box-sizing: border-box;
+    /* 上と左側に余白 上右下左*/
+    padding: 40px 0px 40px 0px;
 }
 .menu.active li a:hover{
     /*マウスオンしたときのスタイルを設定*/
@@ -225,8 +290,6 @@ li figure{
     /*★★side-barと合わせてid名rowに入っている。それを横並びにしている */
     /* flex-flow: row wrap; */
     /* 折り返さない */
-    padding: 30px 0px 0px 0px;
-    /* 左側に余白 上右下左*/
     /* 高さの指定 */
     height: auto;
 }
@@ -241,13 +304,13 @@ li figure{
     border-right: 1px solid #727272;
 }
 #side-bar{
-    display: flex;
-    /* position: relative; */
+    /* display: flex; */
+    position: relative;
     /* 右側2割 */
     width: 20%;
     height: 360px;
     /* 仮の色付け */
-    background-color: #fff0af;
+    background-color: #c0c6fc;
 }
 #login_user_area p{
     color: #ffffff;
@@ -264,8 +327,9 @@ li figure{
     height: 20%;
     /* トップにあるアイテムは横並びである */
     display: flex;
-    /* 左に余白 */
-    padding-left: 60px;
+    /* 上下の余白 上右下左 */
+    padding: 20px 0 20px 60px;
+
 
 }
 .bottom{
@@ -345,66 +409,12 @@ li figure{
     width: 65%;
 }
 
-/* サイドバー*/
-#confirm{
-    /* 上下の余白 左右の余白 */
-    padding: 20px 20px;
-    background-color:rgb(60, 230, 117);
-    /* 下にグレーの線を引く */
-    border-bottom: 1px solid #727272;
-}
-
-.follow_box{
-    margin-top: 15px;
-    /* 〇〇さんの、との間に距離を開ける */
-    position: relative;
-    background-color: rgb(253, 222, 144);
-    /* 仮の色 */
-    min-height: 60px;
-    /* 高さを指定 */
-}
-/* サイドバーのボタン */
-#confirm .list_btn{
-    /* btnのあるpタグはブロック要素である */
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    /* デフォルトはposition:static 位置が変えられないため**位置を変えたいときはrelativeやabsoluteにする */
-}
-
-/* ユーザ検索ボタン */
-.listsearch_btn{
-    /* position: absolute; */
-    margin: 0 auto;
-    bottom: 0;
-    /* デフォルトはposition:static 位置が変えられないため**位置を変えたいときはrelativeやabsoluteにする */
-}
-
-
-.confirm_follow--num{
-    display: flex;
-    /* フォロー数・フォロワー数と〇〇名とを横並びにする */
-}
-.confirm_follow--num p:nth-child( 2 ) {
-    margin-left: 30px;
-    /* フォロー数・フォロワー数と〇〇名との間を開ける */
-}
-/* フォローフォロワーリスト */
-.list_icon{
-    display: block;
-    display: flex;
-    /* 左に余白 */
-    padding-left: 30px;
-}
-.follow_top span{
-    font-size: 1.5rem;
-}
-
 
 /* 編集ダイアログの表示非表示 */
 .modal{
     display: none;
     height: 100vh;
+    /* 要素の位置を固定 スクロールしても常に表示される */
     position: fixed;
     top: 0;
     width: 100%;
@@ -416,12 +426,12 @@ li figure{
     height: 100vh;
     position: absolute;
     width: 100%;
-    z-index: 6;
-    /* left: 0;
-    top: 0; */
+    /* z-index: 10000; */
 }
 /* ダイアログ本体の設定 */
 .modal__content{
+    /* ボタンと箱を横並びに */
+    display: flex;
     background: #fff;
     left: 50%;
     padding: 40px;
@@ -431,11 +441,14 @@ li figure{
     /* 箱の大きさ */
     width: 50%;
 }
+.post_edit{
+    /* flex-wrap: nowrap; */
+}
 
 .modal_post{
     border:1px solid #2e2e2e;
     padding: 1em;          /* 内側の余白量 */
-    width: 100%;             /* 横幅 */
+    width: 700px;             /* 横幅 */
     height: 150px;
 }
 
@@ -457,12 +470,7 @@ li figure{
 
 
 /* プロフィール画面のcss */
-.profile{
-    /* アイコンと入力エリアを横並び */
-    display: flex;
-    padding: 10px 0px 0px 100px;
-    /* 上と左側に余白 上右下左*/
-}
+
 .profile_area_user{
     margin-right: 20px;
     /* 右の入力欄との間に余白 */
@@ -472,11 +480,14 @@ li figure{
     background-color: blueviolet;
     margin-right: 20px;
     /* 右との間に余白 */
-    display: block;
-    width: 100%;
+    /* アイコンと入力エリアを横並び */
+    display: flex;
+    width: 60%;
+    /* 中央に配置 */
+    margin: 0 auto;
 }
 label{
-    font-size: 0.8px;
+    font-size: 1.2rem;
     color: #ffffff;
     display: block;
     /* インラインからブロック要素に変える(縦に並ぶ)*/
@@ -488,16 +499,18 @@ label{
 
 /* プロフィール入力の箱部分 */
 .profile input{
-    width: 100%;
-    height: 30px;
+    width: 400px;
+    height: 50px;
     /* 入力欄の下に余白 */
     margin-bottom: 18px;
+    margin-left: 20px;
 }
 /* ファイルをアップロードの見た目修正 */
 
 /* ラベル要素に対してスタイルを指定する */
 label.file{
     padding: 10px 40px;
+    margin-left: 20px;
     height: 50px;
     background-color: #ffffff;
     cursor: pointer;
@@ -508,7 +521,7 @@ input[type="file"] {
     display: none;
 }
 
-/* プロフィール更新ボタン */                                
+/* プロフィール更新ボタン */
 .profile_btn{
     width: 20%;
     border-radius: 5px;

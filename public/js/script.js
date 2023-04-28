@@ -4,9 +4,10 @@ $(function(){
     //  ハンバーガーメニュー
     $('.menu-trigger').click(function(){
         // 対象.menu-tigger(ハンバーガー)をクリックした時、function以下の操作をする。
+        // メニューの表示
         $(".menu").toggleClass('active');
+         // ▽マークの上下切り替え
         $(".menu-trigger").toggleClass('active');
-        $("#confirm").toggleClass('active');
 
         // // toggleClassメソッド:指定したクラス名の CSS がある場合は削除を行い、なければ追加する。
         // if($(this).hasClass('active')){
@@ -17,10 +18,9 @@ $(function(){
         //     $('.g-navi').removeClass('active');
         // }
     });
-    // ナビゲーションの表示非表示
+    // ▽マークの上下切り替え
     $('.nav-wrapper ul li a').click(function(){ // 対象nav-wrapper ul li a　をクリックした時、function以下の操作をする。
         $('.menu-trigger').removeClass('active'); // タップ後はメニューが閉じるようにactiveを外す。
-        $('.g-navi').removeClass('active');
     });
 
     // 投稿編集のダイアログボックス
@@ -43,13 +43,6 @@ $(function(){
         $('.modal_post').text(post);
         // 取得した投稿のidをモーダルの中身(val)へ渡す
         $('.modal_id').val(post_id);
-        return false;
-    });
-
-    // 投稿ボタンが押されたらモーダルを閉じる
-    $('.modal_submit').on('click',function(){
-        // モーダルの中身(class="js-modal")を非表示
-        $('.js-modal').fadeOut();
         return false;
     });
 });   // 全体のfunctionを閉じる

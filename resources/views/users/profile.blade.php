@@ -11,10 +11,10 @@
             </div>
         @endif
         <div class="profile">
-            <div class="profile_area_user">
-                <img src="images/icon1.png">
-            </div>
             <div class="profile_area_content">
+                <div class="profile_area_user">
+                    <img src="images/icon1.png">
+                </div>
                 <!-- ログイン中のユーザ情報の取得 -->
                 <?php
                 $username= \Auth::user()->username;

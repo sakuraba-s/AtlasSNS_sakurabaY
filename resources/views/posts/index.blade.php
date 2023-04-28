@@ -69,16 +69,15 @@
 
             <!-- 編集のダイアログボックス (編集アイコンを押すと現れる)
             押下した投稿内容ただ一つを表示させる-->
-        <div class="modal js-modal">
-            <!-- ここのbgに対して薄い色をcssで引く -->
-            <di class="modal__bg js-modal-close">
+            <div class="modal js-modal">
+                <!-- ここのbgに対して薄い色をcssで引く -->
+                <div class="modal__bg"></div>
                 <div class="modal__content">
                     <form action="post_edit" method="post">
                         <!-- 取得した投稿内容をモーダルのどこへ渡すかの判別のためにクラス名「modal_post」「modal_id」を設定
-                            textareaで枠の右下から入力欄を拡大縮小させることができる-->
-                        <textarea name="newPost" class="modal_post">
+                        textareaで枠の右下から入力欄を拡大縮小させることができる-->
+                        <textarea name="newPost" class="modal_post"></textarea>
                             <!-- ※ここの空欄部分valueにiQueryで渡した投稿idが入ってくる -->
-                        </textarea>
                         <input type="hidden" name="id" class="modal_id" value="">
                         <button type="submit" class="modal_submit"></button>
                         {{ csrf_field() }}
