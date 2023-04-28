@@ -241,7 +241,8 @@ li figure{
     border-right: 1px solid #727272;
 }
 #side-bar{
-    position: relative;
+    display: flex;
+    /* position: relative; */
     /* 右側2割 */
     width: 20%;
     height: 360px;
@@ -373,7 +374,7 @@ li figure{
 
 /* ユーザ検索ボタン */
 .listsearch_btn{
-    position: absolute;
+    /* position: absolute; */
     margin: 0 auto;
     bottom: 0;
     /* デフォルトはposition:static 位置が変えられないため**位置を変えたいときはrelativeやabsoluteにする */
