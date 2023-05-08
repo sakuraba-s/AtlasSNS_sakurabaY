@@ -25,15 +25,15 @@
 
     <div class="search_bottom bottom">
         <div class="search_results">
-            <table class='table'>
+            <table class="table">
                 <!-- ※この↓usersはUsersコントローラで取得したユーザのデータ -->
                     <ul>
                     @foreach ($users as $user)
                     <li>
-                        <figure><img src=" {{ asset('storage/profiles/'.$user->images) }}" class="pro_img" alt="プロフィール画像"></figure>
-                        <div class="post_content">
+                        <figure class="search_figure"><img src=" {{ asset('storage/profiles/'.$user->images) }}" class="pro_img" alt="プロフィール画像"></figure>
+                        <div class="post_content search_content">
                             <div>
-                                <div class="post_name">{{ $user->username }}</div>
+                                <div class="search_name">{{ $user->username }}</div>
                                 <div class="table_btn">
                                         <!-- フォロー解除まはたフォローボタン -->
                                         <!-- UserモデルのisFollowingメソッドの結果が真ならば(すでにフォローしているならば)

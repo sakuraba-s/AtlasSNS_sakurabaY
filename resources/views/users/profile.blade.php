@@ -10,9 +10,9 @@
                 </ul>
             </div>
         @endif
-        <div class="profile">
-            <div class="profile_area_content">
-                <div class="profile_area_user">
+        <div class="profile_top top">
+            <div class="profile_content">
+                <div class="profile_figure">
                     <img src="images/icon1.png">
                 </div>
                 <!-- ログイン中のユーザ情報の取得 -->
@@ -24,44 +24,44 @@
                 $id= \Auth::user()->id;
                 $bio= \Auth::user()->bio;
                 ?>
-                <table>
+                <table class="profile_table">
 
-                {!! Form::open(['url' => '/edit','method'=>'POST','enctype'=>'multipart/form-data']) !!}
-                {!! Form::hidden('id',$id)!!}
-                <tr>
-                    <th>{{ Form::label('user name') }}</th>
-                    <td>{!! Form::input('text','username',$username,['required','class'=> 'form-control'] ) !!}</td>
-                </tr>
+                    {!! Form::open(['url' => '/edit','method'=>'POST','enctype'=>'multipart/form-data']) !!}
+                    {!! Form::hidden('id',$id)!!}
+                    <tr>
+                        <th>{{ Form::label('user name') }}</th>
+                        <td>{!! Form::input('text','username',$username,['required','class'=> 'form-control'] ) !!}</td>
+                    </tr>
 
-                <tr>
-                    <th>{{ Form::label('mail address') }}</th>
-                    <td>{!! Form::input('text','mail',$mail,['required','class'=> 'form-control']) !!}</td>
-                </tr>
+                    <tr>
+                        <th>{{ Form::label('mail address') }}</th>
+                        <td>{!! Form::input('text','mail',$mail,['required','class'=> 'form-control']) !!}</td>
+                    </tr>
 
-                <tr>
-                    <th>{{ Form::label('password') }}</th>
-                    <td>{!! Form::input('password','password',null,['required','class'=> 'form-control']) !!}</td>
-                </tr>
+                    <tr>
+                        <th>{{ Form::label('password') }}</th>
+                        <td>{!! Form::input('password','password',null,['required','class'=> 'form-control']) !!}</td>
+                    </tr>
 
-                <tr>
-                    <th>{{ Form::label('password confirm') }}</th>
-                    <td>{!! Form::input('password','password_confirmation',null,['required','class'=> 'form-control']) !!}</td>
-                </tr>
+                    <tr>
+                        <th>{{ Form::label('password confirm') }}</th>
+                        <td>{!! Form::input('password','password_confirmation',null,['required','class'=> 'form-control']) !!}</td>
+                    </tr>
 
-                <tr>
-                    <th>{{ Form::label('bio') }}</th>
-                    <td>{!! Form::input('text','bio',$bio,['class'=> 'form-control']) !!}</td>
-                </tr>
+                    <tr>
+                        <th>{{ Form::label('bio') }}</th>
+                        <td>{!! Form::input('text','bio',$bio,['class'=> 'form-control']) !!}</td>
+                    </tr>
 
-                <tr>
-                    <th>{{ Form::label('icon image') }}</th>
-                    <td> <label class="file">{!! Form::input('file','images',null,['class'=> 'form-control',]) !!} ファイルを選択</label></td>
-                </tr>
+                    <tr>
+                        <th>{{ Form::label('icon image') }}</th>
+                        <td> <label class="file">{!! Form::input('file','images',null,['class'=> 'form-control',]) !!} ファイルを選択</label></td>
+                    </tr>
                 </table>
 
+            </div>
                 <button type="submit"class="profile_btn btn"><a>更新</a></button>
                 {!! Form::close() !!}
-            </div>
         </div>
         <!-- 編集、削除の際にidをGETで渡す
         編集、削除ボタンは自分の投稿にのみ表示 -->
