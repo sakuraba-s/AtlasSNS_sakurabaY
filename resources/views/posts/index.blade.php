@@ -73,7 +73,7 @@
                 <!-- ここのbgに対して薄い色をcssで引く -->
                 <div class="modal__bg"></div>
                 <div class="modal__content">
-                    <form action="post_edit" method="post">
+                    <form action="post_edit" class="modal_form" method="post">
                         <!-- 取得した投稿内容をモーダルのどこへ渡すかの判別のためにクラス名「modal_post」「modal_id」を設定
                         textareaで枠の右下から入力欄を拡大縮小させることができる-->
                         <textarea name="newPost" class="modal_post"></textarea>
