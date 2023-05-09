@@ -86,18 +86,14 @@
                 <!-- 上記メニューが表示されている時は非表示にする -->
                 <p>{{ $user->username }}さんの</p>
                 <div class="follow_box">
-                    <div class="confirm_follow--num">
-                        <p>フォロー数</p>
-                        <p>{{ Auth::user()->follows()->where('following_id',$id)->get()->count() }}名</p>
+                    <div class="confirm_follow">
+                        <p>フォロー数  {{ Auth::user()->follows()->where('following_id',$id)->get()->count() }}名</p>
+                        <p class="list_btn btn"><a href="/follow-list">フォローリスト</a></p>
                     </div>
-                    <p class="list_btn btn"><a href="/follow-list">フォローリスト</a></p>
-                </div>
-                <div class="follow_box">
-                    <div class="confirm_follow--num">
-                        <p>フォロワー数</p>
-                        <p>{{ Auth::user()->followers()->where('followed_id',$id)->get()->count() }}名</p>
+                    <div class="confirm_follow">
+                        <p>フォロワー数  {{ Auth::user()->followers()->where('followed_id',$id)->get()->count() }}名</p>
+                        <p class="list_btn btn"><a href="/follower-list">フォロワーリスト</a></p>
                     </div>
-                    <p class="list_btn btn"><a href="/follower-list">フォロワーリスト</a></p>
                 </div>
             </div>
             <p class="listsearch_btn btn"><a href="/search">ユーザー検索</a></p>

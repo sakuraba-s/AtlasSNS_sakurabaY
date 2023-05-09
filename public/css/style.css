@@ -87,27 +87,43 @@ button{
     background-color:rgb(60, 230, 117);
     /* 下にグレーの線を引く */
     border-bottom: 1px solid #727272;
+    /* ユーザ検索ボタンとの隙間 */
     margin-bottom: 30px;
-    position: relative;
+    /* position: relative; */
 }
 
 .follow_box{
     margin-top: 15px;
     /* 〇〇さんの、との間に距離を開ける */
-    position: relative;
+    /* position: relative; */
     background-color: rgb(253, 222, 144);
     /* 仮の色 */
-    height: 80px;
+    height: 220px;
     /* 高さを指定 */
+    /* display:flex;
+    justify-content: space-between; */
 }
+.confirm_follow{
+    height: 110px;
+}
+.confirm_follow:nth-child(1){
+    background-color: #ee3939;
+    word-spacing: 28px;
+}
+.confirm_follow:nth-child(2){
+    word-spacing: 10px;
+}
+
 /* サイドバーのボタン */
 #confirm .list_btn{
     /* btnのあるpタグはブロック要素である */
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    /* position: absolute; */
+    /* right: 0; */
+    /* bottom: 0; */
     /* デフォルトはposition:static 位置が変えられないため**位置を変えたいときはrelativeやabsoluteにする */
-    width: 40%;
+    width: 50%;
+    /* ボタン位置 */
+    margin: 20% 0% 0% auto;
 }
 
 /* ユーザ検索ボタン */
@@ -199,7 +215,6 @@ li figure{
 }
 
 .menu{
-    position: relative;
     display: none;
 /* メニューは非表示にしておく */
 }
@@ -310,8 +325,6 @@ li figure{
     border-right: 1px solid #727272;
 }
 #side-bar{
-    /* display: flex; */
-    position: relative;
     /* 右側2割 */
     width: 20%;
     height: 360px;
