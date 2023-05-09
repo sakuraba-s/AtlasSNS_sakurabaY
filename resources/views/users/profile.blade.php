@@ -30,32 +30,32 @@
                     {!! Form::hidden('id',$id)!!}
                     <tr>
                         <th>{{ Form::label('user name') }}</th>
-                        <td>{!! Form::input('text','username',$username,['required','class'=> 'form-control'] ) !!}</td>
+                        <td>{!! Form::input('text','username',$username,['required','class'=> 'profile-form'] ) !!}</td>
                     </tr>
 
                     <tr>
                         <th>{{ Form::label('mail address') }}</th>
-                        <td>{!! Form::input('text','mail',$mail,['required','class'=> 'form-control']) !!}</td>
+                        <td>{!! Form::input('text','mail',$mail,['required','class'=> 'profile-form']) !!}</td>
                     </tr>
 
                     <tr>
                         <th>{{ Form::label('password') }}</th>
-                        <td>{!! Form::input('password','password',null,['required','class'=> 'form-control']) !!}</td>
+                        <td>{!! Form::input('password','password',null,['required','class'=> 'profile-form']) !!}</td>
                     </tr>
 
                     <tr>
                         <th>{{ Form::label('password confirm') }}</th>
-                        <td>{!! Form::input('password','password_confirmation',null,['required','class'=> 'form-control']) !!}</td>
+                        <td>{!! Form::input('password','password_confirmation',null,['required','class'=> 'profile-form']) !!}</td>
                     </tr>
 
                     <tr>
                         <th>{{ Form::label('bio') }}</th>
-                        <td>{!! Form::input('text','bio',$bio,['class'=> 'form-control']) !!}</td>
+                        <td>{!! Form::input('text','bio',$bio,['class'=> 'profile-form']) !!}</td>
                     </tr>
 
                     <tr>
                         <th>{{ Form::label('icon image') }}</th>
-                        <td> <label class="file">{!! Form::input('file','images',null,['class'=> 'form-control',]) !!} ファイルを選択</label></td>
+                        <td> <label class="file">{!! Form::input('file','images',null,['class'=> 'profile-form',]) !!} ファイルを選択</label></td>
                     </tr>
                 </table>
 
