@@ -45,16 +45,6 @@ class UsersController extends Controller
         ]);
         return $validator;
     }
-    // プロフィール更新メソッド
-    // protected function save(array $data)
-    // {
-    //     return User::save([
-    //         'username' => $data['username'],
-    //         'mail' => $data['mail'],
-    //         'password' => bcrypt($data['password']),
-    //     ]);
-    // }
-
 
     // プロフィール更新部分
     protected function update(Request $request)

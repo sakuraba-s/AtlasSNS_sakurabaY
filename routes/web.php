@@ -68,7 +68,7 @@ Route::delete('/users/{user}/unfollow','UsersController@unfollow')->name('unfoll
 // Route::post('/{id}/follow','UsersController@follow')->name('follow');
 // Route::post('/{id}/unfollow','UsersController@unfollow')->name('unfollow');
 
-Route::get('/follow-list','FollowsController@followList');
+Route::get('/follow-list','FollowsController@followList')->name('follow-list');
 Route::get('/follower-list','FollowsController@followerList');
 
 
