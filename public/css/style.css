@@ -229,7 +229,6 @@ li figure{
     right: 0;
     left: 0;
     z-index: 1;
-    pointer-events: none;
 
     display: flex;
     /* display noneを解除する */
@@ -312,8 +311,8 @@ li figure{
 /* ページの構造全体の設定 */
 /* ヘッダー以外のページ全体（サイド含む） */
 #row{
-    position: relative;
-    z-index: 0;
+    /* position: relative;
+    z-index: 0; */
     display: flex;
     /*★★side-barと合わせてid名rowに入っている。それを横並びにしている */
     /* flex-flow: row wrap; */
