@@ -82,11 +82,10 @@ button{
 /* サイドバー*/
 #confirm{
     position: relative;
-    z-index: -1;
     height: 250px;
     /* 上下の余白 左右の余白 */
     padding: 20px 20px;
-    background-color:rgb(60, 230, 117);
+    /* background-color:rgb(60, 230, 117); */
     /* 下にグレーの線を引く */
     border-bottom: 1px solid #727272;
     /* ユーザ検索ボタンとの隙間 */
@@ -98,7 +97,7 @@ button{
     margin-top: 15px;
     /* 〇〇さんの、との間に距離を開ける */
     /* position: relative; */
-    background-color: rgb(253, 222, 144);
+    /* background-color: rgb(253, 222, 144); */
     /* 仮の色 */
     height: 220px;
     /* 高さを指定 */
@@ -109,7 +108,7 @@ button{
     height: 110px;
 }
 .confirm_follow:nth-child(1){
-    background-color: #ee3939;
+    /* background-color: #ee3939; */
     word-spacing: 28px;
 }
 .confirm_follow:nth-child(2){
@@ -232,7 +231,7 @@ li figure{
 
     display: flex;
     /* display noneを解除する */
-    background: #fff0af;
+    background: #ffffff;
     font-size: 1.4rem;
 }
 .menu.active ul{
@@ -326,17 +325,18 @@ li figure{
     /* 左側8割 */
     flex: 0 0 80%;
     /* 仮の色付け */
-    background-color:orange;
+    /* background-color:orange; */
     /* 右側に線 */
     border-right: 1px solid #727272;
+    z-index: 2;
 }
 #side-bar{
-    z-index: -1;
+    z-index: 1;
     /* 右側2割 */
     width: 20%;
     height: 360px;
     /* 仮の色付け */
-    background-color: #c0c6fc;
+    /* background-color: #c0c6fc; */
 }
 #login_user_area p{
     color: #ffffff;
@@ -345,7 +345,7 @@ li figure{
 /* 共通の構造の設定！！ */
 /* 共通上半分 */
 .top{
-    background-color:rgb(252, 231, 117);
+    /* background-color:rgb(252, 231, 117); */
     /* 下にグレーの線を引く */
     border-bottom: 10px solid #dadada;
     /* エリアの大きさ */
@@ -363,7 +363,7 @@ li figure{
     height: auto;
     /* 高さに最低ラインを設ける */
     min-height: 400px;
-    background-color:rgb(116, 186, 255);
+    /* background-color:rgb(116, 186, 255); */
 }
 /* 共通フォームエリアの中の各要素 */
 .form-control{
@@ -397,7 +397,7 @@ li figure{
     border-radius: 5px;
     /* ボタンを親要素の下辺に */
     margin-top: 80px;
-    background:url("../images/post.png") #777e86;
+    /* background:url("../images/post.png") #777e86; */
     background-size:auto 100% ;
 }
 
@@ -542,7 +542,7 @@ li figure{
 /* ラベル */
 .profile_table th{
     font-size: 1.0rem;
-    background-color: #f5ffbb;
+    /* background-color: #f5ffbb; */
     /* display: block; */
     /* インラインからブロック要素に変える(縦に並ぶ)*/
     text-align: left;
@@ -630,7 +630,7 @@ input[type="file"] {
 .search_box{
     /* 検索エリアと検索結果を横並びにする */
     display: flex;
-    background-color: beige;
+    /* background-color: beige; */
     width: 70%;
     height: 50px;
     justify-content:space-between;
@@ -639,7 +639,7 @@ input[type="file"] {
 .search_box form{
     /* 検索ボックスと検索アイコンを横並びにする */
     display: flex;
-    background-color: #727272;
+    /* background-color: #727272; */
     width: 70%;
 }
 .search_box input{
@@ -686,7 +686,7 @@ input[type="file"] {
 /* 検索結果一覧 */
 .search_results{
     position: relative;
-    background-color: bisque;
+    /* background-color: bisque; */
     width: 40%;
     /* 中央に配置 */
     margin: 0 auto;
